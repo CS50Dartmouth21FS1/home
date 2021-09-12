@@ -11,9 +11,7 @@ All course content is maintained in this Git repository -- including history of 
 * [Labs](labs/README.md)
 * [Project](project/README.md)
 * [Canvas](https://canvas.dartmouth.edu/courses/49179)
-* [Slack]({{slack}})
-* [Zoom]({{zoom-class}}) (classes)
-* [Zoom]({{zoom-hours}}) (office hours)
+* [Ed Discussion]({{edstem})
 
 The materials used in the course are derived from those designed by
 Professors Balkcom, Campbell, Kotz, Palmer, Zhou, and others.
