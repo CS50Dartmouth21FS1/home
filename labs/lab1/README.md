@@ -1,4 +1,4 @@
-# Lab 1 - Bash
+D# Lab 1 - Bash
 
 This first lab should get you up to speed working with the command line, basic shell commands, an editor, and a small bash program.
 
@@ -24,12 +24,12 @@ You need to format your `README.md` file in Markdown syntax, and you will write 
 
 Do all your work on the Linux server.
 
-Clone the lab1 starter kit: [Accept the assignment](https://classroom.github.com/a/nMjlfY-h), and clone the repository to your `cs50-dev` directory on `plank`.
+Clone the lab1 starter kit: [Accept the assignment](https://classroom.github.com/a/-1VQMFfJ), and clone the repository to your `cs50-dev` directory on `plank`.
 It will look something like this, assuming your GitHub username is XXXXX, and abbreviating the bash prompt to `$`:
 
 ```
 	$ cd cs50-dev/
-	$ git clone git@github.com:cs50spring2021/lab1-XXXXX.git
+	$ git clone git@github.com:CS50Dartmouth21FS1/lab1-XXXXX.git
 	Cloning into 'lab1-XXXXX'...
 ```
 
@@ -40,7 +40,7 @@ Finally, `cd lab1-XXXXX` to begin work.
 
 ## Assignment
 
-A. Edit the file `README.md` to remove these instructions, add your name, add your username.
+A. Edit the Markdown file `README.md` to add your name and your username.
   Add a `##` subsection header for each of the following tasks.
   For problems B-H, paste your proposed bash command/pipeline (but not its output) after the appropriate header, surrounded by Markdown's "triple-ticks" notation, which looks like this:
   
@@ -50,7 +50,7 @@ A. Edit the file `README.md` to remove these instructions, add your name, add yo
 		```
 
 B. Explore the directory `~/cs50-dev/shared/COVID-19`.
-Find the pathname for the `hourly/vaccine_data_us.csv`.
+Find the pathname for the `hourly/vaccine_data_us.csv`spreadsheet.
 Write a single bash command or pipeline to create a *symbolic link* to that file, within your `lab1-XXXX` directory.
 The goal is that, when your current working directory is your `lab1-XXXX` directory, you can type
 
