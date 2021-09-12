@@ -28,6 +28,8 @@ Like any budding hacker you need to do some experimenting, find information to f
 * History: [Unix pipes](hist-pipes.md)
 * Optional: [MacOS tip](macos.md)
 * Milestone: [Before Activity 1](milestone.md)
+
+
 * Unit: [Special characters, quoting, and sed](bash-quoting.md)
 * Unit: [Shell scripts and conditional expressions](bash-conditional.md)
 * Unit: [Looping in shell](bash-loops.md)
@@ -36,6 +38,8 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Shell tips and tricks](bash-tips.md)
 * History: [Origin of "Artificial Intelligence"](hist-ai.md)
 * Milestone: [Before completing Lab 1](milestone.md)
+
+
 * Reading: [Unix and shell programming](read-shell.md)
 * Reading: [C programming](read-c1.md)
 * Unit: [Introduction to C](c-intro.md)
@@ -43,6 +47,8 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [Git concepts and commands](git.md)
 * Reading: [Git reference and reading](read-git.md)
 * Milestone: [Before Activity 2](milestone.md)
+
+
 * History: [Programming languages](hist-c.md)
 * Unit: [C - naming constants, variables, functions](c-names.md)
 * Unit: [C - math library](c-math.md)
@@ -59,7 +65,11 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Reading: [C programming, memory allocation, data structures](read-c2.md)
 * History: [BASIC invented here](hist-basic.md)
 * Milestone: [Before completing Lab 2](milestone.md)
+
+
 * Milestone: [Before Activity 3](milestone.md)
+
+
 * Unit: [Mad Libs](madlibs.md)
 * Unit: [Memory, pointers, and malloc](memory.md)
 * Unit: [Dynamic memory allocation](malloc.md)
@@ -84,6 +94,8 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Lab3 mem module](lab3-mem.md)
 * Optional: [Lab3 file module](lab3-file.md)
 * Milestone: [Before Activity 4](milestone.md)
+
+
 * Unit: [Comments as contracts](contracts.md)
 * Optional: [Valgrind, for debugging memory errors](valgrind.md)
 * Unit: [Debugging techniques and 'gdb'](gdb.md)
@@ -95,9 +107,13 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Examples of famous bugs](testing-bugs.md)
 * History: [President Kemeny on "Computers and Values”, May 1984](kemeny.md)
 * Milestone: [Before completing Lab 3](milestone.md)
+
+
 * Reading: [Practical programmer tips](read-design.md)
 * Unit: [Software design methodology](design.md)
 * Milestone: [Before Activity 5](milestone.md)
+
+
 * Reading: [Searching the web](read-search.md)
 * Unit: [Searching The Web](search.md)
 * Unit: [TSE Crawler requirements and design](crawler.md)
@@ -105,32 +121,50 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [Building and using libraries with Makefiles](libraries.md)
 * Reading: [Bugs and debugging](read-bugs.md)
 * Milestone: [Before completing Lab 4](milestone.md)
+
+
 * Unit: [Iterators](iterators.md)
 * Unit: [Indexer Design](indexer.md)
 * Reading: [More tips about coding](read-coding.md)
 * Milestone: [Before completing Lab 5](milestone.md)
+
+
 * Unit: [TSE Querier (demo)](querier.md)
 * Unit: [Querier parsing: expressions](querier-expressions.md)
 * Milestone: [Before Activity 5](milestone.md)
+
+
 * Optional: [Querier parsing: chopping a string into sub-strings](querier-chop.md)
 * Unit: [Querier fuzz-testing](querier-testing.md)
 * Milestone: [Before completing Lab 6](milestone.md)
+
+
 * Unit: [Git - merge conflicts](git-conflict.md)
 * Unit: [Git flow](git-flow.md)
 * Unit: [Protecting the main branch](protect-main.md)
 * Reading: [Git-flow tutorials](read-git-flow.md)
 * Milestone: [Before git-flow Activity](milestone.md)
+
+
 * Reading: [Scrum project management](read-scrum.md)
 * Milestone: [Before Monday 10 May](milestone.md)
+
+
 * Reading: [Keep the build clean](read-clean.md)
 * Unit: [Cohesion and coupling](cohesion.md)
 * Milestone: [Before Design Review](milestone.md)
+
+
 * Optional: [nCurses](ncurses.md)
 * Milestone: [Before Project Implementation](milestone.md)
+
+
 * Extra: [Reading: Networking](read-network.md)
 * Extra: [Socket programming and TCP](sockets.md)
 * Extra: [UDP sockets](udp.md)
 * Extra: [Concurrent servers (fork)](fork.md)
 * Extra: [Concurrency with threads](threads.md)
 * Milestone: [End of the course!](milestone.md)
+
+
 <!-- END -->
