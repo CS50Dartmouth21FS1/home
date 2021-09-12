@@ -1,3 +1,0 @@
-* this unit overlaps the prior unit, memory.md, with inclusion of sorter2.c ... and thus my video lecture covers it twice.  Better to remove it from memory.md and leave it only in malloc.md; then re-record both videos.
-
-* make it clear - really, really clear - that there should be exactly one call to free() for each pointer returned by malloc() and friends; and zero calls to free() for pointers not produced by malloc() and friends.

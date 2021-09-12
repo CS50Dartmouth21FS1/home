@@ -137,13 +137,13 @@ Unix output is often _lazy_, meaning that the system will _eventually_ send the 
 This may seem unimportant, but it means that your program _may execute the code following the `printf()` before the output appears_.
 So, if you are using `printf()` for debugging, you should follow it with a `fflush(stdout)` which tells the system "print it NOW" before your program continues.
 
-If you do use `printf` debugging, please use the C preprocessor to conditionally turn on/off the debugging output with one switch; that is, using `#ifdef DEBUG` and [conditional compilation](https://github.com/cs50dartmouth21FS1/home/blob/main/knowledge/units/c-conditional-compilation.md).
+If you do use `printf` debugging, please use the C preprocessor to conditionally turn on/off the debugging output with one switch; that is, using `#ifdef DEBUG` and [conditional compilation](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-conditional-compilation.md).
 
 ## The GNU Debugger (gdb)
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ca07df68-be42-4fcc-b521-ad0d015fd9bc)**
 
-See our [gdb resources](https://github.com/cs50dartmouth21FS1/home/blob/main/logistics/systems.md#gdb) for manuals and tutorial documents.
+See our [gdb resources](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#gdb) for manuals and tutorial documents.
 
 **Note:** before using `gdb`, ensure you compile all C source files with the `-ggdb` flag - our standard `.bashrc` file defines `mygcc` with this flag, and your `Makefile` should include this flag in its definition of `CFLAGS`.
 This flag ensures that useful metadata is packaged with your executable at compile time that `gdb` needs to help you debug your programs.
@@ -194,7 +194,7 @@ I strongly recommend that you go through the sequence of steps below and use the
 Don't worry, you can't break anything.
 Just like the shell commands you'll only need a subset of the the complete set of `gdb` commands to become an effective debugger.
 
-We will be working with [bugsort.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/bugsort.c).
+We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bugsort.c).
 
 The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order.
 It then prints them out, separated by spaces.

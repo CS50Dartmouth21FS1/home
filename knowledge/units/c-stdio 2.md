@@ -147,7 +147,7 @@ We'll talk more about addresses and pointers in an upcoming unit.
 
 Below is a common idiom that reads a file character by character and, in this case, simply prints it right back out.
 (It's like `cat` without command-line arguments.)
-From [getput.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/getput.c):
+From [getput.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/getput.c):
 
 ```c
   while ((c = getchar()) != EOF) {
@@ -169,7 +169,7 @@ For details on this family of functions, `man 3 getchar`.
 
 ## Choose the right approach
 
-Sometimes, it is convenient to read input line by line; for that we recommend the `readline()` function from [readline.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/readline.c).
+Sometimes, it is convenient to read input line by line; for that we recommend the `readline()` function from [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c).
 
 Other times, it is more convenient for the logic of the program to read input character by character, as above.
 

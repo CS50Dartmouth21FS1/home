@@ -18,7 +18,7 @@ The `make` command reads a configuration file called `Makefile` -- written in it
 
 From now on we will compile all our programs with `make`.
 
-Before we look at a specific example, let's first take another look at the compilation process (recalling the earlier [unit](https://github.com/cs50dartmouth21FS1/home/blob/main/knowledge/units/c-compile.md)).
+Before we look at a specific example, let's first take another look at the compilation process (recalling the earlier [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-compile.md)).
 
 ### Compiling and linking
 
@@ -418,7 +418,7 @@ clean:
 
 The macro definitions at the top make it easy for a reader to quickly see what program will be built and from what files.
 
-I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/cs50dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
+I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
 You can play with it by copying all the relevant files, e.g.,
 
 ```bash

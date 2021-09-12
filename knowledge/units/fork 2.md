@@ -6,7 +6,7 @@ This unit aims
 
 ## Our HTTP server
 
-Recall our [client-server-http](https://github.com/cs50dartmouth21FS1/examples/blob/main/client-server-http) example, in which we explored simple HTTP client and server programs.
+Recall our [client-server-http](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-http) example, in which we explored simple HTTP client and server programs.
 The client was able to connect to real web servers, and the server was able to serve real web browsers, and of course our client could connect to our server.
 
 The catch?
@@ -19,7 +19,7 @@ The solution: 'fork' a copy of the server for each new client!
 
 ## <a id="forking">A forking web server</a>
 
-Take a look at the new [client-server-http-fork](https://github.com/cs50dartmouth21FS1/examples/blob/main/client-server-http-fork) example.
+Take a look at the new [client-server-http-fork](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-http-fork) example.
 The client is exactly the same.
 The server is just a bit different.
 

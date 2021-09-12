@@ -13,14 +13,14 @@ You'll be following this practice in the Tiny Search Engine (TSE, Labs 4-6).
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=75352fce-227e-4519-99b3-ad1400f11022)**
 
-Recall the Makefile we wrote in the [unit about Makefiles](https://github.com/cs50dartmouth21FS1/home/blob/main/knowledge/units/makefiles1.md) -- available as [sorter8-makefile](https://github.com/cs50dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
+Recall the Makefile we wrote in the [unit about Makefiles](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/makefiles1.md) -- available as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
 
 In this video demonstration, I modify that Makefile to leverage the TSE `libcs50` library.
 
-I adapted [sorter8.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/sorter8.c) for use with a library-provided *bag*, resulting in file `sorter.c` in one directory, and dropped in the `libcs50` directory as a peer.
-This program is now available as [sorter9.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/sorter9.c).
+I adapted [sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8.c) for use with a library-provided *bag*, resulting in file `sorter.c` in one directory, and dropped in the `libcs50` directory as a peer.
+This program is now available as [sorter9.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter9.c).
 
-I then adapted the Makefile for *sorter* to leverage `libcs50`; that Makefile is available as [sorter9-makefile](https://github.com/cs50dartmouth21FS1/examples/blob/main/sorter9-makefile).
+I then adapted the Makefile for *sorter* to leverage `libcs50`; that Makefile is available as [sorter9-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter9-makefile).
 Notice several important features:
 
 * definition of macro `L` as a shorthand for the directory name (not the library name) where the library lives.

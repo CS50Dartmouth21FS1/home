@@ -13,7 +13,7 @@ Review those lectures, and code examples:
 
 ## Tree module
 
-The ultimate tree module ([tree9](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree9/)) has the following files:
+The ultimate tree module ([tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/)) has the following files:
 
 * `Makefile`, with rules to compile and test the code.
 * `tree.h`, which defines the interface to this module.
@@ -40,7 +40,7 @@ In this example, the recursion elegantly handles the base case, happily passing 
 
 The ultimate `tree` was originally developed as a series of successively better examples:
 
-***Example: [tree0](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree0/)***
+***Example: [tree0](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree0/)***
 
 The original binary-tree module stores integer 'data', each with a unique integer 'key'.
 A simple test program (which could be improved!) demonstrates how to use `tree_insert` to build a tree; it could have called `tree_new` the first time, but does not have to do so as long as it keeps track of the pointer returned by the first call.
@@ -48,17 +48,17 @@ Note the use of recursion in `tree_insert` and `tree_find`, and look for the use
 
 Notice the "phony" Makefile target that allows you to type `make test` -- compiling and running the test program all in one command -- and the phony target `make clean` that will remove the compiled program, intermediate files, and editor backup files.
 
-***Example: [tree1](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree1/)***
+***Example: [tree1](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree1/)***
 
 This version introduces a `typedef` to make the `struct treenode` type more opaque and yet more readable for users of this module.
 
-***Example: [tree2](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree2/)***
+***Example: [tree2](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree2/)***
 
 This version changes the tree from storing integers (with integer keys) to storing arbitrary pointers (with integer keys).
 This tree is much more versatile because it can store pointers to any type of thing.
 The test code only stores strings (which have addresses in static/global storage) but could have stored things created with `malloc`; it's up to the user of the `tree` module to manage the pointers stored in the tree.
 
-***Example: [tree3](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree3/)***
+***Example: [tree3](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree3/)***
 
 This code demonstrates an important design pattern:
 
@@ -76,7 +76,7 @@ This design also gives us the possibility of including other information about t
 Notice how some functions inside `tree.c` are marked `static`, which indicates they are only visible within the file.
 (They are analogous to `private` methods in Java.) These private function prototypes are declared near the top of the file `tree.c`, so they are known to all other functions within this file, but not in `tree.h`, because no other C files will be able to use these 'private' functions anyway.
 
-***Example: [tree4](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree4/)***
+***Example: [tree4](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree4/)***
 
 Here, we change the tree so it is keyed on words (strings) rather than integers.
 That is, we use a `char*` as key instead of an `int` as key, to enable storage of 'things' that are organized by words instead of numbers.
@@ -84,7 +84,7 @@ That is, we use a `char*` as key instead of an `int` as key, to enable storage o
 Notice that it uses `malloc` to make a copy of the key string, and `strcmp` for comparing keys.
 If the tree node were to be removed, the code would need to `free(node->key)` before `free(node)`.
 
-***Example: [tree5](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree5/)***
+***Example: [tree5](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree5/)***
 
 Here we extend the `tree_print` function to accept a function pointer representing a 'callback function' to be used when desiring to print the contents of a node.
 Think about it: the tree stores 'things' (pointers of type `void*`) indexed by strings (pointers of type `char*`), but the tree code has no idea what those 'things' are or how to print them.
@@ -98,7 +98,7 @@ That function must have a prototype like
 and must be provided to the tree module as a parameter, as in `tree_print(tree, myprint)`.
 
 
-***Example: [tree6](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree6/)***
+***Example: [tree6](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree6/)***
 
 This version adds a `tree_delete()` function, demonstrating how you need to delete the tree - but first delete its contents.
 
@@ -120,14 +120,14 @@ Stylistically, it may be wise to write
 so any accidental use of `t` will at least trigger a segfault.
 This approach is not required - just a defensive programming measure - one that you should consider adopting.
 
-***Example: [tree7](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree7/)***
+***Example: [tree7](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/)***
 
 This version shows how to add "testing" code to your module with `#ifdef`, and how to turn that on and off from the Makefile; and how you might track malloc/free in a module to detect memory leaks or ensure that everything gets free'd.
 Review the `mem` module in
-[mem.h](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree7/mem.h) and
-[mem.c](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree7/mem.c).
+[mem.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/mem.h) and
+[mem.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/mem.c).
 
-***Example: [tree8](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree8/)***
+***Example: [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree8/)***
 
 tree8 finally has an interesting test program!
 It reads weather reports from the National Weather Service and stores them in the binary tree.
@@ -136,7 +136,7 @@ It shows how you might track malloc/free in the main program and notice a memory
 It shows a more interesting 'print' function, and a simple 'delete' function.
 Try it!
 
-***Example: [tree9](https://github.com/cs50dartmouth21FS1/examples/blob/main/trees/tree9/)***
+***Example: [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/)***
 
 This example integrates a unit test using a fancy set of pre-processor macros for unit testing; both of these concepts (unit tests and pre-processor) are subject of later units.
 
