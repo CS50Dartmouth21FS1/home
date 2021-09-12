@@ -254,13 +254,13 @@ and [emacs quick reference guide](https://www.gnu.org/software/emacs/refcards/pd
 
 There are some free full-screen editors you can download on your laptop:  
 
-**Atom**: [Atom](https://atom.io)  has great full-screen functionality, runs everywhere, and has a large collection of extensions.
+- **Atom**: [Atom](https://atom.io)  has great full-screen functionality, runs everywhere, and has a large collection of extensions.
 
-**Sublime**: the [Sublime Text editor](https://www.sublimetext.com) can be used for free (as long as you don't mind declining the periodic requests to pay).
+- **Sublime**: the [Sublime Text editor](https://www.sublimetext.com) can be used for free (as long as you don't mind declining the periodic requests to pay).
 It is also highly extensible using Python & JSON.
 See this great [tutorial](http://code.tutsplus.com/articles/perfect-workflow-in-sublime-text-free-course--net-27293).
 
-**VScode**: Microsoft's [Visual Studio Code](https://code.visualstudio.com) is another great full-screen editor, runs everywhere, and also has a large collection of extensions.
+- **VScode**: Microsoft's [Visual Studio Code](https://code.visualstudio.com) is another great full-screen editor, runs everywhere, and also has a large collection of extensions.
 See [Getting started with Visual Studio Code](https://code.visualstudio.com/docs/introvideos/basics).
 But, **important warning:**
 change the default location of the vscode database to reside on the local disk instead of your home directory.
@@ -277,7 +277,7 @@ You can also do this manually by sshing to any Thayer system and creating/editin
 
 Once you have settled on a preferred editor, you should make that information available to apps that might open an editor for you.
 (One common example: `git commit` opens an editor for you to review a list of files to commit, and to type a commit message.)
-Even if you normally use a remote editor (like vscode) you should choose an editor (vim or emacs) for occasions when you need to make edits directly on plank.
+Even if you normally use a remote editor (like vscode) you should choose an editor (vim or emacs) for occasions when you need to make edits directly on plank.  
 
 The most universal method is to define the `EDITOR` shell variable.
 We placed some examples in the file `~/cs50-dev/dotfiles/profile.cs50`, but you need to uncomment one of the lines to select the editor you prefer.
@@ -329,7 +329,7 @@ See also the [quick guide to valgrind](https://web.stanford.edu/class/archive/cs
 
 ## gdb
 
-We recommend and support the use of the `gdb` debugging tool in CS50, and you may be expected to use it in later CS courses.
+We highly recommend and support the use of the `gdb` debugging tool in CS50, and you may be expected to use it in later CS courses.
 For details, see [the GDB manual](https://www.gnu.org/software/gdb/documentation/)
 and this excellent [quick reference card](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf).
 

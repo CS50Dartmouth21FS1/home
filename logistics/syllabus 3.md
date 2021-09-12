@@ -50,19 +50,19 @@ Changes will be announced via updates to the Canvas calendar.
 
 ### <a id="deadlines">Deadlines</a>
 
-|      deadline*    | deliverable
-|              ---: | :---
-|    6 Apr 10pm EDT | Lab 1
-|   13 Apr 10pm EDT | Lab 2
-|   23 Apr 10pm EDT | Lab 3
-|    2 May 10pm EDT | Lab 4
-|   10 May 10pm EDT | Lab 5
-|   18 May 10pm EDT | Lab 6
-|   17 May 10pm EDT | Project design spec (updated deadline)
-| 18-19 May TBD EDT | Project design reviews**
-|   26 May 10pm EDT | Project implementation spec (updated deadline)
-|    1 Jun 10pm EDT | Project materials
-|  2-3 Jun  TBD EDT | Project demo**
+|       deadline*    | deliverable
+|               ---: | :---
+|    21 Sep 10pm EDT | Lab 1
+|    28 Sep 10pm EDT | Lab 2
+|     7 Oct 10pm EDT | Lab 3
+|    16 Oct 10pm EDT | Lab 4
+|    22 Oct 10pm EDT | Lab 5
+|    29 Oct 10pm EDT | Lab 6
+|   01 Nov 5-8pm EDT | Project design reviews**
+|    01 Nov 10pm EDT | Project design spec
+|    05 Nov 10pm EDT | Project implementation spec (updated deadline)
+|    14 Nov 10pm EDT | Project materials
+| 15,17 Nov classtime | Project demos**
 
 *If this schedule and the [Canvas calendar](https://canvas.dartmouth.edu/courses/49179) somehow differ, the Canvas deadline is definitive.
 

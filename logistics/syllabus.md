@@ -58,15 +58,15 @@ Changes will be announced via updates to the Canvas calendar.
 |    16 Oct 10pm EDT | Lab 4
 |    22 Oct 10pm EDT | Lab 5
 |    29 Oct 10pm EDT | Lab 6
-|   01 Nov 5-8pm EDT | Project design reviews**
-|    01 Nov 10pm EDT | Project design spec
-|    05 Nov 10pm EDT | Project implementation spec (updated deadline)
+|    1 Nov 5-8pm EDT | Project design reviews**
+|     1 Nov 10pm EDT | Project design spec
+|     5 Nov 10pm EDT | Project implementation spec (updated deadline)
 |    14 Nov 10pm EDT | Project materials
 | 15,17 Nov classtime | Project demos**
 
 *If this schedule and the [Canvas calendar](https://canvas.dartmouth.edu/courses/49179) somehow differ, the Canvas deadline is definitive.
 
-**Design reviews and final demo will occur outside of regularly scheduled class hours.
+**Design reviews may occur outside of regularly scheduled class hours.
 These meetings will be scheduled in consultation with the teams.
 
 ---
@@ -84,46 +84,39 @@ and
 
 **Do _not_ send us email**.  
 
-The majority of questions and problems can be resolved via posts to [Ed Discussion](https://edstem.org/us/courses/13476/discussion/).
+The majority of questions and problems can be resolved via posts to [Ed Discussion](https://edstem.org/us/courses/13476/discussion/) (see the next section).
 By posting to the appropriate channel, anyone on the teaching team, or a fellow student, can answer your question.
-**However,** if your message might expose details of your solution or approach to a lab assignment, send a DM (Direct Message) to an individual TA.
+**However,** if your message might expose details of your solution or approach to a lab assignment, make it a private post and onlythe staff will see it.
 
-**Primary office hours are on Mondays and Fridays, in both course time slots.**
-You are welcome to attend any session regardless of which Section you are registered.
-Follow the [Canvas](https://canvas.dartmouth.edu/courses/49179) calendar to be alerted to any changes; the Zoom link is also located there.
-If you need a private conversation with the teaching team, (1) sign up for private office hours with the Professor, or (2) send a DM (Direct Message) via [Ed Discussion](https://edstem.org/us/courses/13476/discussion/) to one of the TAs to arrange an appointment.
+**Office hours are Monday and Wednesday with Prof. Palmer (signup using links on Canvas), and Tuesday and Thursday with Grad TA Tao (Zoom info on [Canvas](https://canvas.dartmouth.edu/courses/49179)).**  
 
-**Additional TA office hours are listed on the Canvas calendar.**
-Follow the [Canvas](https://canvas.dartmouth.edu/courses/49179) calendar to be alerted to any changes; the Zoom link is also located there.
+If you need a private conversation with the teaching team, (1) sign up for private office hours with the Professor, or (2) make a private post in [Ed Discussion](https://edstem.org/us/courses/13476/discussion/) and a staff member will contact you.  If a particular staff member is mentioned, that staff member or an alternate will get in touch with you there.
 
-**Private office hours are available by appointment.**
-If you need a private conversation with Adjunct Professor Charles C Palmer, sign up for an appointment via [Calendly](https://canvas.dartmouth.edu/courses/49179).
-If you later realize you no longer need the appointment, please be sure to cancel it so others may use the slot.
+Follow the [Canvas](https://canvas.dartmouth.edu/courses/49179) calendar to be alerted to any changes.
+
+*Note*: If you sign up for an office hours slit with the Professor and later  realize you no longer need the appointment, please be sure to cancel it so others may use the slot.
 
 ### <a id="edstem">Ed Discussion</a>
 
 From our [Canvas](https://canvas.dartmouth.edu/courses/49179) page you can join the [Ed Discussion](https://edstem.org/us/courses/13476/discussion/) workspace for our class; [here's how](./systems.md#slack-setup).
 This workspace will be the primary location for engagement with one another, our TAs and LFs, and the instructor outside of class.
-The teaching team will make announcements via the `#general` channel on [Ed Discussion](https://edstem.org/us/courses/13476/discussion/).
-You can use the space to interact with your team, to ask questions about the assignments or course material, and to share content (and a bit of fun) related to the course.
+You can use the space to interact with your team, to ask questions about the assignments or course material, and to share content (and a bit of fun) related to the course.  In addition, the teaching team will make announcements in the `Logistics` category on [Ed Discussion](https://edstem.org/us/courses/13476/discussion/).
+
 Some important points about seeking CS50 help over Ed Discussion:
 
 * Search the help channels on Ed Discussion to see if your question has already been asked and answered.
-* Post your question on the appropriate help channel.
-* Reply to others’ questions using the Thread feature to keep questions and answers together, for easier reading and searching (hover over the message, and pick the chat bubble from the pop-up icons in the upper right).
-* LFs are here to support you in-class and may have little or no time to answer questions outside class time; they’ll let you know if/when they can answer questions in Ed Discussion help channels.
-* TAs are here to support you outside of class, by hosting office hours and providing feedback on your lab submissions; when they have time, they answer questions in Ed Discussion help channels.
-* Every member of the instructional team works part-time, so ask your questions in the public help channels, not in DMs, because your DM may not be seen for hours or days.
-* Exception: use DMs when your question may expose information others should not see, such as code from your lab solution.
+* Tag your post with the appropriate category.
+* LFs are here to support you in-class and may have little or no time to answer questions outside class time; they’ll let you know if/when they can answer questions in Ed Discussion.
+* TAs are here to support you outside of class, by providing feedback on your lab submissions; when they have time, they answer questions in Ed Discussion too.
+* Every member of the instructional team works part-time, so ask your questions in **public** posts rather than in private ones, so your will be seen by your classmates as well as the teaching staff.
+* Exception: use private postss when your question may expose information others should not see, such as code from your lab solution.
 * Always be polite: it's easy to forget that when we're discussing things online rather than face-to-face.
-* Don't mention `@channel` or `@here` unless you really want *everyone* to be reminded to read your post; this step is _rarely_ necessary and usually annoys everyone.
 
 ---
 
 ## Teams
 
-After the first day of class, you will be assigned to a 4-person team; this team will be your Final Project team.
-You will meet with that team once a week in class, to work on a group activity, so you'll have a chance to get to know them well before the project begins!
+After the first day of class, you will be assigned to a 4-person team; this team will be your Final Project team.  You should sit together as a team, to get to know each other well before the project begins. We will occasionally have in-class activities that you will work on with your team.
 
 > If you have any concerns about your teammates or team assignment, at any time, please contact Adjunct Professor Charles C Palmer privately.
 
@@ -131,7 +124,7 @@ You will meet with that team once a week in class, to work on a group activity, 
 
 ## Assignments
 
-All computing will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) page for detail.
+All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) page for details.
 
 * ***Labs:***
 	You will work individually on a series of six programming assignments ("labs"), which become more challenging through the term.
@@ -171,14 +164,13 @@ At the end of the course there is a mechanism for peer evaluation to address var
 Your work is graded according to a rubric that I discuss with the graders.
 If you have any grading questions on a homework or quiz, please follow the procedure below.
 
-1. If the grader made an obvious mistake (e.g., totaling error), contact the grader and we'll make the correction right away.
+1. If the grader made an obvious mistake (e.g., totaling error), make a private post in the `Grading` category and we'll make the correction right away.
 
-2. If you feel the grader did not grade your answer accurately, then you should send a Ed Discussion DM to both the grader and the lead grader (Songyun Tao) to explain which program(s) need regrading and why.
-   We will arrange for your answer to be reviewed again.
+2. If you feel the grader did not grade your answer accurately, make a private post in the `Grading` category to explain which program(s) need regrading and why.  We will arrange for your answer to be reviewed again.
 
 3. After you hear the outcome on your regrade request, if you still feel the matter is not resolved satisfactorily, then you should see Adjunct Professor Charles C Palmer.
 
-**You must submit your regrade request *within one week* from when the lab assessment was sent to you .**
+**You must submit your regrade request *within one week* from when the lab assessment was sent to you.**
 
 Please note that any regrade request that comes after the deadline stated above will not be considered, regardless of its merit.
 
@@ -188,7 +180,8 @@ Your lab solutions are graded on *correctness*, *style*, *design*, and *document
 Each lab requires you to document your own tests and test results; the graders will also compile and run your program with their own test cases.
 If your program crashes when the graders run a particular test, your program will be marked as incorrect for that test.
 If your program does not compile, you will lose all correctness points.
-The best way to avoid that situation is to ensure that your program compiles and doesn't crash on the `plank.thayer.dartmouth.edu` system in the first place.
+The best way to avoid that situation is to ensure that your program compiles and doesn't crash when run on the `plank.thayer.dartmouth.edu` system in the first place.  
+
 Learning how to debug and test your programs is a key part of this course.
 
 ### Late assignments
@@ -198,7 +191,7 @@ Remember, all due dates and times are posted on the [Canvas](https://canvas.dart
 
 Late lab assignments will be penalized 10 points for each 24-hour period they are late, up to 72 hours.  Beyond 72 hours late the lab assignment will not be accepted and you will receive zero points for the lab.
 
-For example, if a Lab is due at 11PM EDT on the 12th and it is turned in at 1AM EDT on the 13th the highest possible score for that lab will be reduced by 10 points.
+For example, if a Lab is due at 10PM EDT on the 12th and it is turned in at 1AM EDT on the 13th the score for that lab will be reduced by 10 points.
 
 **No assignments will be accepted more than 72 hours after the original deadline other than in *extraordinary* cases.**
 
@@ -274,7 +267,7 @@ Please let me know if you have any questions -- better to be safe than sorry!
 
 Any ideas you get from other teams or any other source should be carefully cited both in the code and in the documentation.
 
--   In your assignments, list all your collaborators (e.g., "I discussed this homework with Alice and Bob") and credit any sources (including code) used.
+-   In your assignments, list all your collaborators (e.g., "I discussed this homework with Alice and Bob") and credit any sources (including code) used.  For example, "I got an idea for resolving my git merge conflicts on StackOverflow."
 -   You must also credit specific sources that are provided by the instructor.
 For example, you must credit code that we give you if it helps you with your work (either by direct use of the code, or by simply enhancing your understanding by reading the code).
 -   References for any non-trivial algorithms you employ should be included in the code and documentation to ensure others will know where to learn more about it.
