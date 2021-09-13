@@ -4,9 +4,9 @@
  * [Lab 1 - Bash](lab1)
  * [Lab 2 - C](lab2)
  * [Lab 3 - Data structures in C](lab3)
- * Lab 4 - TSE Crawler
- * Lab 5 - TSE Indexer
- * Lab 6 - TSE Querier
+ * [Lab 4 - TSE Crawler](tse/crawler)
+ * [Lab 5 - TSE Indexer](tse/indexer)
+ * [Lab 6 - TSE Querier](tse/querier)
 
 Please note:
 
