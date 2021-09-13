@@ -22,7 +22,7 @@ You will lose points if the compiler produces warnings when using our CS50-stand
 <!-- @CHANGEME update the invitation link -->
 
 :point_right:
-[Accept the assignment](https://classroom.github.com/a/dKn5vRht), and clone the repository into your `cs50-dev` work area (plank).
+[Accept the assignment](https://classroom.github.com/a/-1zEw49g), and clone the repository into your `cs50-dev` work area (plank).
 It will looks something like this, assuming your GitHub username is XXXXX:
 
 ```

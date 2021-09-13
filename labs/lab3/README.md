@@ -18,7 +18,7 @@ In short, it is far better for you to demonstrate you *know* about the bug than 
 ## Assignment
 
 :point_right:
-[Accept the assignment](https://classroom.github.com/a/CvID-dRJ), which will lead you to clone a starter kit that implements the **bag**, **file**, and **mem** modules.
+[Accept the assignment](https://classroom.github.com/a/JxDYDcus), which will lead you to clone a starter kit that implements the **bag**, **file**, and **mem** modules.
 
 :point_right:
 Add three new modules, each of which defines a different data structure.
