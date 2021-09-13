@@ -27,7 +27,7 @@ It will looks something like this, assuming your GitHub username is XXXXX:
 
 ```
 $ cd cs50-dev/
-$ git clone git@github.com:CS50Dartmouth21FS1/lab2-XXXXX.git
+$ git clone git@github.com:cs50spring2021/lab2-XXXXX.git
 Cloning into 'lab2-XXXXX'...
 ```
 
