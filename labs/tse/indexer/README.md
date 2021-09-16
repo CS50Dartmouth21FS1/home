@@ -5,7 +5,7 @@ In this lab you'll continue the Tiny Search Engine (TSE) by coding the *Indexer*
 
 You will also write the Implementation Spec.
 
-Grading will focus on [CS50 coding style]({{labs}}/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
+Grading will focus on [CS50 coding style](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
 
 ***Your C code must compile without producing any compiler warnings.***  You will lose points if the compiler produces warnings when using our CS50-standard compiler flags.
 
@@ -22,13 +22,13 @@ You will lose points for memory errors and leaks reported by valgrind on our tes
 ## Preparation
 
 1. Start with the same repository you used for Lab 4.
-*Before you begin*, make sure you submitted Lab 4 correctly, [as instructed]({{labs}}/submit.md).
+*Before you begin*, make sure you submitted Lab 4 correctly, [as instructed](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/submit.md).
 1. Check to ensure your local repo is clean with `make clean` and everything looks correct according to `git status`.
     **Do not proceed** if you have uncommitted changes or unpushed commits.
     Seek help if you need to sort out your repo or GitHub.
 1. Ensure you are again working on the `main` branch **and** that the `main` branch is up to date if you made any changes on `submit4` after branching off `main`.
 1. Create a new subdirectory `indexer`.
-1. Review Section 4 in *[Searching the Web]({{unit}}/media/searchingtheweb.pdf)*, the paper about search engines.
+1. Review Section 4 in *[Searching the Web](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/media/searchingtheweb.pdf)*, the paper about search engines.
 
 ## Assignment
 
@@ -74,17 +74,17 @@ and your **common** directory should contain the following files:
 If you finish Lab 5 early, we encourage you to begin work on Lab 6.
 Your Lab 5 submission may contain a partly-completed querier; the graders will ignore those files, but must be able to build your libraries and programs *from the top-level directory* without compilation errors and test your indexer without run-time errors.
 
-To submit, read the [Lab submission instructions]({{labs}}/submit.md).
+To submit, read the [Lab submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/submit.md).
 
 ## Hints and tips
 
-Many of the [Lab4 hints](../crawler/README.md) are still relevant, and there are more tips in the [knowledge unit]({{unit}}/indexer.md).
+Many of the [Lab4 hints](../crawler/README.md) are still relevant, and there are more tips in the [knowledge unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/indexer.md).
 
 ### Testing
 
 If your crawler never quite worked, never fear!
 You do not need a working crawler to write or test your indexer.
-Try your indexer on our crawler's output, which we provide in `{{tse-dir}}/output`.
+Try your indexer on our crawler's output, which we provide in `~/cs50-dev/shared/tse/output`.
 Our indexer's output is in that same directory.
 
 It can be tricky to compare two index files for equivalence - because the lines of an index file can be in any order, and the docIDs within a line can be in any order - so a simple run of `diff` won't always be sufficient.

@@ -2,7 +2,7 @@ In this lab you'll continue the Tiny Search Engine (TSE) by coding the Querier a
 
 You will also write the Design Spec and Implementation Spec.
 
-Grading will focus on [CS50 coding style]({{labs}}/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
+Grading will focus on [CS50 coding style](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
 
 ***Your C code must compile without producing any compiler warnings.***  You will lose points if the compiler produces warnings when using our CS50-standard compiler flags.
 
@@ -20,7 +20,7 @@ You will lose points for memory errors and leaks reported by valgrind on our tes
 ## Preparation
 
 1. Start with the same repository you used for Lab 5.
-*Before you begin*, make sure you submitted Lab 5 correctly, [as instructed]({{labs}}/submit.md).
+*Before you begin*, make sure you submitted Lab 5 correctly, [as instructed](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/submit.md).
 1. Check to ensure your local repo is clean with `make clean` and everything looks correct according to `git status`.
     **Do not proceed** if you have uncommitted changes or unpushed commits.
     Seek help if you need to sort out your repo or GitHub.
@@ -67,7 +67,7 @@ and your **common** directory should contain the following files:
 
 The graders must be able to build your TSE *from the top-level directory* without compilation errors and test your querier without run-time errors.
 
-See the [Lab submission instructions]({{labs}}/submit.md).
+See the [Lab submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/submit.md).
 
 ## Grading
 
@@ -87,7 +87,7 @@ Partial credit is available, of course, per the judgement of the grader, but abo
 
 ## Hints and tips
 
-There are some examples and design tips in the [unit about querier]({{unit}}/querier.md), and following units.
+There are some examples and design tips in the [unit about querier](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/querier.md), and following units.
 
 Many of the [Lab4 hints](../crawler/README.md) and
 [Lab5 hints](../indexer/README.md) are still relevant.
@@ -108,7 +108,7 @@ Just think about how the hash-table size (in slots) might relate to the number o
 We strongly recommend that your code read the entire query (a line of input) into a single string; then verify the string contains only letters and spaces; if so, then *tokenize* the query string.
 
 To tokenize, write a function that takes a string and builds an array of words (tokens), using space (`isspace`) as the delimiter; each word can be normalized (lower-cased) before being added to the array.
-See a [unit]({{unit}}/querier-chop.md) for inspiration (though significant adaptation is needed).
+See a [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/querier-chop.md) for inspiration (though significant adaptation is needed).
 
 > Note: from painful experience, we specifically recommend you avoid `strtok` and related functions.
 
@@ -121,14 +121,14 @@ Two tips:
 If valid, proceed to next step; otherwise print a suitable error message.
  * Structure your code to follow the structure of the grammar, which has two non-terminals (`query` and `andsequence`): an inner loop over words in the `andsequence`, accumulating an answer (like a running product) as you go, and stopping when you reach `or` or the end of the array; an outer loop over a sequence of `andsequence` separated by `or`; accumulate an answer (like a running total) as you go.
 
-Read the [unit about parsing expressions]({{unit}}/querier-expressions.md) for more hints about how this might work.
+Read the [unit about parsing expressions](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/querier-expressions.md) for more hints about how this might work.
 
 
 ### Combining results
 
 Suppose you have one `counters` object representing the set of documents in which a given word appears, and another `counters` object representing the set of documents in which another word appears; each counter set is really a set of (docID, count) pairs.
 How do you combine them?
-Recall [unit about iterators]({{unit}}/iterators.md).
+Recall [unit about iterators](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/iterators.md).
 
 If you are processing `wordA AND wordB`, the set of documents that match *both* words is the *intersection* of the two sets, and the score for each document (per the specs) is the *minimum* of the count for each document.
 So you need a way to intersect two `counters`; we recommend iterating over one set and, for each item, checking whether that document exists in the other set; update the first set according to what you find.
@@ -148,7 +148,7 @@ When processing a query, that is, a disjunction of `andsequence` results, you ca
 After parsing and interpreting a query, you will likely have a `counters` object representing the score for each satisfying document.
 The `counters` module does not have a 'sort' method or a way to iterate over the items in sorted order.
 We suggest you use  `counters_iterate()` to identify the max-scoring item, print it out, and then `counters_set()` to set its counter value to zero; this approach is effectively a 'selection sort'.
-Recall [unit about iterators]({{unit}}/iterators.md).
+Recall [unit about iterators](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/iterators.md).
 
 ### ctype
 
@@ -166,8 +166,8 @@ You can test it interactively, but to do thorough and repeated testing you can w
 You might write a short bash script to run the querier through several such test files.
 That script might even compare the output to known-good output, for regression testing.
 
-Read the [unit about fuzz testing]({{unit}}/querier-testing.md);
-you are welcome to copy into your repo our `{{tse-dir}}/fuzzquery.c`.
+Read the [unit about fuzz testing](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/querier-testing.md);
+you are welcome to copy into your repo our `~/cs50-dev/shared/tse/fuzzquery.c`.
 If it is used in your testing script, you should commit/push it to your repo.
 
 ### Turning off the prompt

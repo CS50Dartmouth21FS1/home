@@ -2,7 +2,7 @@
 ## Design Spec
 
 In this document we reference the [Requirements Specification](REQUIREMENTS.md) and focus on the implementation-independent design decisions.
-The knowledge unit noted that an [design spec]({{unit}}/design.md#design-spec) may include many topics; not all are relevant to the TSE or the Crawler.
+The knowledge unit noted that an [design spec](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/design.md#design-spec) may include many topics; not all are relevant to the TSE or the Crawler.
 Here we focus on the core subset:
 
 - User interface
