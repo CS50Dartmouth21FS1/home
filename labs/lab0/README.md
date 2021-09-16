@@ -26,7 +26,7 @@ All official course communications will come through Ed Discussion and Canvas.
 ## Part 2: Systems (20 minutes)
 Complete this step **before the next class meeting**.
 
-Read through the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) page.
+Read through the [Systems](https://github.com/CS50Dartmouth21FS1/home/tree/fall21s1/logistics/systems.md) page.
 Most of you use MacOS or Windows -- not Linux -- but in this course we will program exclusively on Linux.
 For consistency, we will all use a Linux server managed by our colleagues in the Thayer School of Engineering.
 This machine is known as `plank.thayer.dartmouth.edu`.
