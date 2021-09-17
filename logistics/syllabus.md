@@ -124,7 +124,7 @@ After the first day of class, you will be assigned to a 4-person team; this team
 
 ## Assignments
 
-All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) page for details.
+All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/tree/fall21s1/logistics/systems.md) page for details.
 
 * ***Labs:***
 	You will work individually on a series of six programming assignments ("labs"), which become more challenging through the term.
