@@ -1,4 +1,4 @@
-Take a look at the Requirements Spec and Design Spec for the Indexer, which you can find detailed in [Lab5](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/tse/indexer).
+Take a look at the Requirements Spec and Design Spec for the Indexer, which you can find detailed in [Lab5](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/tse/indexer).
 The Indexer is required to read the documents in the `pageDirectory` output by the Crawler, build an index mapping from words to documents, and write that index to a file.
 (Later, the Querier will read the index and use it to answer queries.)
 

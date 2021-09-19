@@ -1,6 +1,6 @@
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ddb533aa-1a98-45f1-84d3-ad0a0011f32d)**
 
-Earlier we developed a simple `readline()` function (and its companion `freadline()` to read from a file), which in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) has prototype
+Earlier we developed a simple `readline()` function (and its companion `freadline()` to read from a file), which in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) has prototype
 
 ```c
 extern bool readLine(char *buf, const int len);
@@ -10,7 +10,7 @@ This would read from stdin into `buf` until it encountered a newline, or the buf
 In the latter case it would return false and discard the whole line of input.
 
 To be more accommodating, we developed `readLinep` (and its companion `freadLinep`).
-In [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.h) we see the prototypes:
+In [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.h) we see the prototypes:
 
 ```c
 extern char* readLinep(void);
@@ -22,7 +22,7 @@ Notice that `readLinep` is an "inline" function, which means that it is compiled
 
 ## freadLinep
 
-The definition (implementation) of `freadLinep` is in [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.c).
+The definition (implementation) of `freadLinep` is in [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.c).
 
 Notice it returns a string - and yet it takes no pointer to a buffer.
 Instead, it allocates heap memory and returns a pointer to the new string; it returns NULL on error.

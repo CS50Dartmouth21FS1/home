@@ -1,11 +1,11 @@
 ## C style guidelines
 
-You really *must* read the [CS50 coding style guidelines](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/style.md).
+You really *must* read the [CS50 coding style guidelines](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/style.md).
 
 ## Reference books
 
 We elected not to require a specific textbook on C.
-There are many to choose from, including a good text online (see the [systems page](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md)).
+There are many to choose from, including a good text online (see the [systems page](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md)).
 The Harbison and Steele book is highly recommended as a reference resource.
 But it is not a tutorial.
 When I do reference it, I will use the shorthand "H&S".

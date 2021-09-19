@@ -22,7 +22,7 @@ In Lab 6 these iterators are helpful in combining the set of matches for one wor
 
 ## Coding an iterator
 
-Recall the [bag module](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag-unit/bag.c), which has a `bag_iterate()` method:
+Recall the [bag module](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag-unit/bag.c), which has a `bag_iterate()` method:
 
 ```c
 void
@@ -44,7 +44,7 @@ This iterator makes no promise about the *order* in which it processes items; af
 
 ## Function pointers
 
-Recall our discussion of *function pointers* from an earlier [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/modules.md).
+Recall our discussion of *function pointers* from an earlier [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/modules.md).
 The second parameter to `bag_iterate` declares `itemfunc` as a *pointer to a function* that itself takes two parameters: an `arg` and a `data`.
 Both are void pointers, that is, pointers to *some unspecified type*.
 Because the iterator receives a function pointer from its caller, and the arg/data parameters are arbitrary pointers, this iterator can work on items of any type, and compute any sort of function on those items, making it truly general-purpose.
@@ -164,8 +164,8 @@ Let's look at some more complex examples.
 ***Merging two sets.***
 We'll start with a simple case.
 Here the sets represent schools, where the `key` is the name of the school.
-See [set_iterate1](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate1.c).
-(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate.makefile).)
+See [set_iterate1](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate1.c).
+(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate.makefile).)
 
 ```c
   set_t* setA;
@@ -218,8 +218,8 @@ At the end, setB is unchanged but setA should have all items from both sets.
 ***Merging two sets and their data.***
 Now a more interesting case, in which the set items each hold data we want to combine.
 In this simple test, that datum is just an integer - actually, a pointer to an integer.
-See [set_iterate2](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate2.c).
-(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate.makefile).)
+See [set_iterate2](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate2.c).
+(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate.makefile).)
 
 In this example, setA and setB each contain a set of school names, and a number for each school (say, perhaps, the number of people you know at each school).
 When merging two sets you want the data in the resulting set to represent the sum of the values in each set.

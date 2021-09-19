@@ -1,4 +1,4 @@
-Recall the [unit about merge conflicts](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/git-conflict.md).
+Recall the [unit about merge conflicts](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/git-conflict.md).
 
 Wouldn't it be nice if there were a way of interacting with Git to minimize such conflicts? to interact with Git such that pulled code is always working but intermediate progress is still tracked?
 
@@ -169,7 +169,7 @@ Now click on some of the 'gear' icons at right:
 At this point, you cannot (and should not) conclude the process -- which would merge this feature branch into the `main` branch.
 That's because someone else on your team should review it first.
 
-If the `main` branch is *protected* (as it should be; see this [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/protect-main.md)),
+If the `main` branch is *protected* (as it should be; see this [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/protect-main.md)),
 you'll see something like this:
 
 ![merge blocked](media/git-flow/mergeBlocked.png)

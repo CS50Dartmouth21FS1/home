@@ -172,7 +172,7 @@ It is helpful to remember that `^` anchors a pattern to the start of a line and 
 ## Markdown example
 
 [Read about Markdown](https://www.cs.dartmouth.edu/~cs50/Logistics/systems.html#markdown), and about [Markdown tables](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables).
-If you want to preview a Markdown file with a desktop app, you'll have to either [scp](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/scp.md) the file to your laptop, or copy-paste from your ssh terminal into an empty window in one of those apps.
+If you want to preview a Markdown file with a desktop app, you'll have to either [scp](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/scp.md) the file to your laptop, or copy-paste from your ssh terminal into an empty window in one of those apps.
 Another great tool is [HackMD](https://hackmd.io).
 We will view your `README.md` on GitHub.com, so make sure it looks good there.
 

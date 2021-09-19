@@ -30,7 +30,7 @@ static void logr(const char *word, const int depth, const char *url)
 ```
 
 Notice the `#ifdef` block that can be triggered by a compile-time switch.
-See the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-conditional-compilation.md) about this trick.
+See the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md) about this trick.
 
 Anyway, at strategic points in the code, there is a call like this one:
 

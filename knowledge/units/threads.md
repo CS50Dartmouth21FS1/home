@@ -1,4 +1,4 @@
-In the [fork unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/fork.md), we saw how an HTTP server could fork (copy itself) to create a *process* to serve each inbound client.
+In the [fork unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/fork.md), we saw how an HTTP server could fork (copy itself) to create a *process* to serve each inbound client.
 
 One unfortunate side-effect of forking a *copy* of the parent server process is that the parent and child have no means to communicate after they've forked.
 Any data structures created by the parent are duplicated in the child.
@@ -60,7 +60,7 @@ Also, type `man pthread` for information on syntax, etc.
 
 You have to write C code to create a thread.
 If you do it right, when it runs that C code will create a new thread of execution that runs at the same time!
-Consider the simple example ([print_i.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/print_i.c)), and its output:
+Consider the simple example ([print_i.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/print_i.c)), and its output:
 
 ```bash
 $ ./print_i
@@ -84,7 +84,7 @@ $
 You cannot always predict the exact sequence of execution of threads running in parallel.
 Lots of factors affect how often and long a thread actually gets to execute: the amount of real memory, number of processors and/or cores, and what the thread's code is trying to do (e.g., I/O, computation, system call, etc.), among others.
 
-In the example [random.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/random.c), what gets output first?
+In the example [random.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/random.c), what gets output first?
 We do not know what order the values will be written out.
 If the main thread completes before the `print_i()` thread has executed then it will die.
 Here's the output from several runs:
@@ -129,7 +129,7 @@ This means that regardless of how many threads might be executing the very same 
 This is usually accomplished by ensuring all the variables used by the thread are stored on its stack (rather than global variables).
 If there is shared data, access to that shared data is typically serialized using some sort of mutual exclusion mechanism (more on this later).
 
-Consider the output of the [unsafe.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/unsafe.c) example, first with the `c = NULL` commented out, and then with it not commented out.
+Consider the output of the [unsafe.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/unsafe.c) example, first with the `c = NULL` commented out, and then with it not commented out.
 
 ```bash
 # comment out the "c = NULL;" line
@@ -173,7 +173,7 @@ There are two functions:
 
     If the mutex is locked by some prior `pthread_mutex_lock()` function, this function will unlock the mutex; otherwise it does nothing.
 
-In the example [mutex.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/mutex.c), our goal is to ensure that at any time there is only one thread calling function `print()`.
+In the example [mutex.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/mutex.c), our goal is to ensure that at any time there is only one thread calling function `print()`.
 Here's the output, first with the mutex commented out, and then with the mutex uncommented.
 
 ```bash
@@ -202,7 +202,7 @@ $
 ### Deadlocks
 
 Of course, you have to be careful with mutex - you could end up in a deadlock!
-See the [deadlock.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/deadlock.c) example.
+See the [deadlock.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/deadlock.c) example.
 
 Here's the output with the `sleep(1)` commented out, and then with the `sleep(1)` uncommented.
 

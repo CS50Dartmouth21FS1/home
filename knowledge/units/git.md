@@ -11,7 +11,7 @@ We learn several things:
 -  git commands to commit, branch, merge, push, and pull
 
 We cannot describe everything about git in these notes.
-See our list of [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#github).
+See our list of [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#github).
 
 [:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3abb3714-8c8b-4404-a7f6-ad0201356d04) of most of these concepts and tools.
 (apologies for the low video resolution!)
@@ -98,7 +98,7 @@ or just
 git commit
 ```
 
-In the second case git will open your [default editor](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#set-editor) and will wait for you to enter a message and hit Save.
+In the second case git will open your [default editor](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#set-editor) and will wait for you to enter a message and hit Save.
 
 ## Git log
 
@@ -295,7 +295,7 @@ The inclusion of derived files can lead to conflicts, and (because derived binar
 It is also a good idea to exclude editor-produced backup files, operating-system files (like `.DS_Store` on MacOS) that are meaningful only to the local user, and so forth.
 
 So, git looks for a file called `.gitignore` in the current working directory *and any parent directory, up to the root of the repository*, to see what files you want it to ignore.
-For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/main/.gitignore) file, and place it in the root directory of every lab starter kit.
+For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) file, and place it in the root directory of every lab starter kit.
 This file excludes common patterns, like the `.o` object files produced by the C compiler and `~` backup files produced by emacs.
 
 **You will need to add/extend gitignore files.**

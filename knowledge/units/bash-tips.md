@@ -1,13 +1,13 @@
 More tips about bash programming.
 
-Note there are some good Bash references on the [systems page](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#bash);
+Note there are some good Bash references on the [systems page](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#bash);
 although the [Bash reference manual](https://www.gnu.org/software/bash/manual/bash.html) is excellent, keep in mind it is for the latest version of Bash and `plank` may be running an older version that differs slightly.
 
 ## The 'shift' command
 
 Sometimes you want to discard the first argument (or two) and then loop over the remainder.
 The `shift` command is there to help!
-Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/shifter.sh):
+Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/shifter.sh):
 
 ```bash
 echo I see $# arguments: "$@"

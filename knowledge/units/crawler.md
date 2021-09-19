@@ -1,4 +1,4 @@
-Our Tiny Search Engine (TSE) is inspired by the material in the paper *[Searching the Web](media/searchingtheweb.pdf)*, as cited in the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/read-search.md).
+Our Tiny Search Engine (TSE) is inspired by the material in the paper *[Searching the Web](media/searchingtheweb.pdf)*, as cited in the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/read-search.md).
 
 ## TSE Design
 
@@ -30,7 +30,7 @@ Right now, let's focus on the crawler.
 
 ## <a id="crawler-output">TSE Crawler</a>
 
-We provide the specific Crawler specs in [Lab4](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/tse/crawler).
+We provide the specific Crawler specs in [Lab4](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/tse/crawler).
 
 Below is the output of our crawler when the program crawls one of our simple test websites to a maximum depth of 10 (though it reaches all pages within this website in only five hops from the seed).
 The crawler prints status information as it goes along.

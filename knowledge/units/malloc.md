@@ -32,14 +32,14 @@ There are two related functions that can be worth knowing:
 * **calloc:** `p = calloc(count, size)` allocates `count*size` bytes of heap memory *and* initializes the contents to zero; this call is appropriate when you want to allocate an array of `count` items, each of `size` bytes.
 * **realloc:** `p = realloc(p, n)`, where `p` is a pointer previously returned by `malloc` or `realloc`, expands (or shrinks) its allocation to `n` bytes.
 
-For an example using `realloc`, read about [how readLinep() works](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/readlinep.md).
+For an example using `realloc`, read about [how readLinep() works](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/readlinep.md).
 
 Like `malloc()`, both of these return a pointer of type `void*`, that is, a *pointer to unspecified type*.
 Unlike `malloc()`, `calloc()` initializes the chunk to all-zeroes, and `realloc()` copies the original chunk to the new chunk, if needed; if the new chunk is larger than the old chunk, it does not initialize the space beyond the original chunk.
 
 ## Example: sorter2
 
-Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c).
+Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c).
 It uses a new "readLine" function called `freadLinep`, which allocates space for the string returned.
 
 > As an aside, notice `readlinep.c` has a "unit test" at the bottom.
@@ -48,11 +48,11 @@ To try it, compile with a flag that defines `UNIT_TEST` as follows:
 
 Here, the two-dimensional `lines` array is replaced by a one-dimensional array of string pointers, which is more common in C, and which allows the names to be of any length - each array entry points to a dynamically allocated memory from the heap, big enough to hold that name.
 
-You may want to read more about the [implementation](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/readlinep.md) of `readLinep()`, which is a good example of character-by-character input, string construction, and use of `realloc` to grow an array.
+You may want to read more about the [implementation](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/readlinep.md) of `readLinep()`, which is a good example of character-by-character input, string construction, and use of `realloc` to grow an array.
 
 ## Example: sorter3
 
-We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter3.c).
+We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter3.c).
 
 This example is admittedly a bit advanced for us at this point; it demonstrates use of the generic pointer type `void*`, the need to *cast* our pointers to that type, and the use of function pointers.
 We'll come back to function pointers later!
@@ -75,4 +75,4 @@ If you do, you'll get a clean segmentation fault instead of unpredictable behavi
 > When the process exits, all its memory is free - the four segments (code, global, stack, and heap) disappear.
 > Nonetheless, in CS50 we expect you to clean up your mess before you exit - there should be no un-free'd memory remaining!
 
-An upcoming unit presents the [valgrind](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/valgrind.md) tool, which helps track memory usage and identify various kinds of memory errors.
+An upcoming unit presents the [valgrind](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/valgrind.md) tool, which helps track memory usage and identify various kinds of memory errors.

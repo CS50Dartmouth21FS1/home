@@ -1,4 +1,4 @@
-This unit is a quick video walk-through of **mem module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/lab3) starter kit, and its Makefile.
+This unit is a quick video walk-through of **mem module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) starter kit, and its Makefile.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=75860588-a1c3-4a4c-8a1d-ad0d01176ac4)**
 

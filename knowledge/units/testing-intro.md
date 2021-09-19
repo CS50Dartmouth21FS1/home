@@ -1,5 +1,5 @@
 In this unit we emphasize the importance of testing.
-We revisit how to turn on/off test code with Makefiles and `#ifdef`, mentioned earlier in a [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-conditional-compilation.md) about conditional compilation.
+We revisit how to turn on/off test code with Makefiles and `#ifdef`, mentioned earlier in a [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md) about conditional compilation.
 In subsequent units we'll look at some specific methods and examples.
 
 ## Common errors
@@ -69,7 +69,7 @@ Proper use of CS50 style (putting brackets around every code block) would have p
 This bug emphasizes the need for good style and for careful unit testing.
 For a lengthy but interesting commentary, see *[Goto Fail, Heartbleed, and Unit Testing Culture](https://martinfowler.com/articles/testing-culture.html)*.
 
-**For more examples,** read the next unit about [famous bugs](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/testing-bugs.md).
+**For more examples,** read the next unit about [famous bugs](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/testing-bugs.md).
 
 ## Types of testing
 
@@ -313,7 +313,7 @@ Have it still operate, but just produce goofy results.
 For example, in a hashtable implementation, suppose the hash function always returned the same hash value?
 Would the hashtable work, perhaps more slowly, or would it crash?
 
-Some of you may like the [mem module](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/lab3-mem.md) to help track the balance of `malloc` and `free` calls.
+Some of you may like the [mem module](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/lab3-mem.md) to help track the balance of `malloc` and `free` calls.
 If you use them for every memory allocation and free, they are a great place to insert debugging code and breakpoints.
 They are also a great place for testing!
 
@@ -405,7 +405,7 @@ Abort(crash)
 Assertions should be used only for testing "this should never happen" kinds of conditions...
 other errors, especially those caused by the user, should be handled more gracefully.
 
-We provide an assert-like function in the [mem module](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/lab3-mem.md), a wrapper for `malloc()`:
+We provide an assert-like function in the [mem module](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/lab3-mem.md), a wrapper for `malloc()`:
 
 ```c
 void*

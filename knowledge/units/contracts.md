@@ -4,7 +4,7 @@ It is helpful to think of this paragraph comment as defining a ***contract*** be
 
 You'll see these kinds of comments in our starter kits and in most of our examples; we expect you to write equally good comments in your code.
 
-We recommend you copy-paste from the [contract.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/contract.c) example, as a template for your code.
+We recommend you copy-paste from the [contract.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/contract.c) example, as a template for your code.
 
 Consider an example, in `bag.h` that follows a slightly different format but conveys the same kind of information:
 

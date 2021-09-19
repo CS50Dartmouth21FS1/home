@@ -7,7 +7,7 @@ The `while do` command is perfect for this.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4813c35b-d598-4ae0-94d2-acfc016f900c)**
 
-The contents of [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1a.sh) use the 'while-do' construct.
+The contents of [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1a.sh) use the 'while-do' construct.
 The script allows the user to guess a number between 1-100.
 
 ```bash
@@ -64,7 +64,7 @@ $
 Notice the command used by `while` is `[`, that is, the `test` command.
 As written, the expression `[ $guess != $answer ]` compares the contents of the two variables *as strings*.
 In this game, though, we want the user to guess a number, so we really should compare them *as numbers*.
-We need to use the more advanced bash operator `[[`, which leads us to [guess1b.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1b.sh).
+We need to use the more advanced bash operator `[[`, which leads us to [guess1b.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1b.sh).
 The loop now looks like:
 
 ```bash
@@ -83,7 +83,7 @@ For more info, see the relevant section of the [Bash reference manual](https://w
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=929ba055-7374-4e0e-ba5e-acfc01717e04)**
 
 Let's make this game more interesting by giving the user guidance; notice the `if` statement inside the loop.
-See [guess2.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess2.sh):
+See [guess2.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess2.sh):
 
 ```bash
 while [[ $guess -ne $answer ]]; do
@@ -139,7 +139,7 @@ $
 
 Like most procedural languages, shell scripts have structure and function support.
 Typically, it is a good idea to use functions to make scripts more readable and structured.
-In what follows, we add a function to create [guess3.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess3.sh).
+In what follows, we add a function to create [guess3.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess3.sh).
 To demonstrate function arguments, I updated the prompt to remind the user of the expected range of their guess.
 
 ```bash
@@ -191,7 +191,7 @@ Finally, we should be careful about what the user enters as a guess.
 It might be an empty string, or a non-number, or multiple words.
 We should never use `$guess` without quoting it, `"$guess"`, because otherwise the shell will paste all of its words separately... likely leading to syntax errors.
 
-In [guess4.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess4.sh) we now see why it was important to move the user input into a function: because that function can also encapsulate the error-checking code.
+In [guess4.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess4.sh) we now see why it was important to move the user input into a function: because that function can also encapsulate the error-checking code.
 
 ```bash
 function askguess() {

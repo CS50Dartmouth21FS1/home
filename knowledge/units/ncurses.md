@@ -22,7 +22,7 @@ The *ncurses* library was designed to make it easier for software developers to 
 
 ## Example: curses
 
-Our examples repo includes a minimal example, [curses.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/curse.c).
+Our examples repo includes a minimal example, [curses.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/curse.c).
 I encourage you to compile and play with it!
 Once open, you can type characters onto the screen, and move around with emacs-like control characters.
 Some things to notice:
@@ -33,12 +33,12 @@ Some things to notice:
 * you can print a character with `addch`, you can printf with `printw`.
 * nothing happens on the physical screen until you call `refresh`, so it is common to make a lot of changes and then call `refresh` to make it all appear at once.
 * you can read one character from the input with `getch`; it blocks until a character is available, but returns immediately as soon as the user hits a key (because `cbreak` put us in that mode).
-* the C 'switch' statement is a great way to handle keystroke input (recall this [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-flow.md#switch)).
+* the C 'switch' statement is a great way to handle keystroke input (recall this [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-flow.md#switch)).
 * after `endwin` the curses display disappears, but the normal stdin/stdout behavior resumes; in this case, the program prints "Goodbye" before exiting.
 
 ## Example: Conway's Game of Life
 
-Our examples repo includes an even cooler example, [Conway's Game of Life](https://github.com/CS50Dartmouth21FS1/examples/blob/main/life.c).
+Our examples repo includes an even cooler example, [Conway's Game of Life](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/life.c).
 Compile and run it!
 In that code there is a comment `// CURSES` to help you find the curses-specific code.
 Some things to notice:

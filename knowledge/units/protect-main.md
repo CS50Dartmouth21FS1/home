@@ -1,4 +1,4 @@
-As noted in the [unit about Git Flow](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/git-flow.md), all development occurs on *feature branches*; no developer ever works on (or pushes to) the `main` branch.
+As noted in the [unit about Git Flow](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/git-flow.md), all development occurs on *feature branches*; no developer ever works on (or pushes to) the `main` branch.
 
 To enforce this practice (and avoid mistakes!), set GitHub to [protect the main branch](https://docs.github.com/en/github/administering-a-repository/managing-a-branch-protection-rule):
 

@@ -169,13 +169,13 @@ For example, if your program manipulates things of type `struct listnode`, you w
 The first function calls `malloc(sizeof(struct listnode)` and initializes all of its contents, perhaps using parameters passed by the caller.
 The second calls `free(node)`.
 Both involve careful error-checking code.
-See example [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c).
+See example [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c).
 
 There are many advantages to this approach:
 
 * The mainline code is more readable, because it's clear what `listnode_new()` is doing.
 * Code involving `malloc` can sometimes be tricky, and you isolate that trickiness in one spot and focus on getting it right once.
-* Some new types might need multiple `malloc` calls, as in our linked-list example [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c).
+* Some new types might need multiple `malloc` calls, as in our linked-list example [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c).
 All those `malloc` calls (and corresponding `free` calls) can be in the `new`/`free` functions.
 * The `new` function acts like a 'constructor' in object-oriented languages and can ensure the newly returned memory is initialized.
 * You can insert debugging output or reference-counting logic, or set debugger breakpoints, in these `new`/`free` functions and immediately have that feature apply to *all* occurrences of your program's work with this type.

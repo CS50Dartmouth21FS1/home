@@ -1,4 +1,4 @@
-This unit is a quick video walk-through of **bag module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/lab3) starter kit, and its Makefile.
+This unit is a quick video walk-through of **bag module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) starter kit, and its Makefile.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c55eb0b8-0067-4118-a5be-ad0d0107a0b7)**
 

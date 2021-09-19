@@ -1,4 +1,4 @@
-This unit is a quick video walk-through of the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/lab3) starter kit, and its top-level Makefile.
+This unit is a quick video walk-through of the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) starter kit, and its top-level Makefile.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a70d9af-d70d-43ba-a222-ad0d010545c4)**
 

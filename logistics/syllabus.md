@@ -23,7 +23,7 @@ Finally, you'll join a team of other students to design, build, document, and te
 
 ## Structure
 
-There are no lectures and no textbook; instead, course content is a series of [knowledge units](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge), many with pre-recorded videos for viewing at your own pace and at a time convenient to you.
+There are no lectures and no textbook; instead, course content is a series of [knowledge units](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge), many with pre-recorded videos for viewing at your own pace and at a time convenient to you.
 The unit index is annotated with 'milestones' marking the set of units you should complete before each classroom activity or lab assignment.
 The notes and video are meant to complement (not duplicate) each other, so you should review the lecture notes *and* the video.
 
@@ -124,7 +124,7 @@ After the first day of class, you will be assigned to a 4-person team; this team
 
 ## Assignments
 
-All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) page for details.
+All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md) page for details.
 
 * ***Labs:***
 	You will work individually on a series of six programming assignments ("labs"), which become more challenging through the term.

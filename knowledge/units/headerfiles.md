@@ -1,14 +1,14 @@
-Recall the [process of compiling a C program](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-compile.md):
+Recall the [process of compiling a C program](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-compile.md):
 
 ![](media/c-compile/compilation.png)
 
 Let's take a closer look at the contents and purpose of `readlinep.h`.
-That file was first used in the example [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c), and in all subsequent examples of that series.
+That file was first used in the example [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c), and in all subsequent examples of that series.
 
 These examples actually depend on *two* files:
 
-* [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.c): a C 'source' file that *defines* the function `readLinep`.
-* [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.h): a C 'header' file that *declares* the function `readLinep`, used by any source file that wants to invoke the function.
+* [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.c): a C 'source' file that *defines* the function `readLinep`.
+* [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.h): a C 'header' file that *declares* the function `readLinep`, used by any source file that wants to invoke the function.
 
 **In CS50, *every* source file that does not include `main()` will need a corresponding header file, a header file that must be included both by that source file and by any other source file needing to interface with that source file.**
 
@@ -87,9 +87,9 @@ To repeat,
 
 ## Header file protection
 
-Recall the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-conditional-compilation.md) about conditional compilation with `#ifdef...#endif`.
+Recall the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md) about conditional compilation with `#ifdef...#endif`.
 As a matter of style, and sometimes necessity, we use these same directives in *every* header file.
-Take another look at [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h); all of its content is wrapped in an `#ifdef`:
+Take another look at [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h); all of its content is wrapped in an `#ifdef`:
 
 ```c
 #ifndef __READLINEP_H__

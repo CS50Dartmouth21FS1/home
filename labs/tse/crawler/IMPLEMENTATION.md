@@ -2,7 +2,7 @@
 ## Implementation Spec
 
 In this document we reference the [Requirements Specification](REQUIREMENTS.md) and [Design Specification](DESIGN.md) and focus on the implementation-specific decisions.
-The knowledge unit noted that an [implementation spec](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/design.md#implementation-spec) may include many topics; not all are relevant to the TSE or the Crawler.
+The knowledge unit noted that an [implementation spec](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/design.md#implementation-spec) may include many topics; not all are relevant to the TSE or the Crawler.
 Here we focus on the core subset:
 
 -  Data structures

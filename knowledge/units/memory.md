@@ -6,16 +6,16 @@ These same concepts underly nearly all procedural languages, though some languag
 In this unit we use a set of [slides](media/memory/memory-pointers-C.pdf) to explain memory, addresses, and pointers, complementing the notes below.
 The slides reference several examples:
 
-* [pointer0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer0.c)
-* [pointer1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer1.c)
-* [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer2.c)
-* [pointer3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer3.c)
-* [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c)
-* [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c)
+* [pointer0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer0.c)
+* [pointer1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer1.c)
+* [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer2.c)
+* [pointer3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer3.c)
+* [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c)
+* [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c)
 
 Since then, we added another example:
 
-* [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c)
+* [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c)
 
 ## Memory, and addresses
 
@@ -41,7 +41,7 @@ Because `xp` has type `int*`, `*xp` has type int, and we are able to assign that
 
 > By the way, the `NULL` pointer is simply address zero (0x00000).
 The OS arranges for that memory segment to be illegal for reading or for writing, so if you try to dereference a null pointer for reading or writing (think `char* p=NULL; char c = *p;`) the OS will catch it and trigger a 'segmentation fault'.
-> Compile and run [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c) to experience this 'segfault' for yourself!
+> Compile and run [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c) to experience this 'segfault' for yourself!
 
 Check out this [animated explanation of pointers](https://www.youtube.com/watch?v=5VnDaHBi8dM).
 Fun!
@@ -56,7 +56,7 @@ Each byte in memory has a unique numeric *address*, such as from 0x00000000 thro
 
 C stores all your program's code, and all of the data your process manipulates, in four distinct regions of memory (aka *segments*).
 There's nothing special about each region - they're all somewhere in that linear sequence of bytes - but C manages each differently.
-The [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c) example does a nice job of explaining and demonstrating the fact that pointers are just addresses, and distinguishing these four regions.
+The [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c) example does a nice job of explaining and demonstrating the fact that pointers are just addresses, and distinguishing these four regions.
 
 Let's look at each region in turn.
 
@@ -143,7 +143,7 @@ We'll get into the details in one of the next units.
 
 ## crash.c
 
-Let's look at [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c) to see what happens when we dereference a NULL pointer.
+Let's look at [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c) to see what happens when we dereference a NULL pointer.
 
 ```c
 int main()

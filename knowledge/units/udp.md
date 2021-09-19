@@ -16,8 +16,8 @@ UDP is a *non-reliable* protocol, which means that the datagrams might be lost, 
 (In contrast, TCP ensures that the every byte sent by the sender arrives, in order, exactly once.)
 This feature is both a strength and a weakness.
 
-Let's rewrite our original example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server) with UDP "datagrams" instead of TCP "streams".
-See the [client-server-udp](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp) example.
+Let's rewrite our original example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server) with UDP "datagrams" instead of TCP "streams".
+See the [client-server-udp](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp) example.
 
 Our program still has a client and a server, even though UDP does not impose that structure on us.
 Our client no longer uses `connect()` to make a connection to the server.
@@ -107,13 +107,13 @@ The client waits to receive the message; thus, the client strictly alternates be
 
 ## <a id="chat">UDP chat server</a>
 
-In the above UDP client-server [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp), the client sends datagrams to a server, and the server echos them back to the client.
+In the above UDP client-server [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp), the client sends datagrams to a server, and the server echos them back to the client.
 For each datagram, the client read a line of input from stdin.
 
 Let's make that echo server into a simple chat application, allowing the user sitting at the server terminal to respond from stdin.
 
 Our first attempt is straightforward; we replace the code that echoed the original datagram with a call to `readlinep()` and send that buffer instead.
-From `chatserver1.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select):
+From `chatserver1.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select):
 
 ```c
       // send a response back to the client
@@ -211,7 +211,7 @@ Clearly, we need a better solution.
 The solution is to use the `select()` Unix function, which waits for input to be ready on one or more file descriptors.
 We'll ask `select()` to return when either stdin (file descriptor 0) or `comm_sock` has input read.
 
-See `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select).
+See `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select).
 
 It takes a little setup to call `select`, as you'll see at the top of the loop.
 But then we check the return value: if negative, there was an error; if zero, there are no file descriptors ready so there must have been a timeout; if positive, one or both of the stdin or the socket must be ready for input.
@@ -319,7 +319,7 @@ In this program (not shown above), the server prints messages from other clients
 I made that choice only because the crude interface would just get too complicated if messages came from many places (to which client should I send the lines read from stdin?).
 With a little effort, this chatclient and chatserver could support multi-client chatting.
 
-Take a good look at the code for both `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select) - including the functions I did not include above - to better understand sockets, datagrams, and `select`.
+Take a good look at the code for both `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select) - including the functions I did not include above - to better understand sockets, datagrams, and `select`.
 Have fun!
 
 #### Timeouts

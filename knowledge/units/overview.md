@@ -17,7 +17,7 @@ The course includes six Unix and C programming assignments for the first part of
 The last part (about 3 weeks) is devoted to the team project.
 In the first part of the course you'll read and watch these units outside of class, and meet your team once a week to practice a group activity; in the last part of the course you'll meet your team during every class period.
 
-**About logistics:** be sure to read the [Logistics](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics) and [systems](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md) information.
+**About logistics:** be sure to read the [Logistics](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics) and [systems](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md) information.
 
 **About engagement:** you will learn more from this course if you are actively engaged, where *engagement = preparation + participation.*
 Read/watch these units and associated reading materials, practice at home, and participate in classroom activities.

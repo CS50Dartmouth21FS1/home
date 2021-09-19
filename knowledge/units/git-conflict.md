@@ -127,4 +127,4 @@ git push
 ## A far better solution
 
 The best way to handle merge conflicts is to *avoid them.*
-We advise you to follow the *Git Flow* style of development, described in the next [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/git-flow.md).
+We advise you to follow the *Git Flow* style of development, described in the next [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/git-flow.md).

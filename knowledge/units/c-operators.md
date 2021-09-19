@@ -31,7 +31,7 @@ For example:
 
 `fred++`  will get (old) value and then increment `fred`
 
-Take a close look at the output of [increment.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/increment.c):
+Take a close look at the output of [increment.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/increment.c):
 
 ```bash
 $ mygcc -o increment increment.c
@@ -64,7 +64,7 @@ See H&S pp.231-233.
 You can also combine an operation with an assignment;
 for example, `a += 2` is equivalent to `a = a + 2`.
 
-Explore the example [combined.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/combined.c).
+Explore the example [combined.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/combined.c).
 
 
 ## Precedence of operators

@@ -1,6 +1,6 @@
 # Solution - Mad Libs
 
-Regarding the [madlib.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/madlib.c) code, here are some **things you should notice:**
+Regarding the [madlib.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/madlib.c) code, here are some **things you should notice:**
 
 * The file header comment - giving name and usage of the program, assumptions, exit status, author, date.
 * the `include` files for standard libraries and our custom `readline` function.
@@ -71,7 +71,7 @@ Regarding the [madlib.c](https://github.com/CS50Dartmouth21FS1/examples/blob/mai
 ## Extension to print the result
 
 My solution is in [madlibprint.c](madlibprint.c),
-and is inspired by [getput.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/getput.c).
+and is inspired by [getput.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/getput.c).
 The core function is as follows:
 
 ```c

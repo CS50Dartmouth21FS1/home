@@ -1,4 +1,4 @@
-This unit is a quick video walk-through of **file module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/lab3) starter kit, and its Makefile.
+This unit is a quick video walk-through of **file module** in the [Lab 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) starter kit, and its Makefile.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7ddd9b83-9143-4d79-a0e6-ad0d011b437a)**
 

@@ -1,4 +1,4 @@
-Recall the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/c-compile.md) on the C compilation process; the very first step of translating any C source file is to pass it through the C *preprocessor*.
+Recall the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-compile.md) on the C compilation process; the very first step of translating any C source file is to pass it through the C *preprocessor*.
 
 The preprocessor understands various *directives*, all beginning with `#`.
 We've already seen one common directive, `#include`.
@@ -64,4 +64,4 @@ The source file never changes - but the person compiling the source file can 'fl
 ## Header files
 
 Another common use of conditional compilation is to protect against repeated inclusion of a header file.
-See the [unit about header files](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/headerfiles.md) for more info.
+See the [unit about header files](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/headerfiles.md) for more info.

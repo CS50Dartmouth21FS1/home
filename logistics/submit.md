@@ -33,7 +33,7 @@ If this is your first push of this repo, git may remind you to
 git push --set-upstream origin main
 ```
 
-If you get an error about git being unable to open your editor, make sure you have [configured a default editor](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#set-editor).
+If you get an error about git being unable to open your editor, make sure you have [configured a default editor](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#set-editor).
 
 **Important:** Check to ensure you have no [missing](#missing) files and no [extraneous](#extra) files.
 
@@ -116,4 +116,4 @@ Thus, for example,
 The lab specs will often provide more specific instructions.
 
 Use of a good `.gitignore` file and care when using `git add` will help avoid the addition of extraneous files.
-Most lab starter kits come with a `.gitignore` file, which you can extend; we also include CS50-recommended rules as [.gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/main/.gitignore) in the examples repo.
+Most lab starter kits come with a `.gitignore` file, which you can extend; we also include CS50-recommended rules as [.gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) in the examples repo.

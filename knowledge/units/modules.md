@@ -57,7 +57,7 @@ A function pointer is simply that address.
 
 We can refer to the function's address simply by naming the function, without the syntax of calling a function.
 That is, `foo` is, by itself, the address of a function, whereas `foo(a, b, c)` calls that function and passes arguments `a`, `b`, and `c`.
-In our [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer2.c) example, we passed the address of functions `main` and `change` to `printf` so it could print those addresses for us to examine.
+In our [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer2.c) example, we passed the address of functions `main` and `change` to `printf` so it could print those addresses for us to examine.
 
 If I have a function called `myPrint`, like this:
 
@@ -125,7 +125,7 @@ Here the `struct` type itself is not even named, but the typedef is formed and c
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3a2f1124-d3d0-4b37-bcb0-ad0b0147e91d)**
 
 Here, we live-code a *bag* data structure and use it to make a new version of our `sorter` series.
-We start from [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c) and modify it with the goal of coding functions that manipulate a generic "bag of things".
+We start from [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c) and modify it with the goal of coding functions that manipulate a generic "bag of things".
 
 > The video is long, but builds up the entire module from scratch and talks through *why* each approach is taken.
 > The resulting implementation is slightly different than the resulting clean version of the code, linked below; I encourage you to study those files and note the comments and other stylistic aspects of a complete module.
@@ -152,11 +152,11 @@ The example demonstrates
  * The use of `void*` to represent "a pointer to anything" and its use to build a bag of generic things.
 
 The complete program, after some cleanup, is in 
-[sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8.c),
-[bag8.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag8.h),
-[bag8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag8.c).
+[sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8.c),
+[bag8.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag8.h),
+[bag8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag8.c).
 
-A complete *bag* module is included in the [Lab 3 starter kit](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/lab3).
+A complete *bag* module is included in the [Lab 3 starter kit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3).
 
 ## Modules
 

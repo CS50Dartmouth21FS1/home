@@ -10,14 +10,14 @@ Your CTO met with them earlier this week, and agreed on the Requirements Spec be
 
 **Your task for today:**
 write the Design Spec and Implementation Spec for this project.
-Recall the [Design Spec unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/design.md/#design-spec) and [Implementation Spec unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/design.md/#implementation-spec),
-and the examples we provide for the [Tiny Search Engine](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/tse).
+Recall the [Design Spec unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/design.md/#design-spec) and [Implementation Spec unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/design.md/#implementation-spec),
+and the examples we provide for the [Tiny Search Engine](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/tse).
 
 <!-- @CHANGEME: update the term-specific link to the TSE lab, above. -->
 
 ## Requirements spec
 
-Subsections here follow the outline of a [Requirements Spec](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/design.md/#requirements-spec).
+Subsections here follow the outline of a [Requirements Spec](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/design.md/#requirements-spec).
 
 ### functionality
 

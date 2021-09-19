@@ -3,12 +3,12 @@ We include it here for those who may be interested.
 
 This approach makes sophisticated use of the *C preprocessor* to implement glass-box unit testing.
 
-You may have studied the example [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree8/), which demonstrated a binary-tree data structure.
-Here we enhance it to become [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/) (to a computer scientist, `A` comes next after `9`).
+You may have studied the example [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree8/), which demonstrated a binary-tree data structure.
+Here we enhance it to become [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/) (to a computer scientist, `A` comes next after `9`).
 
-Look at [tree9/tree.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/tree.c) and its [Makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/Makefile).
+Look at [tree9/tree.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/tree.c) and its [Makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/Makefile).
 
-Like the [glass-box unit test for the **bag** module](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/testing-bag.md),
+Like the [glass-box unit test for the **bag** module](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/testing-bag.md),
 the `tree9` code has a `main()` function, protected by `#ifdef UNIT_TEST ... #endif` so it is only compiled-in when we want to compile a unit test.
 This time, however, that unit-testing code block begins with `#include "unittest.h"` to pick up several *preprocessor macros*.
 Recall that preprocessor macros are textually replaced by the C preprocessor before the C compiler even runs.

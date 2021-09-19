@@ -26,7 +26,7 @@ C's only guarantee is that:
 
     sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long)
 
-Examine [data-types.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/data-types.c), which defines variables of each of the base types and prints the `sizeof` each one.
+Examine [data-types.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/data-types.c), which defines variables of each of the base types and prints the `sizeof` each one.
 
 ```bash
 $ mygcc data-types.c -o data-types
@@ -132,13 +132,13 @@ Those come later.
 Variables, constants, and functions can be declared `extern`, meaning that their implementation occurs in a different C source file.
 It is common to see `extern` declarations in a header (`.h`) file, which when included in a source (`.c`) file allows the compiler to learn about the existence of something whose definition lays elsewhere.
 The compiler makes a note of it, leaving it for the linker to resolve later.
-For example, we see the following *declaration* in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h):
+For example, we see the following *declaration* in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h):
 
 ```c
 extern bool readLine(char* buf, const int len);
 ```
 
-and then in [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c) we see the *definition* (implementation) of that function:
+and then in [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) we see the *definition* (implementation) of that function:
 
 ```c
 bool 

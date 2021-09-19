@@ -12,7 +12,7 @@ In each case you will need to write a testing script.
 
 ## Reminder
 
-Grading will focus on [CS50 coding style](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness and testing.
+Grading will focus on [CS50 coding style](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness and testing.
 
 ***Your C code must compile without producing any compiler warnings.***
 You will lose points if the compiler produces warnings when using our CS50-standard compiler flags (i.e., when compiled with `mygcc)`.
@@ -38,7 +38,7 @@ The clone step will create a new directory `~/cs50-dev/lab2-XXXXX`.
 First, edit `README.md` to remove instructions, add your name, and add your username.
 You can use this file to provide any overall comments you want to convey to the grader.
 
-> Remember that you can preview Markdown files with various Markdown-editing or -rendering tools (see: [Markdown resources](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#markdown)) but we will read it on GitHub.com, so before you make your final submission decision be sure to check it there.
+> Remember that you can preview Markdown files with various Markdown-editing or -rendering tools (see: [Markdown resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#markdown)) but we will read it on GitHub.com, so before you make your final submission decision be sure to check it there.
 
 :point_right:
 Make three directories where you'll do your work:
@@ -66,7 +66,7 @@ Check `git status` before you commit; it will list the files that will be commit
 *Study the status output carefully: if you miss adding a file we need, you'll lose points, and if you add a scratch or binary file that should not be in the repo, you'll lose points.*
 
 :point_right:
-Follow the [lab submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/main/labs/submit.md), and remember *this is Lab 2*.
+Follow the [lab submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/submit.md), and remember *this is Lab 2*.
 
 To see your Lab submissions, as we see them, visit [classroom.github.com](https://classroom.github.com) and click on your specific Lab 2 repository, and see the files and commit history as GitHub has them.
 

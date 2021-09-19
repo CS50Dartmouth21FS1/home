@@ -29,7 +29,7 @@ Things to notice:
 * character pointers (for strings) inside the struct; where do they point?
 * an array of structs - how do you allocate memory for it?
 * extensive error-checking code throughout
-* an opportunity for you to write the  'contract' for the `extractData` function (read about [function contracts](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/contracts.md))
+* an opportunity for you to write the  'contract' for the `extractData` function (read about [function contracts](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/contracts.md))
 * detailed 'contract' for the `csvBurst` function
 * in the `csvBurst` function, a 'moving pointer' approach to parsing the csv string
 * chopping the csv string by dropping in null characters

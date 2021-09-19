@@ -60,7 +60,7 @@ But we're going to immediately jump off the laptop and over to Linux.
 ## CS50 Linux
 
 In CS50 you will connect over the Internet to a set of Linux servers hosted at the Thayer School.
-Before continuing, follow these [instructions](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#linux) to set up your Linux account... so you can experiment as you read the following.
+Before continuing, follow these [instructions](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#linux) to set up your Linux account... so you can experiment as you read the following.
 
 **[:arrow_forward: Video: What do Linux servers look like?](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d1217102-8db8-4f4c-a112-acfa00aebe7d)**
 
@@ -194,4 +194,4 @@ Actually, there is an expanded/improved version of `vi` called `vim`, which is q
 You should try both and become comfortable with at least one.
 Yes, it's tempting to use an external graphical editor (like Sublime), but there are times when you *must* use a text-only editor and thus you should get used to it.
 
-See [about editors](https://github.com/CS50Dartmouth21FS1/home/blob/main/logistics/systems.md#editors) for some resources that can help you learn `emacs` or `vim`.
+See [about editors](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#editors) for some resources that can help you learn `emacs` or `vim`.

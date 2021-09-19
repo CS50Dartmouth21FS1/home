@@ -8,7 +8,7 @@ We don't need to allocate any memory for these new strings, or copy these string
 
 ## Related example
 
-We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/covid/covid.c).
+We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/covid/covid.c).
 The details are different – that code knew exactly how many fields to expect, the words were separated by precisely one comma, and there was the added complexity of quoted fields.
 
 In the query string, you don't know how many words to expect (but what is the maximum number of words in a string of length *n*?)
