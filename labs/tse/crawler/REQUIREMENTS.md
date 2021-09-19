@@ -14,7 +14,7 @@ The crawler **shall**:
     * where `maxDepth` is an integer in range [0..10] indicating the maximum crawl depth.
 1. mark the `pageDirectory` as a 'directory produced by the Crawler' by creating a file named `.crawler` in that directory.
 1. crawl all "internal" pages reachable from `seedURL`, following links to a maximum depth of `maxDepth`; where `maxDepth=0` means that crawler only explores the page at `seedURL`, and `maxDepth=1` means that crawler only explores the page at `seedURL` and those pages to which `seedURL` links, and so forth inductively.
-1. print nothing to stdout, other than logging its progress; see an example format in the [knowledge unit]({{unit}}/crawler.md).
+1. print nothing to stdout, other than logging its progress; see an example format in the [knowledge unit](https://github.com/CS50Dartmouth21FS1/home/blob/main/knowledge/units/crawler.md).
  Write each explored page to the `pageDirectory` with a unique document ID, wherein
    * the document `id` starts at 1 and increments by 1 for each new page,
    * and the filename is of form `pageDirectory/id`,
