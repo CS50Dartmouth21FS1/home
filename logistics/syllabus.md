@@ -53,9 +53,9 @@ Changes will be announced via updates to the Canvas calendar.
 |       deadline*    | deliverable
 |               ---: | :---
 |    21 Sep 10pm EDT | Lab 1
-|    28 Sep 10pm EDT | Lab 2
+|    30 Sep 10pm EDT | Lab 2
 |     7 Oct 10pm EDT | Lab 3
-|    16 Oct 10pm EDT | Lab 4
+|    15 Oct 10pm EDT | Lab 4
 |    22 Oct 10pm EDT | Lab 5
 |    29 Oct 10pm EDT | Lab 6
 |    1 Nov 5-8pm EDT | Project design reviews**
@@ -124,7 +124,7 @@ After the first day of class, you will be assigned to a 4-person team; this team
 
 ## Assignments
 
-All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/tree/fall21s1/logistics/systems.md) page for details.
+All computing work will occur on Linux systems, with code managed and shared in [GitHub](https://github.com/CS50Dartmouth21FS1); see the [Systems](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md) page for details.
 
 * ***Labs:***
 	You will work individually on a series of six programming assignments ("labs"), which become more challenging through the term.
