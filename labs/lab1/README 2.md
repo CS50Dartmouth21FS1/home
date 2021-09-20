@@ -149,7 +149,7 @@ You should add **only** these three files to your repo:
 git add README.md top10.sh summarize.sh
 ```
 
-See the [lab-submission instructions](https://www.cs.dartmouth.edu/~cs50/Labs/submit.md) for details of how to submit your lab.
+See the [lab-submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/submit.md) for details of how to submit your lab.
 
 ## Hints
 
