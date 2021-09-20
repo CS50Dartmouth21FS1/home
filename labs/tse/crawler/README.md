@@ -4,7 +4,7 @@ In this lab you'll begin the Tiny Search Engine (TSE) by coding the *Crawler* ac
 * [Design Spec](DESIGN.md)
 * [Implementation Spec](IMPLEMENTATION.md)
 
-Grading will focus on [CS50 coding style]({{labs}}/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
+Grading will focus on [CS50 coding style](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/style.md) - including consistent formatting, selection of identifier names, and use of meaningful comments - in addition to correctness, testing, and documentation.
 
 ***Your C code must compile without producing any compiler warnings.***  You will lose points if the compiler produces warnings when using our CS50-standard compiler flags.
 
@@ -20,7 +20,7 @@ You will lose points for memory errors and leaks reported by valgrind on our tes
 
 ## Preparation
 
-1. [Accept the assignment]({{labtse-starter}}), and clone the resulting repo.
+1. [Accept the assignment](https://classroom.github.com/a/FTNWH4lk), and clone the resulting repo.
 1. Decide whose implementation of the Lab 3 data structures you want to use (you can always change later).
    * If you want to use *your* implementation, copy your `counters.c`, `set.c`, `hashtable.c` into the `libcs50` subdirectory in your brand-new repository; try `make` in that directory to ensure everything works.
    * If you want to use *our* implementation, do nothing.
@@ -74,18 +74,18 @@ and your **common** directory should contain the following files:
 If you finish Lab 4 early, we encourage you to begin work on Lab 5 or Lab 6.
 Your Lab 4 submission may contain a partly-completed indexer or querier; the graders will ignore those files, but must be able to build your crawler *from the top-level directory* without compilation errors and test your crawler without run-time errors.
 
-To submit, read the [Lab submission instructions]({{labs}}/submit.md).
+To submit, read the [Lab submission instructions](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/submit.md).
 
 # Hints and tips
 
-There are tips and a Crawler demo in the [unit about crawler]({{unit}}/crawler.md).
+There are tips and a Crawler demo in the [unit about crawler](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/crawler.md).
 
 ### libcs50
 
 We provide several modules in the `libcs50` directory, which compiles to a library `libcs50.a` you can link with your crawler.
 *You shall not change any of our code,*  but you may drop in your `set.c`, `counters.c`, `hashtable.c` files from Lab 3.
 The top-level Makefile auto-detects the presence of your `set.c` and will build the library with your implementation... or if it is absent, will simply use a pre-compiled library we provide.
-See the [unit about libraries]({{unit}}/libraries.md).
+See the [unit about libraries](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/libraries.md).
 
 **Pay close attention to the `webpage` module,**
 especially the memory contract implemented by `webpage_new` and `webpage_delete`.
@@ -110,7 +110,7 @@ Suggestion: just pass a constant string as the item; even `""` will do.
 ### Testing Crawler
 
 The Implementation Spec instructs you to write a bash script `testing.sh` to test your crawler, and invoke it from the `make test` rule in the Makefile.
-Sample output from our crawler can be found in `{{tse-dir}}/output`;
+Sample output from our crawler can be found in `~/cs50-dev/shared/tse/output`;
 keep in mind that our crawler may process URLs in a different order, so your directory may not be identical to ours.
 
 **Note:** the full suite of tests described in the Implementation Spec can take more than an hour to run.
@@ -118,4 +118,4 @@ Although we encourage you to test your crawler using a variety of tests, your `t
 
 ### Use valgrind and gdb
 
-We've provided information about [gdb]({{unit}}/gdb.md) and [valgrind]({{unit}}/valgrind.md); make use of them.
+We've provided information about [gdb](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/gdb.md) and [valgrind](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/valgrind.md); make use of them.

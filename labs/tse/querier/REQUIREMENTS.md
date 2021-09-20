@@ -75,7 +75,7 @@ Note, too, that the literal 'and' may be left out and is thus implicit.
 Notice how the structure of the syntax indicates that 'and' has higher precedence (binds more tightly) than 'or'.
 A query is an OR'd sequence of AND-sequences, or for those of you familiar with logic, a *disjunction* of *conjunctions*.
 
-> See the [unit]({{unit}}/querier-expressions.md) noting how this syntax is similar to another grammar you know well: arithmetic.
+> See the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/querier-expressions.md) noting how this syntax is similar to another grammar you know well: arithmetic.
 >
 >```
 >expression ::= <product> [ + <product>]...
