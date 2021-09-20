@@ -9,4 +9,5 @@ In one class meeting every week, you'll join your team for a group activity; the
 * Week 4: [Vaccination day](activity4)
 * Week 3: [Mad libs](activity3)
 * Week 2: [Gittin' around](activity2)
+* Week 2: [Intro to git](activity9)
 * Week 1: [Billboard 100](activity1)
