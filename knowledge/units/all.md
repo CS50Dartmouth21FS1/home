@@ -1411,16 +1411,25 @@ great!
 ---
 <!-- END macos -->
 
-<!-- UNIT milestone -->
+<!-- UNIT read-shell -->
 
-# Milestone: Before Activity 1 <a name=unit-milestone>
+# Reading: Unix and shell programming <a name=unit-read-shell>
 
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
+The rest of this reading is not strictly necessary, but is short and will enhance your CS50 experience. Really!
+
+- *[The Unix tools are your friends](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_88/README.md)*
+by Diomidis Spinellis (possible paywall)
+- *[The professional programmer](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_67/README.md)*
+by Uncle Bob
+- *[Know how to use command line tools](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_43/README.md)*
+by Carroll Robinson
+- *[Comment only what the code cannot say](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_17/README.md)*
+by Kevlin Henney
+
 
 
 ---
-<!-- END milestone -->
+<!-- END read-shell -->
 
 <!-- UNIT bash-quoting -->
 
@@ -2980,36 +2989,369 @@ Do you know in which building this plaque appears?
 ---
 <!-- END hist-ai -->
 
-<!-- UNIT milestone -->
+<!-- UNIT git -->
 
-# Milestone: Before completing Lab 1 <a name=unit-milestone>
+# Unit: Git concepts and commands <a name=unit-git>
 
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
+In this unit, we dive into Git to better understand its core concepts and commands.
+We learn several things:
+
+-  the concept of version control
+-  The git workflow and the Three State Model
+-  git setup
+-  basic git commands
+-  the concept of a *commit history*
+-  the concept of *branches*
+-  the concept of *remotes*
+-  git commands to commit, branch, merge, push, and pull
+
+We cannot describe everything about git in these notes.
+See our list of [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#github).
+
+[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3abb3714-8c8b-4404-a7f6-ad0201356d04) of most of these concepts and tools.
+(apologies for the low video resolution!)
+
+## Version control
+
+It may be a surprise to you, but you have probably used your own 'version-control system' before.
+
+Whenever you edit a Google Doc, for example, the application saves a history of your edits.
+Whether you have been editing the document for several days, or even several months, you can click a link and see the day-by-day history of changes to the file – or choose to revert to an earlier version of the file.
+Google Docs automatically and transparently provides this version-control feature.
+
+*Version-control systems* are just tools to help you do just that: to maintain multiple versions of files or a set of files over time.
+
+In software development, such systems are usually called *source-code control systems* (sccs).
+Today, **git** is the most common source-code control system, inheriting ideas from earlier systems like svn, cvs, rcs, and sccs, all of which are still occasionally seen in use.
+
+Git and these other systems maintain an organized historical record of an entire software project, potentially including hundreds of source files spread across dozens of directories, and shared with dozens or hundreds of other developers.
+
+In every such system, a devloper explicitly *commits* an updated version of one or more files to the ongoing *repository* of files (unlike Google Docs where updates occur automatically and transparently).
+The result is a *commit history* -- a sequence of commits over time -- that reflect the changing state of the source code.
+
+Git and its predecessors also allow developers to compare the current state of files to earlier commits, or to revert the current files to their contents from an earlier commit.
+
+Although git is extremely powerful, and its features sometimes complicated, anyone can learn the basic use of git with a little practice.
+
+## Git repositories and clones
+
+The *repository* is a core concept in git: it is simply a directory of files and subdirectories, managed as a unit.
+In geek speak, we call it a *repo*.
+
+It is possible to have multiple copies of a git repository; each is called a *clone*.
+When working alone, you typically have exactly one clone of your repository.
+When working in a team, every member of the team has their own clone, usually on their own computer, and each considers it their *local repository*.
+Every clone contains the entire history of the repository, all the way back to its original commit.
+Every team member can work totally independently, or even offline, editing files and committing changes to their own clone.
+We'll postpone for a moment how those changes are exchanged among team members.
+
+## Git workflow
+
+When you edit files in your local repository, you need to understand that git conceives of three different 'areas' that hold versions of the file: the *working copy*, the *staging area*, and the *local repository*.
+
+The *working copy* is the file you see in your editor, or in a directory listing.
+
+The *staging area* is where files are (virtually) copied when you *add* them (aka *stage* them) for the next commit.
+
+The *local repository* contains versions committed in earlier commits.
+
+Let's work through a simple example.
+
+1. Create a new directory and `cd` into it.
+   This directory is where you will establish your new project, holding your working copy of all files in that project.
+2. Initialize git with `git init`.
+   Now this directory is a git repository.
+   (It creates a hidden subdirectory `.git` where it keeps all of its information; never touch anything inside there!)
+3. Run `git branch -m main`; we'll explain why later.
+3. Create a README.md file, in Markdown format, to describe the contents of this project.
+4. Run `ls` and you'll see README.md.
+5. Run `git status`, which will tell us what git thinks about the status of our repository.
+  Notice that it lists `README.md` under "untracked files"; git recognizes it as a new file, but does not yet consider it to be part of the repository - it is not "tracked by git" in an effort to track the history of this software project.
+
+If we want git to start tracking the file, we need to move `README.md` to the *staging area*; that is, we want git to *stage* the file to be included in the next commit (snapshot) I make to the repository.
+
+```
+git add README.md
+git status
+```
+
+The result should show that `README.md` is ready to be committed, i.e., to be included in the next "commit".
+
+Finally, to move this file from the staging area to the local repository, so it becomes part of the historical record of the project, we need to commit it into our repository.
+This step will create a new snapshot - which git calls "a commit", to the repository.
+Since every commit is an important event, we always include a short explanatory message with the commit.
+The message needs to be meaningful and not just a description of the change you made.
+For example, a message like "changed 41 to 42" isn't helpful since that change is obvious; instead, your message should indicate *why* you changed 41 to 42 is a useful message.
+
+```
+git commit -m "...message..."
+```
+
+or just
+
+```
+git commit
+```
+
+In the second case git will open your [default editor](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#set-editor) and will wait for you to enter a message and hit Save.
+
+## Git log
+
+To see the history of commits, use the `git log` command.
+If the log gets long, it will page like you are using `less`, so you can hit the space bar for the next page, or hit `q` to quit the listing.
+
+Notice that every commit has a unique *hash* - a long string of characters and numbers.
+Although meaningless, each is unique and represents a particular commit in the history.
+They can often be abbreviated to the first seven characters.
+
+## Git diff
+
+To compare your working copy with the prior commit, run `git diff`; it will highlight all the changes in all the files, using a `less`-like interface to scroll if there are many.
+
+To compare with an earlier commit, mention the commit's hash (obtained from `git log` on the command line):
+
+```bash
+git diff 56fd541
+```
+
+## Git branches
+
+We refer above to the commit history as a sequence of commits.
+In the simplest repo, that may be true, but for most serious work it is common to create *branches* in the commit history.
+
+Consider this scenario: you spent the morning developed a nice new piece of software, tested it, confirmed it meets all the specifications exactly.
+You committed your code to the repository and celebrated with a nice mug of cappucino.
+Then your client calls, and urgently requests a new feature; let's call it `fribble`.
+You could start editing right there in your working copy, adding and updating code to create this new feature, confident that (in the worst case)  you could roll back to the working version in your earlier commit.
+But what if the client calls again and says "hang on, we have a higher-priority feature request; set aside that work you've been doing and add this other feature by tomorrow!"
+This priority feature is called `urgent`.
+
+This is when you really need branches!
+
+Right after that cappucino you should create a branch:
+
+```
+git branch fribble
+git switch fribble
+```
+
+Now you are working "on the fribble branch"; any commits you make here will happen on that `fribble` branch, not the original `main` branch.
+You might be working here for days or months, but you can always switch back to `main` if needed.
+
+```
+git commit -a -m "setting aside work on fribble for now..."
+git status       # make sure you have no untracked files that missed the commit!
+git switch main  # switch back to work on the main branch
+```
+
+*Note that it's best to commit any changes before you switch.*
+
+When the priority call arrived, you could make a new branch for it, too.
+Assuming you are already working on main,
+
+```
+git branch urgent
+git switch urgent
+```
+
+Now you are working "on the urgent branch"; any commits you make here will happen on that `urgent ` branch, not the original `main` branch.
+
+To see the list of branches in your local repo,
+
+```
+git branch
+```
+
+The branch labeled with `*` is the current branch – the one on which your new commits will occur.
+
+To switch to a different branch,
+
+```
+git switch otherbranch
+```
+
+or, in older versions of git, which did not have the `switch` command,
+
+```
+git checkout otherbranch
+```
+
+
+## Git merging
+
+Eventually, when you complete work on the feature, and feel like it is ready for testing, you can merge it back into the `main` branch:
+
+```
+git commit ...     # any final changes to fribble branch...
+git switch main    # switch back to the main branch
+git merge fribble  # merge in the fribble branch
+```
+
+Git will try to merge everything automatically; if `main` has not changed since the `fribble` branch was created, this merge will happen seamlessly.
+
+Sometimes, however, there is a *conflict* - such as the same line being edited in different ways on the two branches - and then it is left to the user to figure out what to do.
+Read more about [merge conflicts](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github) here.
+
+We will look later at a more sophisticated approach, called *git flow*, for managing and merging branches.
+
+In any case, the result of merging two branches creates a new commit that represents that moment in history; such a commit is called a *merge commit*.
+
+
+## Visualizing git branches
+
+Check out this [website](https://git-school.github.io/visualizing-git) that can help to visualize commits, branching, and merging.
+
+
+## Git remotes
+
+So far everything we've said imagines you are the only developer, and there is only one clone of the git repository: on your own computer (or, in the case of plank, in your own account).
+
+Git clones can live on servers, too.
+These *remote repositories* (often just called *remotes*) usually live on a special-purpose git server, such as those run by GitHub or GitLab.
+
+If you already have a local repository, you can set up a remote copy on GitHub.
+Visit GitHub in your browser and go to your account home.
+
+1. Click on the *New Repository* button and give it a name; by convention, its name should be the same as the directory name holding your local repository, but they need not be.
+2. Decide whether you want your repository private (initially for you only) or public (literally the whole world).
+3. Click *Create repository*.
+
+Follow the instructions to "add a remote" to your existing repository.
+
+If your existing branch is called `main`,
+
+```
+git remote add origin git@github.com:username/reponame.git
+```
+
+adds a remote named `origin` (just a convention, but a very strong convention) that refers to the new repo on GitHub; here, of course, you should provide the `git@github` address you copied from GitHub.
+
+Then, if your existing branch is called `main`,
+
+```
+git push -u origin main
+```
+
+"pushes" all the commits on branch `main` to the remote named `origin`.
+The inclusion of `-u` sets that remote as the default "upstream" remote for the future; that means you can, after more commits, simply type 
+
+```
+git push
+```
+
+and not need to specify which remote or which branch.
+
+You can give collaborators access to your GitHub repo; they can then *clone the repo*, that is, to download a copy of the repository history and create a local directory that holds a working copy of the repository.
+This new *clone* is their *local repository*, and it is tied to the same *remote* on GitHub.
+If they then then make some commits, and push changes to that remote, your local repository (clone) is out of date with respect to its remote copy on GitHub; to update your local copy,
+
+```
+git pull
+```
+
+or, to be explicit,
+
+```
+git pull origin main
+```
+
+To pull updates to the `main` branch from the remote called `origin`.
+
+To see your list of current remotes,
+
+```
+git remote -v
+```
+
+## Branch 'master' vs 'main'
+
+The git software ecosystem is in transition.
+The default branch name for new repos has long been `master`; in recent years, tools (like git) and services (like GitHub) are starting to default to `main` (as we do in CS50).
+
+Just in case, when creating a fresh repo, you should rename the initial branch to ensure it has the expected name (`main`):
+
+```
+git init
+git branch -M main
+```
+
+> If you forget, you can rename the branch later, but be careful: if you have collaborators sharing your remote, you'll need to coordinate very carefully.
+
+Many older online git documents and tutorials refer to "the master branch"; although in CS50 we use "the main branch", as do newer git tutorials, the concepts are identical.
+We've noticed newer documents referring to "the base branch" as a generic reference to "the 'master' or 'main' branch, whichever you use in your repo."
+
+## gitignore
+
+Normally git allows you to add any sort of file to a git repository.
+It is good practice, however, to commit only the *source files*, and never any *derived files*, that is, files derived from source files.
+The principle is that other users can clone your repository and rebuild from source, re-creating the derived files when needed.
+The inclusion of derived files can lead to conflicts, and (because derived binaries are very large) can explode the size of your repository.
+
+It is also a good idea to exclude editor-produced backup files, operating-system files (like `.DS_Store` on MacOS) that are meaningful only to the local user, and so forth.
+
+So, git looks for a file called `.gitignore` in the current working directory *and any parent directory, up to the root of the repository*, to see what files you want it to ignore.
+For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) file, and place it in the root directory of every lab starter kit.
+This file excludes common patterns, like the `.o` object files produced by the C compiler and `~` backup files produced by emacs.
+
+**You will need to add/extend gitignore files.**
+Specifically, you'll need to add the name of any compiled binary file; by doing so, git won't warn you that the file is "untracked" (making your `git status` easier to read) and you won't accidentally add it to your repository.
+
+> The most common mistake is to type `git add .`, which adds every non-ignored file in your current directory and, recursively, all subdirectories.
+> Never take this approach!
+
+For example, suppose you are writing a software system with two programs, `server` and `client`.
+To keep the code organized, you have two subdirectories, which (sensibly) are also called `server` and `client`.
+Here's how you might set up the `.gitignore` files:
+
+```bash
+$ cp ~/cs50-dev/shared/examples/.gitignore .gitignore
+$ echo server >> server/.gitignore
+$ echo client >> client/.gitignore
+$ git add .gitignore server/.gitignore client/.gitignore 
+$ tree -a
+.
+|-- .gitignore
+|-- README.md
+|-- client
+|   |-- .gitignore
+|   |-- README.md
+|   `-- client.c
+`-- server
+    |-- .gitignore
+    |-- README.md
+    `-- server.c
+
+2 directories, 8 files
+$ 
+```
+
+The top-level `.gitignore` will cover the usual patterns that should be ignored throughout, but then each subdirectory lists the files that should be ignored *within that directory*.
+I find this approach works well and enables each directory to describe its own needs, more clearly than lumping everything into one top-level gitignore file.
+
+## GitHub
+
+You'll note that all of the above information is based on command-line use of git, even for repositories stored on GitHub.
+We recommend this practice for CS50.
+
+Most importantly, however, we urge you **never to edit files on GitHub**, via the browser.
+We've seen too many CS50 students create conflicts and confusion this way.
+Make all your edits in a local clone, and commit and push in the usual way as described above.
 
 
 ---
-<!-- END milestone -->
+<!-- END git -->
 
-<!-- UNIT read-shell -->
+<!-- UNIT read-git -->
 
-# Reading: Unix and shell programming <a name=unit-read-shell>
+# Reading: Git reference and reading <a name=unit-read-git>
 
-The rest of this reading is not strictly necessary, but is short and will enhance your CS50 experience. Really!
-
-- *[The Unix tools are your friends](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_88/README.md)*
-by Diomidis Spinellis (possible paywall)
-- *[The professional programmer](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_67/README.md)*
-by Uncle Bob
-- *[Know how to use command line tools](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_43/README.md)*
-by Carroll Robinson
-- *[Comment only what the code cannot say](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_17/README.md)*
-by Kevlin Henney
-
+We recommend quickly scrolling through some of the [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#github) so you are familiar with where you might look for help when you are puzzled.
+Some of the interactive tutorials are very helpful.
+GitHub's own documentation is quite good.
 
 
 ---
-<!-- END read-shell -->
+<!-- END read-git -->
 
 <!-- UNIT read-c1 -->
 
@@ -3395,381 +3737,6 @@ In the accompanying demo, I write, compile, assemble, and link a simpler program
 ---
 <!-- END c-compile -->
 
-<!-- UNIT git -->
-
-# Unit: Git concepts and commands <a name=unit-git>
-
-In this unit, we dive into Git to better understand its core concepts and commands.
-We learn several things:
-
--  the concept of version control
--  The git workflow and the Three State Model
--  git setup
--  basic git commands
--  the concept of a *commit history*
--  the concept of *branches*
--  the concept of *remotes*
--  git commands to commit, branch, merge, push, and pull
-
-We cannot describe everything about git in these notes.
-See our list of [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#github).
-
-[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3abb3714-8c8b-4404-a7f6-ad0201356d04) of most of these concepts and tools.
-(apologies for the low video resolution!)
-
-## Version control
-
-It may be a surprise to you, but you have probably used your own 'version-control system' before.
-
-Whenever you edit a Google Doc, for example, the application saves a history of your edits.
-Whether you have been editing the document for several days, or even several months, you can click a link and see the day-by-day history of changes to the file – or choose to revert to an earlier version of the file.
-Google Docs automatically and transparently provides this version-control feature.
-
-*Version-control systems* are just tools to help you do just that: to maintain multiple versions of files or a set of files over time.
-
-In software development, such systems are usually called *source-code control systems* (sccs).
-Today, **git** is the most common source-code control system, inheriting ideas from earlier systems like svn, cvs, rcs, and sccs, all of which are still occasionally seen in use.
-
-Git and these other systems maintain an organized historical record of an entire software project, potentially including hundreds of source files spread across dozens of directories, and shared with dozens or hundreds of other developers.
-
-In every such system, a devloper explicitly *commits* an updated version of one or more files to the ongoing *repository* of files (unlike Google Docs where updates occur automatically and transparently).
-The result is a *commit history* -- a sequence of commits over time -- that reflect the changing state of the source code.
-
-Git and its predecessors also allow developers to compare the current state of files to earlier commits, or to revert the current files to their contents from an earlier commit.
-
-Although git is extremely powerful, and its features sometimes complicated, anyone can learn the basic use of git with a little practice.
-
-## Git repositories and clones
-
-The *repository* is a core concept in git: it is simply a directory of files and subdirectories, managed as a unit.
-In geek speak, we call it a *repo*.
-
-It is possible to have multiple copies of a git repository; each is called a *clone*.
-When working alone, you typically have exactly one clone of your repository.
-When working in a team, every member of the team has their own clone, usually on their own computer, and each considers it their *local repository*.
-Every clone contains the entire history of the repository, all the way back to its original commit.
-Every team member can work totally independently, or even offline, editing files and committing changes to their own clone.
-We'll postpone for a moment how those changes are exchanged among team members.
-
-## Git workflow
-
-When you edit files in your local repository, you need to understand that git conceives of three different 'areas' that hold versions of the file: the *working copy*, the *staging area*, and the *local repository*.
-
-The *working copy* is the file you see in your editor, or in a directory listing.
-
-The *staging area* is where files are (virtually) copied when you *add* them (aka *stage* them) for the next commit.
-
-The *local repository* contains versions committed in earlier commits.
-
-Let's work through a simple example.
-
-1. Create a new directory and `cd` into it.
-   This directory is where you will establish your new project, holding your working copy of all files in that project.
-2. Initialize git with `git init`.
-   Now this directory is a git repository.
-   (It creates a hidden subdirectory `.git` where it keeps all of its information; never touch anything inside there!)
-3. Run `git branch -m main`; we'll explain why later.
-3. Create a README.md file, in Markdown format, to describe the contents of this project.
-4. Run `ls` and you'll see README.md.
-5. Run `git status`, which will tell us what git thinks about the status of our repository.
-  Notice that it lists `README.md` under "untracked files"; git recognizes it as a new file, but does not yet consider it to be part of the repository - it is not "tracked by git" in an effort to track the history of this software project.
-
-If we want git to start tracking the file, we need to move `README.md` to the *staging area*; that is, we want git to *stage* the file to be included in the next commit (snapshot) I make to the repository.
-
-```
-git add README.md
-git status
-```
-
-The result should show that `README.md` is ready to be committed, i.e., to be included in the next "commit".
-
-Finally, to move this file from the staging area to the local repository, so it becomes part of the historical record of the project, we need to commit it into our repository.
-This step will create a new snapshot - which git calls "a commit", to the repository.
-Since every commit is an important event, we always include a short explanatory message with the commit.
-The message needs to be meaningful and not just a description of the change you made.
-For example, a message like "changed 41 to 42" isn't helpful since that change is obvious; instead, your message should indicate *why* you changed 41 to 42 is a useful message.
-
-```
-git commit -m "...message..."
-```
-
-or just
-
-```
-git commit
-```
-
-In the second case git will open your [default editor](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#set-editor) and will wait for you to enter a message and hit Save.
-
-## Git log
-
-To see the history of commits, use the `git log` command.
-If the log gets long, it will page like you are using `less`, so you can hit the space bar for the next page, or hit `q` to quit the listing.
-
-Notice that every commit has a unique *hash* - a long string of characters and numbers.
-Although meaningless, each is unique and represents a particular commit in the history.
-They can often be abbreviated to the first seven characters.
-
-## Git diff
-
-To compare your working copy with the prior commit, run `git diff`; it will highlight all the changes in all the files, using a `less`-like interface to scroll if there are many.
-
-To compare with an earlier commit, mention the commit's hash (obtained from `git log` on the command line):
-
-```bash
-git diff 56fd541
-```
-
-## Git branches
-
-We refer above to the commit history as a sequence of commits.
-In the simplest repo, that may be true, but for most serious work it is common to create *branches* in the commit history.
-
-Consider this scenario: you spent the morning developed a nice new piece of software, tested it, confirmed it meets all the specifications exactly.
-You committed your code to the repository and celebrated with a nice mug of cappucino.
-Then your client calls, and urgently requests a new feature; let's call it `fribble`.
-You could start editing right there in your working copy, adding and updating code to create this new feature, confident that (in the worst case)  you could roll back to the working version in your earlier commit.
-But what if the client calls again and says "hang on, we have a higher-priority feature request; set aside that work you've been doing and add this other feature by tomorrow!"
-This priority feature is called `urgent`.
-
-This is when you really need branches!
-
-Right after that cappucino you should create a branch:
-
-```
-git branch fribble
-git switch fribble
-```
-
-Now you are working "on the fribble branch"; any commits you make here will happen on that `fribble` branch, not the original `main` branch.
-You might be working here for days or months, but you can always switch back to `main` if needed.
-
-```
-git commit -a -m "setting aside work on fribble for now..."
-git status       # make sure you have no untracked files that missed the commit!
-git switch main  # switch back to work on the main branch
-```
-
-*Note that it's best to commit any changes before you switch.*
-
-When the priority call arrived, you could make a new branch for it, too.
-Assuming you are already working on main,
-
-```
-git branch urgent
-git switch urgent
-```
-
-Now you are working "on the urgent branch"; any commits you make here will happen on that `urgent ` branch, not the original `main` branch.
-
-To see the list of branches in your local repo,
-
-```
-git branch
-```
-
-The branch labeled with `*` is the current branch – the one on which your new commits will occur.
-
-To switch to a different branch,
-
-```
-git switch otherbranch
-```
-
-or, in older versions of git, which did not have the `switch` command,
-
-```
-git checkout otherbranch
-```
-
-
-## Git merging
-
-Eventually, when you complete work on the feature, and feel like it is ready for testing, you can merge it back into the `main` branch:
-
-```
-git commit ...     # any final changes to fribble branch...
-git switch main    # switch back to the main branch
-git merge fribble  # merge in the fribble branch
-```
-
-Git will try to merge everything automatically; if `main` has not changed since the `fribble` branch was created, this merge will happen seamlessly.
-
-Sometimes, however, there is a *conflict* - such as the same line being edited in different ways on the two branches - and then it is left to the user to figure out what to do.
-Read more about [merge conflicts](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github) here.
-
-We will look later at a more sophisticated approach, called *git flow*, for managing and merging branches.
-
-In any case, the result of merging two branches creates a new commit that represents that moment in history; such a commit is called a *merge commit*.
-
-
-## Visualizing git branches
-
-Check out this [website](https://git-school.github.io/visualizing-git) that can help to visualize commits, branching, and merging.
-
-
-## Git remotes
-
-So far everything we've said imagines you are the only developer, and there is only one clone of the git repository: on your own computer (or, in the case of plank, in your own account).
-
-Git clones can live on servers, too.
-These *remote repositories* (often just called *remotes*) usually live on a special-purpose git server, such as those run by GitHub or GitLab.
-
-If you already have a local repository, you can set up a remote copy on GitHub.
-Visit GitHub in your browser and go to your account home.
-
-1. Click on the *New Repository* button and give it a name; by convention, its name should be the same as the directory name holding your local repository, but they need not be.
-2. Decide whether you want your repository private (initially for you only) or public (literally the whole world).
-3. Click *Create repository*.
-
-Follow the instructions to "add a remote" to your existing repository.
-
-If your existing branch is called `main`,
-
-```
-git remote add origin git@github.com:username/reponame.git
-```
-
-adds a remote named `origin` (just a convention, but a very strong convention) that refers to the new repo on GitHub; here, of course, you should provide the `git@github` address you copied from GitHub.
-
-Then, if your existing branch is called `main`,
-
-```
-git push -u origin main
-```
-
-"pushes" all the commits on branch `main` to the remote named `origin`.
-The inclusion of `-u` sets that remote as the default "upstream" remote for the future; that means you can, after more commits, simply type 
-
-```
-git push
-```
-
-and not need to specify which remote or which branch.
-
-You can give collaborators access to your GitHub repo; they can then *clone the repo*, that is, to download a copy of the repository history and create a local directory that holds a working copy of the repository.
-This new *clone* is their *local repository*, and it is tied to the same *remote* on GitHub.
-If they then then make some commits, and push changes to that remote, your local repository (clone) is out of date with respect to its remote copy on GitHub; to update your local copy,
-
-```
-git pull
-```
-
-or, to be explicit,
-
-```
-git pull origin main
-```
-
-To pull updates to the `main` branch from the remote called `origin`.
-
-To see your list of current remotes,
-
-```
-git remote -v
-```
-
-## Branch 'master' vs 'main'
-
-The git software ecosystem is in transition.
-The default branch name for new repos has long been `master`; in recent years, tools (like git) and services (like GitHub) are starting to default to `main` (as we do in CS50).
-
-Just in case, when creating a fresh repo, you should rename the initial branch to ensure it has the expected name (`main`):
-
-```
-git init
-git branch -M main
-```
-
-> If you forget, you can rename the branch later, but be careful: if you have collaborators sharing your remote, you'll need to coordinate very carefully.
-
-Many older online git documents and tutorials refer to "the master branch"; although in CS50 we use "the main branch", as do newer git tutorials, the concepts are identical.
-We've noticed newer documents referring to "the base branch" as a generic reference to "the 'master' or 'main' branch, whichever you use in your repo."
-
-## gitignore
-
-Normally git allows you to add any sort of file to a git repository.
-It is good practice, however, to commit only the *source files*, and never any *derived files*, that is, files derived from source files.
-The principle is that other users can clone your repository and rebuild from source, re-creating the derived files when needed.
-The inclusion of derived files can lead to conflicts, and (because derived binaries are very large) can explode the size of your repository.
-
-It is also a good idea to exclude editor-produced backup files, operating-system files (like `.DS_Store` on MacOS) that are meaningful only to the local user, and so forth.
-
-So, git looks for a file called `.gitignore` in the current working directory *and any parent directory, up to the root of the repository*, to see what files you want it to ignore.
-For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) file, and place it in the root directory of every lab starter kit.
-This file excludes common patterns, like the `.o` object files produced by the C compiler and `~` backup files produced by emacs.
-
-**You will need to add/extend gitignore files.**
-Specifically, you'll need to add the name of any compiled binary file; by doing so, git won't warn you that the file is "untracked" (making your `git status` easier to read) and you won't accidentally add it to your repository.
-
-> The most common mistake is to type `git add .`, which adds every non-ignored file in your current directory and, recursively, all subdirectories.
-> Never take this approach!
-
-For example, suppose you are writing a software system with two programs, `server` and `client`.
-To keep the code organized, you have two subdirectories, which (sensibly) are also called `server` and `client`.
-Here's how you might set up the `.gitignore` files:
-
-```bash
-$ cp ~/cs50-dev/shared/examples/.gitignore .gitignore
-$ echo server >> server/.gitignore
-$ echo client >> client/.gitignore
-$ git add .gitignore server/.gitignore client/.gitignore 
-$ tree -a
-.
-|-- .gitignore
-|-- README.md
-|-- client
-|   |-- .gitignore
-|   |-- README.md
-|   `-- client.c
-`-- server
-    |-- .gitignore
-    |-- README.md
-    `-- server.c
-
-2 directories, 8 files
-$ 
-```
-
-The top-level `.gitignore` will cover the usual patterns that should be ignored throughout, but then each subdirectory lists the files that should be ignored *within that directory*.
-I find this approach works well and enables each directory to describe its own needs, more clearly than lumping everything into one top-level gitignore file.
-
-## GitHub
-
-You'll note that all of the above information is based on command-line use of git, even for repositories stored on GitHub.
-We recommend this practice for CS50.
-
-Most importantly, however, we urge you **never to edit files on GitHub**, via the browser.
-We've seen too many CS50 students create conflicts and confusion this way.
-Make all your edits in a local clone, and commit and push in the usual way as described above.
-
-
----
-<!-- END git -->
-
-<!-- UNIT read-git -->
-
-# Reading: Git reference and reading <a name=unit-read-git>
-
-We recommend quickly scrolling through some of the [git resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#github) so you are familiar with where you might look for help when you are puzzled.
-Some of the interactive tutorials are very helpful.
-GitHub's own documentation is quite good.
-
-
----
-<!-- END read-git -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Activity 2 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
 <!-- UNIT hist-c -->
 
 # History: Programming languages <a name=unit-hist-c>
@@ -3872,6 +3839,213 @@ This program demonstrates
 
 ---
 <!-- END c-math -->
+
+<!-- UNIT c-scopes -->
+
+# Unit: C - global and local scopes <a name=unit-c-scopes>
+
+As we saw in the [unit about naming in C](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-names.md), in C you can name constants, variables, functions, and even types.
+Each name has a *scope*, that is, the section of the source file where the variable is 'visible', that is, valid for use in the code.
+
+C has true main types of scope, *global* and *local*, though in principle every block and sub-block (as defined by `{}` braces) can define a new subsidiary scope.
+
+Once a name is defined, it is valid from that point in the source file down to the end of its scope.
+
+*Global* names are typically defined near the top of the source file and are thus valid through the rest of the source file, within every function and the blocks within them.
+
+*Local* names occur within a function; these include the function parameters, and other names defined within the function body.
+As a matter of style and convention, local names are declared at the top of a function body, although there are instances where it is more readable to declare them further below.
+
+Other, narrower scopes can occur inside a statement block within a function body; the most common example are loop variables – names valid only within the loop body.
+
+Let's look at an example of each of these three types: global, local, and loop scopes.
+But first, a quick note about initialization.
+
+## Initialization of variables
+
+Constant variables can be assigned only once: either initialized when they are defined, or assigned once thereafter.
+
+**In CS50 we advocate for initializing every variable** right there in the definition, even if only to some default value.
+Here's why.
+
+*Global* variables are initialized to zero, by the compiler and linker.
+
+*Local* variables (whether at the function or block level) *are not initialized*; thus, their initial value is undefined, aka, garbage.
+It is dangerous to use the value of an uninitialized variable, especially a pointer, because it leads to undetermined results - or crashes your program.
+
+
+## Global names
+
+Global names (variables, functions, types, etc.) are visible from the point where they are declared until the end of that file.
+Thus, they are typically declared near the top of the file.
+
+This rule (from the declaration to the end of the file) is the main reason why we tend to declare all a file's functions near the top of the file: so they can be called from any point within the file.
+For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c), which declares three functions near the top:
+
+```c
+/* function prototype *declaration*; the function is *defined* below */
+int askGuess(const int low, const int high);
+int pickAnswer(const int high);
+bool str2int(const char string[], int* number);
+```
+
+and then uses them in the `main()` function.
+(As a matter of style, we prefer to define the `main()` function first in the file.)
+
+In CS50 we **never use global variables**.
+They are risky, and thus bad style.
+Thus, in CS50, global names are primarily functions, constants, and types.
+
+### static vs extern
+
+If a global name is declared or defined with a `static` modifier, it means that the variable is only available from within that file.
+
+If a global name is declared with an `extern` modifier, it means it is not necessarily defined (implemented) within this file; the linker will need to later find its definition in another file, and *link* its use in this file with the implementation in that other file.
+The variable may be *declared* as `extern` in all files, but must be *defined* (and not as a `static`!) in exactly one file.
+
+Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
+
+```c
+extern bool readLine(char* buf, const int len);
+```
+
+Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top of its file, declaring function `readLine()`.
+In this case, the compiler also finds the *definition* of function `readLine()`.
+That's fine; the function is declared in several files, but defined in only one.
+
+> If neither `static` or `extern` modifier is applied, that name may be accessed from another source file... though in that file, it would need to be labeled with the `extern` modifier.
+> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
+> In such a small program, this issue is not important, but in a larger, more sophisticated program, we should mark those functions `static`.
+
+
+## Local names
+
+Local names (typically local variables and constants) are accessible from the point of their definition until the end of the block in which they are defined.
+
+When the function returns, the variable's memory is automatically deallocated and, if the function is called again, is reallocated... but with undetermined content.
+As above, we recommend initializing *all* local variables.
+
+A local name may *shadow* that of a global variable, making that global variable inaccessible.
+Blocks do not have names, and so shadowed variables cannot be named.
+For example,
+
+```c
+int x, y, z;  // global variables
+
+int foo(int x, int y) // shadows the globals named 'x' and 'y'
+{
+	int z = 99; // shadows the global named 'z'
+	int sum = x + y + z;  // uses the local variables only
+}
+
+```
+
+
+## Loop variables and statement blocks
+
+Variables may also be declared at the beginning of a statement block, but may not be declared anywhere other than the top of the block.
+Such variables are visible until the end of that block.
+
+The most common use of this capability is for *loop variables*, specifically, for loops.
+For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c) below.
+
+![labeled diagram of the sqrt code](media/c-scopes/c-scopes.png)
+
+The function `main()` has three local names: two parameters (`argc`, `argv`, both defined with the `const` modifier and thus they act as local constants) and one local variable (`exit_status`).
+
+Its `for` loop is a nice example of the use of a loop variable `i` to index the iterations over an array, and two statement-block variables to hold information only needed within that statement block (the body of the `for` loop).
+
+
+---
+<!-- END c-scopes -->
+
+<!-- UNIT c-string -->
+
+# Unit: C - strings <a name=unit-c-string>
+
+C does not have a "string" type, so C programs represent strings as an array of characters.
+For example, consider the following:
+
+```c
+char* CS = "Computer Science";
+```
+
+This code declares a variable named `CS`, whose type is `char*`, that is, a *pointer to a character*.
+We'll dig into 'pointers' more deeply, but for now think of it as pointing at a single byte in memory, which holds the first character of the string; the other characters of the string appear in the following bytes of memory.
+
+![diagram of a C string in memory](media/c-string/string-as-char-array.png)
+
+After the last character of the string there is a byte with value zero; C represents that as `'\0'`.
+
+When you provide a *string constant* like `"Computer Science"`, C will add that null character for you.
+All other string operations in C are done by library functions, such as `printf()` or `strcmp()`.
+All those functions expect a string parameter to be a pointer to the first character (`char*`) and then expect to read through memory until they hit a null character, indicating end of string.
+
+## String variables
+
+There are two ways to declare a *string variable*.
+
+**First**, you can declare a new *string* (an array of characters):
+
+
+```c
+char dept[30];     // an array of characters, with uninitialized content
+dept[0] = '\0';    // initialize it to the empty string
+```
+
+The first line defines a new variable `dept` and allocates room for a string of up to 29 characters (not 30!) because we need to allow one spot for the terminating null character;
+the second line sets the first character to null, effectively initializing the string to be the empty string.
+
+Alternatively, we could skip the initialization and immediately fill the new string with a copy of an existing string:
+
+```c
+strcpy(dept, "Computer Science");
+```
+
+Here we actually copy the string pointed at by `CS` into the space allocated for `dept`.
+Because the C language does not provide any way to manipulate strings, we depend on a library function called `strcpy()`.
+
+> Note the `strcpy()` parameters are like `strcpy(to, from)`, not `strcpy(from, to)`.
+
+**Second**, you can just declare a *string pointer*, if you want a variable that will point to an existing string, e.g.,
+
+```c
+char* CS = "Computer Science";  // initialized to point at a constant string
+char* department = NULL;  // initialized to "null pointer"
+department = CS;          // now pointing to the same string.
+```
+
+When defining a new string pointer variable, it is always good practice to immediately initialize it; in this case, to the *null pointer*, that is, pointing at location zero in memory, which by convention is used to represent an unassigned pointer.
+
+After the third line, both `CS` and `department` point at the same string -- it copies the pointer, not the string itself.
+
+You may sometimes see the `[]` syntax, which implies an array of unspecified size:
+
+```c
+char   firstName[];  // this syntax...
+char  *firstName;    // is equivalent to this syntax, and
+char * firstName;    // is equivalent to this syntax, and
+char*  firstName;    // is equivalent to this syntax.
+```
+
+The first form is most often seen as a function parameter, and is equivalent to the other forms: in all cases, `firstName` is a pointer to a character, but the first form makes it more clear to a reader that it is pointing to an *array* of characters (likely to a string) -- not to just one character.
+We generally use the fourth syntax in CS50.
+
+A final note: although `NULL` and `'\0'` are really both just names for the number zero, `NULL` is a pointer (*null pointer*) and `'\0'` is a character (*null character*).
+
+## String library
+
+The C library contains many useful string functions; see `man string`.
+To use them, include the following at the top of your C code,
+
+```c
+#include <strings.h>
+```
+
+
+
+---
+<!-- END c-string -->
 
 <!-- UNIT c-operators -->
 
@@ -4335,213 +4509,6 @@ We'll come back to this idea in more detail, later.
 
 ---
 <!-- END c-types -->
-
-<!-- UNIT c-scopes -->
-
-# Unit: C - global and local scopes <a name=unit-c-scopes>
-
-As we saw in the [unit about naming in C](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-names.md), in C you can name constants, variables, functions, and even types.
-Each name has a *scope*, that is, the section of the source file where the variable is 'visible', that is, valid for use in the code.
-
-C has true main types of scope, *global* and *local*, though in principle every block and sub-block (as defined by `{}` braces) can define a new subsidiary scope.
-
-Once a name is defined, it is valid from that point in the source file down to the end of its scope.
-
-*Global* names are typically defined near the top of the source file and are thus valid through the rest of the source file, within every function and the blocks within them.
-
-*Local* names occur within a function; these include the function parameters, and other names defined within the function body.
-As a matter of style and convention, local names are declared at the top of a function body, although there are instances where it is more readable to declare them further below.
-
-Other, narrower scopes can occur inside a statement block within a function body; the most common example are loop variables – names valid only within the loop body.
-
-Let's look at an example of each of these three types: global, local, and loop scopes.
-But first, a quick note about initialization.
-
-## Initialization of variables
-
-Constant variables can be assigned only once: either initialized when they are defined, or assigned once thereafter.
-
-**In CS50 we advocate for initializing every variable** right there in the definition, even if only to some default value.
-Here's why.
-
-*Global* variables are initialized to zero, by the compiler and linker.
-
-*Local* variables (whether at the function or block level) *are not initialized*; thus, their initial value is undefined, aka, garbage.
-It is dangerous to use the value of an uninitialized variable, especially a pointer, because it leads to undetermined results - or crashes your program.
-
-
-## Global names
-
-Global names (variables, functions, types, etc.) are visible from the point where they are declared until the end of that file.
-Thus, they are typically declared near the top of the file.
-
-This rule (from the declaration to the end of the file) is the main reason why we tend to declare all a file's functions near the top of the file: so they can be called from any point within the file.
-For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c), which declares three functions near the top:
-
-```c
-/* function prototype *declaration*; the function is *defined* below */
-int askGuess(const int low, const int high);
-int pickAnswer(const int high);
-bool str2int(const char string[], int* number);
-```
-
-and then uses them in the `main()` function.
-(As a matter of style, we prefer to define the `main()` function first in the file.)
-
-In CS50 we **never use global variables**.
-They are risky, and thus bad style.
-Thus, in CS50, global names are primarily functions, constants, and types.
-
-### static vs extern
-
-If a global name is declared or defined with a `static` modifier, it means that the variable is only available from within that file.
-
-If a global name is declared with an `extern` modifier, it means it is not necessarily defined (implemented) within this file; the linker will need to later find its definition in another file, and *link* its use in this file with the implementation in that other file.
-The variable may be *declared* as `extern` in all files, but must be *defined* (and not as a `static`!) in exactly one file.
-
-Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
-
-```c
-extern bool readLine(char* buf, const int len);
-```
-
-Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top of its file, declaring function `readLine()`.
-In this case, the compiler also finds the *definition* of function `readLine()`.
-That's fine; the function is declared in several files, but defined in only one.
-
-> If neither `static` or `extern` modifier is applied, that name may be accessed from another source file... though in that file, it would need to be labeled with the `extern` modifier.
-> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
-> In such a small program, this issue is not important, but in a larger, more sophisticated program, we should mark those functions `static`.
-
-
-## Local names
-
-Local names (typically local variables and constants) are accessible from the point of their definition until the end of the block in which they are defined.
-
-When the function returns, the variable's memory is automatically deallocated and, if the function is called again, is reallocated... but with undetermined content.
-As above, we recommend initializing *all* local variables.
-
-A local name may *shadow* that of a global variable, making that global variable inaccessible.
-Blocks do not have names, and so shadowed variables cannot be named.
-For example,
-
-```c
-int x, y, z;  // global variables
-
-int foo(int x, int y) // shadows the globals named 'x' and 'y'
-{
-	int z = 99; // shadows the global named 'z'
-	int sum = x + y + z;  // uses the local variables only
-}
-
-```
-
-
-## Loop variables and statement blocks
-
-Variables may also be declared at the beginning of a statement block, but may not be declared anywhere other than the top of the block.
-Such variables are visible until the end of that block.
-
-The most common use of this capability is for *loop variables*, specifically, for loops.
-For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c) below.
-
-![labeled diagram of the sqrt code](media/c-scopes/c-scopes.png)
-
-The function `main()` has three local names: two parameters (`argc`, `argv`, both defined with the `const` modifier and thus they act as local constants) and one local variable (`exit_status`).
-
-Its `for` loop is a nice example of the use of a loop variable `i` to index the iterations over an array, and two statement-block variables to hold information only needed within that statement block (the body of the `for` loop).
-
-
----
-<!-- END c-scopes -->
-
-<!-- UNIT c-string -->
-
-# Unit: C - strings <a name=unit-c-string>
-
-C does not have a "string" type, so C programs represent strings as an array of characters.
-For example, consider the following:
-
-```c
-char* CS = "Computer Science";
-```
-
-This code declares a variable named `CS`, whose type is `char*`, that is, a *pointer to a character*.
-We'll dig into 'pointers' more deeply, but for now think of it as pointing at a single byte in memory, which holds the first character of the string; the other characters of the string appear in the following bytes of memory.
-
-![diagram of a C string in memory](media/c-string/string-as-char-array.png)
-
-After the last character of the string there is a byte with value zero; C represents that as `'\0'`.
-
-When you provide a *string constant* like `"Computer Science"`, C will add that null character for you.
-All other string operations in C are done by library functions, such as `printf()` or `strcmp()`.
-All those functions expect a string parameter to be a pointer to the first character (`char*`) and then expect to read through memory until they hit a null character, indicating end of string.
-
-## String variables
-
-There are two ways to declare a *string variable*.
-
-**First**, you can declare a new *string* (an array of characters):
-
-
-```c
-char dept[30];     // an array of characters, with uninitialized content
-dept[0] = '\0';    // initialize it to the empty string
-```
-
-The first line defines a new variable `dept` and allocates room for a string of up to 29 characters (not 30!) because we need to allow one spot for the terminating null character;
-the second line sets the first character to null, effectively initializing the string to be the empty string.
-
-Alternatively, we could skip the initialization and immediately fill the new string with a copy of an existing string:
-
-```c
-strcpy(dept, "Computer Science");
-```
-
-Here we actually copy the string pointed at by `CS` into the space allocated for `dept`.
-Because the C language does not provide any way to manipulate strings, we depend on a library function called `strcpy()`.
-
-> Note the `strcpy()` parameters are like `strcpy(to, from)`, not `strcpy(from, to)`.
-
-**Second**, you can just declare a *string pointer*, if you want a variable that will point to an existing string, e.g.,
-
-```c
-char* CS = "Computer Science";  // initialized to point at a constant string
-char* department = NULL;  // initialized to "null pointer"
-department = CS;          // now pointing to the same string.
-```
-
-When defining a new string pointer variable, it is always good practice to immediately initialize it; in this case, to the *null pointer*, that is, pointing at location zero in memory, which by convention is used to represent an unassigned pointer.
-
-After the third line, both `CS` and `department` point at the same string -- it copies the pointer, not the string itself.
-
-You may sometimes see the `[]` syntax, which implies an array of unspecified size:
-
-```c
-char   firstName[];  // this syntax...
-char  *firstName;    // is equivalent to this syntax, and
-char * firstName;    // is equivalent to this syntax, and
-char*  firstName;    // is equivalent to this syntax.
-```
-
-The first form is most often seen as a function parameter, and is equivalent to the other forms: in all cases, `firstName` is a pointer to a character, but the first form makes it more clear to a reader that it is pointing to an *array* of characters (likely to a string) -- not to just one character.
-We generally use the fourth syntax in CS50.
-
-A final note: although `NULL` and `'\0'` are really both just names for the number zero, `NULL` is a pointer (*null pointer*) and `'\0'` is a character (*null character*).
-
-## String library
-
-The C library contains many useful string functions; see `man string`.
-To use them, include the following at the top of your C code,
-
-```c
-#include <strings.h>
-```
-
-
-
----
-<!-- END c-string -->
 
 <!-- UNIT c-args -->
 
@@ -5110,28 +5077,6 @@ You can find this plaque on the sunny side of Collis.
 
 ---
 <!-- END hist-basic -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before completing Lab 2 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Activity 3 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
 
 <!-- UNIT madlibs -->
 
@@ -7543,17 +7488,6 @@ See `file.h` for a full description of the behavior and interface to each functi
 ---
 <!-- END lab3-file -->
 
-<!-- UNIT milestone -->
-
-# Milestone: Before Activity 4 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
 <!-- UNIT contracts -->
 
 # Unit: Comments as contracts <a name=unit-contracts>
@@ -7844,603 +7778,6 @@ memtest: program
 
 ---
 <!-- END valgrind -->
-
-<!-- UNIT gdb -->
-
-# Unit: Debugging techniques and 'gdb' <a name=unit-gdb>
-
-> “Debugging is twice as hard as writing the code in the first place.
-> Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.” - Brian Kernighan
-
-As we turn our attention towards larger, more complex C programs we stress the importance of good style, good documentation, and strong testing.
-The goal is to avoid bugs through careful design and good style - and to discover what bugs remain through strong testing.
-
-Once you discover the existence of a bug, how do you track it down so you know *why* the program is misbehaving and then how to fix it?
-
-**We strongly recommend learning `gdb` for debugging C programs**.
-It takes a bit of practice, but its use will save you *lots* of time in CS50 and subsequent courses.
-We introduce and demonstrate `gdb` below; but first, a note about debugging.
-
-## Techniques for limiting those pesky bugs
-
-> "Don't Panic" -- Hitchhiker's Guide to the Galaxy
-
-**[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=712bcb67-c276-4a93-9aef-ad0d015e4fbd)**
-
-The trouble with bugs is that no two are the same.
-Bugs can be simple: bad pointers and array subscript errors; while others are sometime difficult to debug: the systems might run for days and then fail because of a slow memory leak or numeric overflow problem.
-Still others might depend upon a subtlety in the timing of events, such as messages arriving over the network or the user hitting 'Enter' at just the right moment.
-
-Programmers aim to understand the nature of the bug they are trying to swat:
-*is it reproducible?* (does it always fail under the same set of conditions),
-*does it always manifest itself in the same way?*, and so on.
-These are clues that help track down those pesky bugs in complex systems.
-
-The complexity of a program is related to the number of interacting components; we have already seen programs with multiple functions and code spread across two or three files, and that use one or more libraries (stdio, stdlib, and the math library).
-One rule of thumb is that the number of bugs grows with the number of interactions.
-Reducing the complexity and interactions enables us to focus in on the location of bugs in code.
-Gordon Bell summed it up this way:
-
-> "The cheapest, fastest, and most reliable components of a computer system are the ones that aren't there."
->  -- [Gordon Bell](http://research.microsoft.com/en-us/um/people/gbell/)
-
-His point is that the importance of a simple design cannot be overemphasized.
-
-Techniques that help reduce debugging time include:
-
--   a good design and design methodology;
--   consistent style (e.g., use C program idioms as much as possible);
--   boundary condition tests;
--   assertions and sanity testing;
--   defensive programming;
--   designing for testing;
--   avoid files that have a large number of functions, and functions that have a large number of lines; Aim for functions that do one thing, and do it well!
--   limit use of global variables whenever possible; and
--   leverage desk-checking tools.
-
-
-## Approaches to debugging
-
-> Insanity: doing the same thing over and over again and expecting different results.  
--- Unknown
-
-When tracking down pesky bugs we can think of the following steps to finding and correcting them - a sort of "bug lifecycle":
-
-* **Testing:** discovering what bugs exist.
-We have already designed some simple tests for programs in this class.
-* **Stabilization:** find a minimal input sequence that reliably reproduces the buggy behavior.
-* **Localization:** identify the function/line of the code responsible.
-* **Correction:** fix the code!
-* **Verification:** re-test the code fix and confirm it works... not just on the sequence that generated the buggy behavior, but on *all* possible tests to ensure your bug fix did not break some other behavior!
-* **Extrapolation:** imagine other examples that are related to the one that caused this bug to occur and test those too.
-
-There are many ways that people approach debugging - not all of which are effective.
-
-1. Ignore the bug; assume it will never happen again.
-2. Sift through warning/error messages; once all of the messages are gone, assume the program is correct.
-3. Insert `printf` statements throughout the code to inspect of variables and control flow.
-4. Use specialized debugging tools (e.g., plugins integrated into your favorite IDE, commandline tools like `gdb` and `valgrind`).
-
-The first approach is clearly not a good idea; bugs *will* recur if given the chance.
-
-Eliminating all of the warnings and errors is a good idea (and indeed is required when submitting assignments in cs50 :).
-Without proper testing, however, there is no guarantee that your program is correct.
-
-Print-style debugging can be useful for simple situations, but can lead to ugly, unreadable code.
-If you take this approach, even a little, use discipline to enable/disable such messages with a single switch (as shown below).
-
-Let's look at better approaches.
-
-### Code Inspection
-
-Many times people rush and "hack" the debug phase and sit at the terminal hoping to eventually track down that bug via trial and error.
-Inexperienced programmers do this as their first resort.
-You will find this approach to be very time consuming - put more plainly, it will take longer than other techniques.
-
-One of the most effective debug tools is you:
-***sit down and read your code!***
-
-Pretend you are a computer and execute the code with a pen and paper.
-As you read your code, keep some of the following tips in mind:
-
-* Draw diagrams! Especially for data structures.
-* Regarding for/while loops, and recursion, think about the base case, and the boundary conditions, and work inductively toward the general case.
-Errors most often occur at the base case or at the boundary cases.
-
-Code inspection is very useful.
-Good programmers closely trace through their code in detail.
-Look for boundary conditions of structures, arrays, loops, and recursion; bugs often exist at the boundary.
-Look at edge cases – "empty" or "full" conditions.
-
-Once you have read your code and convinced yourself it works and bugs remain, you need to instrument your code and start the detective work.
-
-Sometimes while debugging you will discover other, unrelated bugs that haven't yet manifested themselves.
-FIX THEM!
-
-Pragmatic Programmer Tip:
-
-> **Don't live with broken windows:**
->  Fix bad designs, wrong decisions, and poor code  when you see them.
-
-Pragmatic Programmer Tip:
-
-> **Fix the Problem, Not the Blame:**
->  It doesn't really matter whether the bug is your fault or someone else's – it is still your problem,  and it still needs to be fixed.
-
-
-## The printf approach to debugging
-
-"All I need is printf(), right?"
-
-You may have been using print statements to help you debug your code.
-That method can only get you so far.
-Sometimes, the underlying bug may even interfere with printf's limited contribution to your efforts.
-For example, if you have a segfault that occurs after your printf is executed but its string never gets displayed because the process crashes - you might think that the bug occurs before your `printf` when really the bug happens much later.
-The takeaway here is that `printf` is not your friend in these examples; too often it's a red herring.
-
-What happens if your system runs for hours and only under a certain set of system conditions the code fails?
-Working your way through thousands of `printf` outputs may not help.
-When a bug is buried deep in the execution of your software you need sophisticated tools to track those down.
-You need more than `printf` to attack these bugs.
-
-Just because `stdout` shows some of your prints were executed doesn't always mean that the last message written to `stdout` is from the last `printf` before the program had a problem.  
-Unix output is often _lazy_, meaning that the system will _eventually_ send the message to stdout but only when it is ready (e.g., some minimum number of characters to print to make it worthwhile, when the system is doing output for your process as well as others, etc.).
-This may seem unimportant, but it means that your program _may execute the code following the `printf()` before the output appears_.
-So, if you are using `printf()` for debugging, you should follow it with a `fflush(stdout)` which tells the system "print it NOW" before your program continues.
-
-If you do use `printf` debugging, please use the C preprocessor to conditionally turn on/off the debugging output with one switch; that is, using `#ifdef DEBUG` and [conditional compilation](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md).
-
-## The GNU Debugger (gdb)
-
-**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ca07df68-be42-4fcc-b521-ad0d015fd9bc)**
-
-See our [gdb resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#gdb) for manuals and tutorial documents.
-
-**Note:** before using `gdb`, ensure you compile all C source files with the `-ggdb` flag - our standard `.bashrc` file defines `mygcc` with this flag, and your `Makefile` should include this flag in its definition of `CFLAGS`.
-This flag ensures that useful metadata is packaged with your executable at compile time that `gdb` needs to help you debug your programs.
-
-The gdb debugger is invoked with the shell command `gdb`; it then prints its own prompt and accepts its own wide range of commands.
-Once started, it reads commands from the terminal until you tell it to exit with the gdb command `quit`.
-You can get online help from `gdb` itself by using the command `help`.
-
-```
-$ gdb
-GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
-...
-(gdb) help
-List of classes of commands:
-
-aliases -- Aliases of other commands
-breakpoints -- Making program stop at certain points
-data -- Examining data
-files -- Specifying and examining files
-internals -- Maintenance commands
-obscure -- Obscure features
-running -- Running the program
-stack -- Examining the stack
-status -- Status inquiries
-support -- Support facilities
-tracepoints -- Tracing of program execution without stopping the program
-user-defined -- User-defined commands
-
-Type "help" followed by a class name for a list of commands in that class.
-Type "help all" for the list of all commands.
-Type "help" followed by command name for full documentation.
-Type "apropos word" to search for commands related to "word".
-Command name abbreviations are allowed if unambiguous.
-(gdb) 
-```
-
-You can run `gdb` with no arguments or options; but the most usual way to start GDB is with one argument, specifying an executable program as the argument:
-
-```bash
-$ gdb program
-```
-
-### GDB demo
-
-In the following examples we will use a lot of the basic `gdb` commands - `break`, `run`, `next`, `step`, `continue`, `display`, `print`, and `frame` (read about [stack frames](http://sourceware.org/gdb/current/onlinedocs/gdb/Frames.html); this is an important concept in C and very useful for debugging and poking around in your code and looking at variables).
-
-I strongly recommend that you go through the sequence of steps below and use these debugging commands.
-Don't worry, you can't break anything.
-Just like the shell commands you'll only need a subset of the the complete set of `gdb` commands to become an effective debugger.
-
-We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bugsort.c).
-
-The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order.
-It then prints them out, separated by spaces.
-Easy, right?
-
-```
-$ echo 1 2 3 4 5 6 7 8 9 0 | ./bugsort
-0 9 9 9 9 9 9 9 9 9 
-```
-
-Um, I guess not.
-
-Let's try running our program in `gdb`.
-When `gdb` starts up it prints out a bunch of information about its version and license, then drops into the `gdb` "shell."
-
-```
-$ gdb bugsort
-GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
-...
-Reading symbols from bugsort...done.
-(gdb)
-```
-
-Notice that last line about "reading symbols"; `gdb` is reading special debug-related information the compiler produced, about all the "symbols" in the program.
-
-> A *symbol* is a function name, variable name, data type name, etc.
-> This information may be stored inside the executable file (here, `bugsort`), or (as on MacOS) in an adjacent folder (`bugsort.dSYM`).
-> The compiler saves this information because our alias `mygcc` includes the `-ggdb` argument.
-
-One of a debugger's most powerful features is the ability to set "breakpoints" in our code; when we run our program and the debugger encounters a breakpoint, the execution of the program stops at that point.
-Let's set a few breakpoints:
-
-```
-(gdb) break main
-Breakpoint 1 at 0x773: file bugsort.c, line 19.
-(gdb) list 26
-21	  int sorted[numSlots];   // the array of items
-22	  
-23	  /* fill the array with numbers */
-24	  for (int n = 0; n < numSlots; n++) {
-25	    int item;     // a new item
-26	    scanf("%d", &item);   // read a new item
-27	    for (int i = n; i > 0; i--) {
-28	      if (sorted[i] > item) {
-29	        sorted[i+1] = sorted[i]; // bump it up to make room
-30	      } else {
-(gdb) 
-31	        sorted[i] = item; // drop the new item here
-32	      }
-33	    }
-34	  }
-35	  
-36	  /* print the numbers */
-37	  for (int n = 0; n < numSlots; n++) {
-38	    printf("%d ", sorted[n]);
-39	  }
-40	  putchar('\n');
-(gdb) break 27
-Breakpoint 2 at 0x817: file bugsort.c, line 27.
-(gdb) break 37
-Breakpoint 3 at 0x878: file bugsort.c, line 37.
-(gdb) 
-```
-
-Notice that we can list the code around a line number by specifying that line number.
-Notice further that you can just hit "enter" at the gdb commandline to mean "do it again", or in the case of `list`, "list some more".
-
-Notice that we can set breakpoints by identifying the name of a function (e.g., "main"), or by specifying a particular line in our source code (e.g., lines 27 and 37).
-> When you are debugging programs with multiple files you can also set breakpoints in different files by specifying the file as well as the function name/line of code where you'd like to enable a breakpoint.
-
-If you want to see the breakpoints you've currently created, run `info break` (as shown above).
-
-```
-(gdb) info break
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000000773 in main at bugsort.c:19
-2       breakpoint     keep y   0x0000000000000817 in main at bugsort.c:27
-3       breakpoint     keep y   0x0000000000000878 in main at bugsort.c:37
-(gdb) 
-```
-
-You can also clear all of your breakpoints (`clear`), clear specific breakpoints (`clear` *function* or `clear` *line*), or even disable breakpoints so that you can leave them in place, but temporarily disabled.
-
-```
-(gdb) disable 2
-(gdb) info break
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000000773 in main at bugsort.c:19
-2       breakpoint     keep n   0x0000000000000817 in main at bugsort.c:27
-3       breakpoint     keep y   0x0000000000000878 in main at bugsort.c:37
-(gdb) 
-```
-
-Notice under the "Enb" column the second breakpoint is disabled.
-
-At this point we've started `gdb` and told it about some breakpoints we want set, but we haven't actually started running our program.
-
-Let's run our program now:
-
-```
-(gdb) run
-Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort 
-
-Breakpoint 1, main () at bugsort.c:19
-19	{
-(gdb) 
-```
-
-As expected, the debugger started our program running but "paused" the program as soon as it hit the breakpoint that we set at the `main` function.
-Once the program has stopped we can "poke around" a bit.
-
-Now let's `step` one line of code at a time; we type `step` and then, for convenience, just hit Enter each time to go one more step.
-
-```
-(gdb) step
-20	  const int numSlots = 10;  // number of slots in array
-(gdb) step
-21	  int sorted[numSlots];   // the array of items
-(gdb) 
-24	  for (int n = 0; n < numSlots; n++) {
-(gdb) 
-26	    scanf("%d", &item);   // read a new item
-(gdb) 
-__isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
-27	isoc99_scanf.c: No such file or directory.
-(gdb) 
-```
-
-Oops! Stepping line by line is nice but gdb's `step` command allowed us to walk right down into the icky details of `scanf`!
-It is cool that we can "step" into functions but `scanf` does a lot of work that we aren't interested in - and we don't have the source code anyway.
-If you find yourself deep down in some function that you accidentally stepped into, use the `finish` command to start the program running again until just after the function in the current stack frame returns.
-
-```
-(gdb) finish
-Run till exit from #0  __isoc99_scanf (format=0x555555554964 "%d")
-    at isoc99_scanf.c:27
-11 22 33 44 55 66 77 88 99 00
-main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-Value returned is $1 = 1
-(gdb) 
-```
-
-Of course, when `scanf` continued it expected me to enter some input.
-I proceeded to enter 10 numbers, just as in our prior experiment.
-(In this case the input is from the keyboard, and in the prior case it was from a pipeline; either way it is coming via stdin and scanf does not care.)
-
-Now that we are back up in `main` function, at line 27.
-It also conveniently prints the return value for `scanf`, i.e., `Value returned is $1 = 1` (because `scanf` successfully read 1 item matching the pattern `%d`).
-I can examine what number was read by printing the variable value:
-
-```
-(gdb) print item
-$2 = 11
-```
-
-We're about to enter inner `for` loop.
-Let's take one step.
-
-```
-(gdb) step
-24	  for (int n = 0; n < numSlots; n++) {
-```
-
-Huh?  we never entered the inner `for` loop - we came right back around and are about to re-execute line 24.
-(Think about why.)
-
-To avoid stepping *into* functions we can use the alternative `gdb` command called `next` which is similar to `step` in that it executes one line of code and then pauses at the next line of code, however `next` will step *over* functions so that we don't end up deep down in some code that isn't relevant to us (i.e., deep inside of the details of `scanf`); let's try that now:
-
-```
-(gdb) next
-26	    scanf("%d", &item);   // read a new item
-(gdb) next
-27	    for (int i = n; i > 0; i--) {
-(gdb) print item
-$3 = 22
-(gdb) print n
-$4 = 1
-(gdb) 
-```
-
-Back at that breakpoint, and this time `item=22` and `n=1`.
-
-Moving on,
-
-```
-(gdb) next
-28	      if (sorted[i] > item) {
-(gdb) 
-31	        sorted[i] = item; // drop the new item here
-(gdb) 
-27	    for (int i = n; i > 0; i--) {
-(gdb) 
-24	  for (int n = 0; n < numSlots; n++) {
-(gdb) 
-26	    scanf("%d", &item);   // read a new item
-(gdb) print sorted[0]
-$5 = 0
-(gdb) print sorted[1]
-$6 = 22
-(gdb) 
-```
-
-Ahah, this time we went into the inner loop and dropped in our item.
-We then came back around to the top of the main loop.
-As you can see, I printed contents of two elements of the array, too.
-
-We can print the memory address of these variables:
-
-```
-(gdb) print &n
-$7 = (int *) 0x7fffffffdde0
-(gdb) print &sorted
-$8 = (int (*)[10]) 0x7fffffffdda0
-(gdb) 
-```
-
-Pretty cool, right?
-Notice that `gdb` is nice enough to also give us information about the *type* of the thing that we are looking at!
-
-If we `step` a bit further, and into `scanf`, I can show you the `backtrace` command:
-
-```
-(gdb) step
-25	    scanf("%d", &item);		// read a new item
-(gdb) step
-__isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
-27	isoc99_scanf.c: No such file or directory.
-(gdb) backtrace
-#0  __isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
-#1  0x0000555555554817 in main () at bugsort.c:26
-(gdb) 
-```
-
-Which shows the function-call stack, from inner to outer.
-Above we are inside `__isoc99_scanf` (aka `scanf`) and that was called from `main`.
-
-Let's finish `scanf`:
-
-```
-(gdb) finish
-Run till exit from #0  __isoc99_scanf (format=0x555555554964 "%d")
-    at isoc99_scanf.c:27
-main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-Value returned is $9 = 1
-(gdb) print item
-$10 = 33
-(gdb) 
-```
-
-Notice I did not need to type any input because scanf is still chewing on that input I provided the first time it asked me for input.
-
-OK, I'm getting tired of stepping.
-Rather than stepping line by line, I want to start the program running again (at least until it hits the breakpoint again) so that I can speed up the process getting back to the code where I can enter a password and verify the changes.
-To do this I can simply use the `continue` command which will continue the execution of the program until it is stopped again for some reason.
-First, I'm going to re-enable that breakpoint I disabled earlier.
-
-```
-(gdb) enable 2
-(gdb) continue
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-(gdb) 
-```
-
-It ran a bit further then hit that breakpoint.
-Let's automate things a little better, by providing some commands that should be run on certain breakpoints:
-
-```
-(gdb) commands 2
-Type commands for breakpoint(s) 2, one per line.
-End with a line saying just "end".
->print n
->print item
->end
-(gdb) continue
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$11 = 4
-$12 = 55
-(gdb) 
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$13 = 5
-$14 = 66
-(gdb) 
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$15 = 6
-$16 = 77
-(gdb) 
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$17 = 7
-$18 = 88
-(gdb) 
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$19 = 8
-$20 = 99
-(gdb) 
-Continuing.
-
-Breakpoint 2, main () at bugsort.c:27
-27	    for (int i = n; i > 0; i--) {
-$21 = 9
-$22 = 0
-(gdb) 
-Continuing.
-
-Breakpoint 3, main () at bugsort.c:37
-37	  for (int n = 0; n < numSlots; n++) {
-(gdb) 
-```
-
-Now I just hit Enter each time, and it took another loop and shows me the values of `n` and `item`.  Handy!
-The last one broke out of the initial loop and landed me at breakpoint 3, just before the values will be printed.
-I can explore a bit more before that loop runs.
-
-```
-(gdb) print sorted[0]
-$23 = 0
-(gdb) print sorted[9]
-$24 = 32767
-(gdb) continue
-Continuing.
-0 99 99 99 99 99 99 99 32767 32767 
-[Inferior 1 (process 38631) exited normally]
-(gdb) 
-```
-
-At this point we've seen some useful `gdb` commands and you are now equipped to do some debugging on your own.
-Keep poking at the program and see if you can find the errors.
-
-You may find it helpful to store sample input in a file, e.g.,
-
-```
-$ echo 11 22 33 44 55 66 77 88 99 00 > nums
-$ gdb bugsort
-...
-Reading symbols from bugsort...done.
-(gdb) run < nums
-Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort < nums
-0 99 99 99 99 99 99 99 32767 32767 
-[Inferior 1 (process 40061) exited normally]
-(gdb) 
-```
-
-
-**Some cool things to note about gdb:**
-
-* Every time you enter a command at the `gdb` "shell" that is successful, the output value is stored in a variable denoted `$N` where `N` increments by 1 for each command that you run.
-You can use those variables at a later point if you want (e.g., `print $3`).
-* `gdb` supports auto-completion on function names and variable names! Go ahead and try it out!
-* Also similar to the regular shell, the `gdb` shell allows you to arrow up/down to revisit past commands.
-* Many of the `gdb` commands have abbreviated forms (e.g., `run` is `r`, `continue` is `c`, `next` is `n`); see the [gdb quick reference guide](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf) to see other commands that have abbreviated forms.
-* You can re-run the previous command simply by hitting the Enter (return) key.
-
-
-### Frequently used `gdb` commands
-
-Below are some of the more common `gdb` commands that you will need.
-See also this printable [gdb quick reference guide](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf).
-
-| command                 | purpose                 |
-| :---------------------- | :---------------------- |
-| `run [arglist]`         |Start your program (with arglist, if specified). |
-| `break [file:]function` |Set a breakpoint at function (in file). |
-| `commands NN`           |A list of commands to run every time breakpoint #NN is reached. |
-| `list [file:]function`  |Type  the  text  of  the  program  in  the  vicinity of where it is presently stopped. |
-| `backtrace`             |Backtrace: display the program stack. |
-| `frame [args]`          |The frame command allows you to move from one stack frame to another, and to print the stack frame you select. args may be either the address of the frame or the stack frame number. Without an argument, frame prints the current stack frame. |
-| `print expr`            |Display the value of an expression. |
-| `continue`              |Continue running your program (after stopping, e.g. at a breakpoint). |
-| `next`                  |Execute next program line (after stopping); step over any function calls  in the line. |
-| `step`                  |Execute next program line (after stopping); step into any function  calls  in the line.|
-| `help [name]`           |Show information about GDB command name, or general information about using GDB. |
-| `quit`                  |Exit from GDB.|
-
-
----
-<!-- END gdb -->
 
 <!-- UNIT read-test -->
 
@@ -9551,17 +8888,6 @@ Citation: John G. Kemeny,  "Computers and Values”, May 1984. Jones Media Cente
 ---
 <!-- END kemeny -->
 
-<!-- UNIT milestone -->
-
-# Milestone: Before completing Lab 3 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
 <!-- UNIT read-design -->
 
 # Reading: Practical programmer tips <a name=unit-read-design>
@@ -9580,234 +8906,6 @@ The world is replete with lessons from *bad design:*
 
 ---
 <!-- END read-design -->
-
-<!-- UNIT design -->
-
-# Unit: Software design methodology <a name=unit-design>
-
-In this unit, we introduce a simple software design methodology.
-It's by no means the only methodology - but it's straightforward and useful for CS50.
-
-There are many techniques for the design and development of good code, including
-top-down or bottom-up design,
-divide and conquer (breaking the system down into smaller more understandable components),
-structured design (data-flow approach), and
-object-oriented design (modularity, abstraction, and information-hiding).
-For a quick survey of these and other techniques, see *[A Survey of Major Software Design Methodologies](media/design/survey.html)* (author unknown).
-
-Many of these techniques use similar approaches, and embrace fundamental concepts like
-abstraction,
-data representation,
-data flow,
-data structures,
-and
-top-down decomposition from requirements to structure.
-
-It seems unlikely that someone could give you 10 steps to follow and be assured of great system software.
-Every non-trivial project has its special cases, unique environments, or unexpected uses.
-It's often best to begin development of a module, or a system, with small experiments - building a prototype and throwing it away - because you can learn (and make mistakes) building small prototype systems.
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Prototype to Learn.**
->  Prototyping is a learning experience. Its value lies not in the code you produce, but in the lessons you learn.
-
-Clarity comes from the experience of working from requirements, through system design, implementation and testing, to integration and customer feedback on the requirements.
-
-The following figure shows the software design methodology that we use in the design of the TinySearchEngine and the project.
-
-![Software system design methodology](media/design/SWDesignMethology.png)
-
-------------------------------------------------------------------------
-
-Let's step through the phases of software design, as shown in the figure above.
-
-## Procurement phase
-
-The procurement phase of a project represents its early stages.
-It represents deep discussion between a customer and provider of software systems.
-As a software developer, you have to clearly understand and capture the customers' needs. Often some of the requirements are specified separately by regulatory agencies, national or international standards bodies, or industry standards groups.  These provide additional requirements that the customer expects to be included.
-
-In our case, you are the provider and we (CS50 staff) are your customer.
-
----
-
-## Requirements spec
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Don't Gather Requirements -- Dig for Them.**
->  Requirements rarely lie on the surface. They're buried deep beneath layers of assumptions, misconceptions, and politics.
-
-The system *Requirements Spec* captures all the requirements of the system that the customer wants built.
-Typically the provider and customer get into deep discussion of requirements and their cost.
-The requirements *must* be written down, and reviewed by both customer and provider, to be sure all are in agreement.
-Sometimes these documents are written in contractual (legal) language.
-If the customer gets a system that does not meet the spec, or the two parties disagree about whether the finished product meets the spec, lawyers may get involved.
-If a system is late, financial penalties may arise.
-
-> "*The hardest part of design... is keeping features out.*" -- Anonymous
-
-The system requirement spec may have a variety of requirements typically considered ***the shalls*** - such as, *"the crawler shall only crawl webpages within the cs50 website"*.
-These requirements include functional requirements, performance requirements, security requirements, and cost requirements.
-
-A common challenge during this phase is that the customer either doesn't know what he/she really wants or expresses it poorly (in some extreme cases the customer may not be able to provide you with the ultimate intended use of your system due to proprietary or security concerns).
-You must realize that the customer may have these difficulties and iterate with the customer until you both are in full agreement.
-One useful technique is to provide the customer with the system requirements specification (and sometimes later specs too) and then have the customer explain the spec to you.
-It is amazing how many misunderstandings and false assumptions come to light when the customer is doing the explaining.
-
-The Requirements Spec may address many or all of the following issues:
-
- * *functionality* - what should the system do?
- * *performance* - goals for speed, size, energy efficiency, etc.
- * *cost* - goals for cost, if system operation incurs costs
- * *compliance* - with federal/state law or institutional policy
- * *compatibility* - with standards or with existing systems
- * *security* - against a specific threat model under certain trust assumptions
-
-A new concern of system development is the issue of the services-oriented model referred to as the "cloud" (Software As A Service, Infrastructure As A Service, etc.).
-The decision of whether to develop a specific system running in a traditional manner or to build a cloud-based solution should be made early, as it will affect many of the later stages of the development process.
-Some would argue about where it needs to fit in the methodology, but we feel that the sooner you (and the customer) know where this system is headed, the better.
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Make quality a requirements issue.**
->  Involve your users in determining the project's real quality requirements.
-
-Although the customer may make some assumptions on this point, it's in your best interests to make it a priority.
-Remember the "broken window theory":
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Don't Live with Broken Windows.**
->  Fix bad designs, wrong decisions, and poor code when you see them.
-
----
-
-## Design spec
-
-In this phase, you translate the requirements into a full system-design specification. The *Design Spec* is the result of studying the system requirements and applying the art of design *(the magic)* with a design team.
-This design specification shows how the complete system is broken up into specific subsystems, and all of the requirements are mapped to those subsystems.
-The Design spec for a system, subsystem, or module includes:
-
--   User interface
--   Inputs and outputs
--   Functional decomposition into modules
--   Dataflow through modules
--   Pseudo code (plain English-like language) for logic/algorithmic flow
--   Major data structures
--   Testing plan
-
-To this last point:
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Design to Test.**
->  Start thinking about testing before you write a line of code.
-
-The Design Specification is independent of your choice of language, operating system, and hardware.
-In principle, it could be implemented in any language from Java to micro-code and run on anything from a Cray supercomputer to a toaster.
-
----
-
-## Implementation phase
-
-In this phase, we turn the Design Spec into an Implementation Spec, then code up the modules, unit-test each module, integrate the modules and test them as an integrated sub-system and then system.
-
-### Implementation Spec
-
-The *Implementation Spec* represents a further refinement and decomposition of the system.
-It is *language, operating system, and hardware dependent* (sometimes, the language abstracts the OS or HW out of the equation).
-The implementation spec includes many or all of these topics:
-
--   Detailed pseudo code for each of the objects/components/functions,
--   Definition of detailed APIs, interfaces, function prototypes and their parameters,
--   Data structures (e.g., `struct` names and members),
--   Security and privacy properties,
--   Error handling and recovery,
--   Resource management,
--   Persistent storage (files, database, etc).
--   Testing plan
-
-### Coding
-
-Coding is often the fun part of the software development cycle - but not usually the largest amount of time.
-As a software developer in industry, you might spend only about 20% of your time coding (perhaps a lot more if you're in a startup).
-The rest of the time will be dealing with the other phases of the methodology, particularly, the last few: testing, integration, fixing problems with the product and meetings with your team and with your customers.
-
-#### Goals during coding:
-
-- Correctness: The program is correct (i.e., does it work) and error free; that is, does its behavior match the functional requirements in the specifications.
-
-- Clarity: The code is easy to read, well commented, and uses good variable and function names.
-In essence, is it easy to use, understand, and maintain
-
-    > Clarity makes sure that the code is easy to understand by people with a range of skills, and across a variety of machine architectures and operating systems. [Kernighan & Pike]
-
-- Simplicity: The code is as simple as possible, but no simpler.
-
-    > Simplicity keeps the program short and manageable. [Kernighan & Pike]
-
-- Generality: The program can easily adapt to change.
-
-    > Generality means the code can work well in a broad range of situations and is tolerant of new environments (or can be easily made to do so). [Kernighan & Pike]
-
-### Unit and sub-system testing
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Test your software, or your users will.**
-
-Testing is a critical part of the whole process of any development effort, whether you're building bridges or software.
-Unit testing of modules in isolation, and integration testing as modules are assembled into sub-systems and, ultimately, the whole system, result in better, safer, more reliable code.
-
-The ultimate goal of testing is to exercise all paths through the code.
-Of course, with most applications this may prove to be a daunting task.
-Most of the time the code will execute a small set of the branches in the module.
-So when special conditions occur and newly executed code paths fail, it can be really hard to find those problems in large, complex pieces of code.
-
-The better organized and modularized your code is, the easier it will be to understand, test, and maintain - even by you!
-
-Write test scripts (tools) throughout the development process to quickly give confidence that even though new code has been added, no new bugs emerged **and** no fixed bugs reappeared (Regression test!).
-
-### Integration testing
-
-The system is incrementally developed, put together and tested at various levels.
-Subsystems could integrate many modules, and sometimes, new hardware.
-The developer will run the integrated system against the original requirements to see if there are any 'gotchas'.
-For example, some performance requirements can only be tested once the full system comes together, while other, commonly used utility functions could have performance analysis done on them early on.
-You can simulate external influences as well, such as increasing the external processing or communications load on the host system as a way to see how your program operates when the host system is heavily loaded or resource limited.
-
-[Pragmatic Programmer Tip #81](https://pragprog.com/tips/):
-
-> **Don't Think Outside the Box -- Find the Box.**
-> *When faced with an impossible problem, identify the real constraints. Ask yourself: “Does it have to be done this way? Does it have to be done at all?""*
-
-When faced with an impossible problem, identify the real constraints.
-Ask yourself: "Does it have to be done this way? Does it have to be done at all?"
-
-## Feedback phase
-
-In this phase, the design team sits down with its customer and demonstrates its implementation.
-The customer and the team review the original requirement spec and check each requirement for completion.
-
-In the TSE and project we emphasize understanding the requirements of the system we want to build, writing good design and implementation specs *before* coding.
-In CS50 we put special weight on the coding principles of simplicity, clarity, and generality.
-
-
----
-<!-- END design -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Activity 5 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
 
 <!-- UNIT read-search -->
 
@@ -10620,16 +9718,278 @@ Some good lessons here.
 ---
 <!-- END read-bugs -->
 
-<!-- UNIT milestone -->
+<!-- UNIT design -->
 
-# Milestone: Before completing Lab 4 <a name=unit-milestone>
+# Unit: Software design methodology <a name=unit-design>
 
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
+In this unit, we introduce a simple software design methodology.
+It's by no means the only methodology - but it's straightforward and useful for CS50.
+
+There are many techniques for the design and development of good code, including
+top-down or bottom-up design,
+divide and conquer (breaking the system down into smaller more understandable components),
+structured design (data-flow approach), and
+object-oriented design (modularity, abstraction, and information-hiding).
+For a quick survey of these and other techniques, see *[A Survey of Major Software Design Methodologies](media/design/survey.html)* (author unknown).
+
+Many of these techniques use similar approaches, and embrace fundamental concepts like
+abstraction,
+data representation,
+data flow,
+data structures,
+and
+top-down decomposition from requirements to structure.
+
+It seems unlikely that someone could give you 10 steps to follow and be assured of great system software.
+Every non-trivial project has its special cases, unique environments, or unexpected uses.
+It's often best to begin development of a module, or a system, with small experiments - building a prototype and throwing it away - because you can learn (and make mistakes) building small prototype systems.
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Prototype to Learn.**
+>  Prototyping is a learning experience. Its value lies not in the code you produce, but in the lessons you learn.
+
+Clarity comes from the experience of working from requirements, through system design, implementation and testing, to integration and customer feedback on the requirements.
+
+The following figure shows the software design methodology that we use in the design of the TinySearchEngine and the project.
+
+![Software system design methodology](media/design/SWDesignMethology.png)
+
+------------------------------------------------------------------------
+
+Let's step through the phases of software design, as shown in the figure above.
+
+## Procurement phase
+
+The procurement phase of a project represents its early stages.
+It represents deep discussion between a customer and provider of software systems.
+As a software developer, you have to clearly understand and capture the customers' needs. Often some of the requirements are specified separately by regulatory agencies, national or international standards bodies, or industry standards groups.  These provide additional requirements that the customer expects to be included.
+
+In our case, you are the provider and we (CS50 staff) are your customer.
+
+---
+
+## Requirements spec
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Don't Gather Requirements -- Dig for Them.**
+>  Requirements rarely lie on the surface. They're buried deep beneath layers of assumptions, misconceptions, and politics.
+
+The system *Requirements Spec* captures all the requirements of the system that the customer wants built.
+Typically the provider and customer get into deep discussion of requirements and their cost.
+The requirements *must* be written down, and reviewed by both customer and provider, to be sure all are in agreement.
+Sometimes these documents are written in contractual (legal) language.
+If the customer gets a system that does not meet the spec, or the two parties disagree about whether the finished product meets the spec, lawyers may get involved.
+If a system is late, financial penalties may arise.
+
+> "*The hardest part of design... is keeping features out.*" -- Anonymous
+
+The system requirement spec may have a variety of requirements typically considered ***the shalls*** - such as, *"the crawler shall only crawl webpages within the cs50 website"*.
+These requirements include functional requirements, performance requirements, security requirements, and cost requirements.
+
+A common challenge during this phase is that the customer either doesn't know what he/she really wants or expresses it poorly (in some extreme cases the customer may not be able to provide you with the ultimate intended use of your system due to proprietary or security concerns).
+You must realize that the customer may have these difficulties and iterate with the customer until you both are in full agreement.
+One useful technique is to provide the customer with the system requirements specification (and sometimes later specs too) and then have the customer explain the spec to you.
+It is amazing how many misunderstandings and false assumptions come to light when the customer is doing the explaining.
+
+The Requirements Spec may address many or all of the following issues:
+
+ * *functionality* - what should the system do?
+ * *performance* - goals for speed, size, energy efficiency, etc.
+ * *cost* - goals for cost, if system operation incurs costs
+ * *compliance* - with federal/state law or institutional policy
+ * *compatibility* - with standards or with existing systems
+ * *security* - against a specific threat model under certain trust assumptions
+
+A new concern of system development is the issue of the services-oriented model referred to as the "cloud" (Software As A Service, Infrastructure As A Service, etc.).
+The decision of whether to develop a specific system running in a traditional manner or to build a cloud-based solution should be made early, as it will affect many of the later stages of the development process.
+Some would argue about where it needs to fit in the methodology, but we feel that the sooner you (and the customer) know where this system is headed, the better.
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Make quality a requirements issue.**
+>  Involve your users in determining the project's real quality requirements.
+
+Although the customer may make some assumptions on this point, it's in your best interests to make it a priority.
+Remember the "broken window theory":
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Don't Live with Broken Windows.**
+>  Fix bad designs, wrong decisions, and poor code when you see them.
+
+---
+
+## Design spec
+
+In this phase, you translate the requirements into a full system-design specification. The *Design Spec* is the result of studying the system requirements and applying the art of design *(the magic)* with a design team.
+This design specification shows how the complete system is broken up into specific subsystems, and all of the requirements are mapped to those subsystems.
+The Design spec for a system, subsystem, or module includes:
+
+-   User interface
+-   Inputs and outputs
+-   Functional decomposition into modules
+-   Dataflow through modules
+-   Pseudo code (plain English-like language) for logic/algorithmic flow
+-   Major data structures
+-   Testing plan
+
+To this last point:
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Design to Test.**
+>  Start thinking about testing before you write a line of code.
+
+The Design Specification is independent of your choice of language, operating system, and hardware.
+In principle, it could be implemented in any language from Java to micro-code and run on anything from a Cray supercomputer to a toaster.
+
+---
+
+## Implementation phase
+
+In this phase, we turn the Design Spec into an Implementation Spec, then code up the modules, unit-test each module, integrate the modules and test them as an integrated sub-system and then system.
+
+### Implementation Spec
+
+The *Implementation Spec* represents a further refinement and decomposition of the system.
+It is *language, operating system, and hardware dependent* (sometimes, the language abstracts the OS or HW out of the equation).
+The implementation spec includes many or all of these topics:
+
+-   Detailed pseudo code for each of the objects/components/functions,
+-   Definition of detailed APIs, interfaces, function prototypes and their parameters,
+-   Data structures (e.g., `struct` names and members),
+-   Security and privacy properties,
+-   Error handling and recovery,
+-   Resource management,
+-   Persistent storage (files, database, etc).
+-   Testing plan
+
+### Coding
+
+Coding is often the fun part of the software development cycle - but not usually the largest amount of time.
+As a software developer in industry, you might spend only about 20% of your time coding (perhaps a lot more if you're in a startup).
+The rest of the time will be dealing with the other phases of the methodology, particularly, the last few: testing, integration, fixing problems with the product and meetings with your team and with your customers.
+
+#### Goals during coding:
+
+- Correctness: The program is correct (i.e., does it work) and error free; that is, does its behavior match the functional requirements in the specifications.
+
+- Clarity: The code is easy to read, well commented, and uses good variable and function names.
+In essence, is it easy to use, understand, and maintain
+
+    > Clarity makes sure that the code is easy to understand by people with a range of skills, and across a variety of machine architectures and operating systems. [Kernighan & Pike]
+
+- Simplicity: The code is as simple as possible, but no simpler.
+
+    > Simplicity keeps the program short and manageable. [Kernighan & Pike]
+
+- Generality: The program can easily adapt to change.
+
+    > Generality means the code can work well in a broad range of situations and is tolerant of new environments (or can be easily made to do so). [Kernighan & Pike]
+
+### Unit and sub-system testing
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Test your software, or your users will.**
+
+Testing is a critical part of the whole process of any development effort, whether you're building bridges or software.
+Unit testing of modules in isolation, and integration testing as modules are assembled into sub-systems and, ultimately, the whole system, result in better, safer, more reliable code.
+
+The ultimate goal of testing is to exercise all paths through the code.
+Of course, with most applications this may prove to be a daunting task.
+Most of the time the code will execute a small set of the branches in the module.
+So when special conditions occur and newly executed code paths fail, it can be really hard to find those problems in large, complex pieces of code.
+
+The better organized and modularized your code is, the easier it will be to understand, test, and maintain - even by you!
+
+Write test scripts (tools) throughout the development process to quickly give confidence that even though new code has been added, no new bugs emerged **and** no fixed bugs reappeared (Regression test!).
+
+### Integration testing
+
+The system is incrementally developed, put together and tested at various levels.
+Subsystems could integrate many modules, and sometimes, new hardware.
+The developer will run the integrated system against the original requirements to see if there are any 'gotchas'.
+For example, some performance requirements can only be tested once the full system comes together, while other, commonly used utility functions could have performance analysis done on them early on.
+You can simulate external influences as well, such as increasing the external processing or communications load on the host system as a way to see how your program operates when the host system is heavily loaded or resource limited.
+
+[Pragmatic Programmer Tip #81](https://pragprog.com/tips/):
+
+> **Don't Think Outside the Box -- Find the Box.**
+> *When faced with an impossible problem, identify the real constraints. Ask yourself: “Does it have to be done this way? Does it have to be done at all?""*
+
+When faced with an impossible problem, identify the real constraints.
+Ask yourself: "Does it have to be done this way? Does it have to be done at all?"
+
+## Feedback phase
+
+In this phase, the design team sits down with its customer and demonstrates its implementation.
+The customer and the team review the original requirement spec and check each requirement for completion.
+
+In the TSE and project we emphasize understanding the requirements of the system we want to build, writing good design and implementation specs *before* coding.
+In CS50 we put special weight on the coding principles of simplicity, clarity, and generality.
 
 
 ---
-<!-- END milestone -->
+<!-- END design -->
+
+<!-- UNIT indexer -->
+
+# Unit: Indexer Design <a name=unit-indexer>
+
+Take a look at the Requirements Spec and Design Spec for the Indexer, which you can find detailed in [Lab5](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/tse/indexer).
+The Indexer is required to read the documents in the `pageDirectory` output by the Crawler, build an index mapping from words to documents, and write that index to a file.
+(Later, the Querier will read the index and use it to answer queries.)
+
+Here we focus on the design.
+The key question when designing the Indexer is this: what data structure do we use to represent the inverted index?
+
+> It's called an *inverted* index because it maps from words to documents, the opposite of a document (which is, in effect, a mapping of documents to words).
+
+A hashtable is a great start, because we can look up a word in a hashtable in O(1) time.
+But what is in the hashtable?
+For each word, we need a list of documents.
+(Not the documents themselves, silly, just the document IDs.)
+Actually, to enable us to later *rank* the matches, we'd also like to record how many times the given word appears in each document.
+
+Consider the data structures we have handy: hashtable, set, bag, and counters.
+(Oh, and tree.)
+A *hashtable of countersets* is perfect to map from a word to a list of (docID, count) pairs.
+See the diagram below:
+
+![Indexer data flow](media/indexer/data-model.png)
+
+We get to use three out of our four data structures: hashtable, set, and counters!
+
+When processing a given document (identified by docID), consider each word; look up that word in the hashtable and retrieve a pointer to a `counters_t*` item; then use `counters_add()` on that item, using the docID as a key.
+
+Your data-set iterators – like `hashtable_iterate()` – should be very useful for saving an index to a file, or for later loading an index from a file.
+
+> Now is a good time to read Section 4 in *[Searching the Web](media/searchingtheweb.pdf)*, the paper about search engines.
+
+## Indexer demo
+
+**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a36d11ab-5263-4904-9520-ad16017c24fa)** of our Indexer in action.
+
+
+
+---
+<!-- END indexer -->
+
+<!-- UNIT read-coding -->
+
+# Reading: More tips about coding <a name=unit-read-coding>
+
+More valuable lessons about logging and coding.
+
+ * *[Verbose Logging Will Disturb Your Sleep](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_90/README.md)*, by Johannes Brodwall
+ * *[Code Layout Matters](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_13/README.md)*, by Steve Freeman.
+ * *[Only the Code Tells the Truth](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_62/README.md)*, by Peter Sommerlad.
+
+---
+<!-- END read-coding -->
 
 <!-- UNIT iterators -->
 
@@ -10925,635 +10285,194 @@ The overall structure of the code is identical to the prior example; the differe
 ---
 <!-- END iterators -->
 
-<!-- UNIT indexer -->
+<!-- UNIT cohesion -->
 
-# Unit: Indexer Design <a name=unit-indexer>
+# Unit: Cohesion and coupling <a name=unit-cohesion>
 
-Take a look at the Requirements Spec and Design Spec for the Indexer, which you can find detailed in [Lab5](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/tse/indexer).
-The Indexer is required to read the documents in the `pageDirectory` output by the Crawler, build an index mapping from words to documents, and write that index to a file.
-(Later, the Querier will read the index and use it to answer queries.)
+In this unit we discuss some high-level design principles.
 
-Here we focus on the design.
-The key question when designing the Indexer is this: what data structure do we use to represent the inverted index?
+* *routines* - types and names
+* *cohesion* - and why we want strong cohesion
+* *coupling* - and why we want weak coupling
 
-> It's called an *inverted* index because it maps from words to documents, the opposite of a document (which is, in effect, a mapping of documents to words).
+Many of these concepts come from chapter 5 of *Code Complete* by Steve McConnell. [Microsoft Press, 1993.]
 
-A hashtable is a great start, because we can look up a word in a hashtable in O(1) time.
-But what is in the hashtable?
-For each word, we need a list of documents.
-(Not the documents themselves, silly, just the document IDs.)
-Actually, to enable us to later *rank* the matches, we'd also like to record how many times the given word appears in each document.
+## Routines
 
-Consider the data structures we have handy: hashtable, set, bag, and counters.
-(Oh, and tree.)
-A *hashtable of countersets* is perfect to map from a word to a list of (docID, count) pairs.
-See the diagram below:
+We often use the word *routine* as a general concept, to refer to  a *function* or a *procedure*.
+We typically use the word *procedure* to refer to a function with no return value.
+In other languages, routines might be called *subroutines* or *methods*.
 
-![Indexer data flow](media/indexer/data-model.png)
+There are many reasons to break a program into *routines*:
 
-We get to use three out of our four data structures: hashtable, set, and counters!
+* Reduce complexity
+* Avoid duplicate code
+* Limit effects of changes (narrow scope of change to a routine)
+* Hide sequences (a form of information hiding)
+* Improve performance (optimize in one place)
+* Centralize control (e.g., controlling devices, files, data structures... more information hiding)
+* Hide data structures (classes, or abstract data types)
+* Hide global data (access routines centralize control of globals)
+* Hide pointer operations (makes it easier to read)
+* Promote code reuse (easier to reuse code in a routine)
+* Plan for a family of programs (isolate parts that may change in a few routines)
+* Improve readability (named routine is more readable; avoid deep nesting, etc.)
+* Improve portability (isolate nonportable features)
+* Isolate complex operations (algorithm, protocols, etc.)
+* Isolate use of nonstandard language functions (isolate nonportable features)
+* Simplify complicated boolean tests (inlines are great here)
 
-When processing a given document (identified by docID), consider each word; look up that word in the hashtable and retrieve a pointer to a `counters_t*` item; then use `counters_add()` on that item, using the docID as a key.
+Routines should be well named:
 
-Your data-set iterators – like `hashtable_iterate()` – should be very useful for saving an index to a file, or for later loading an index from a file.
+* a *procedure* name should be a strong verb followed by object (like *printCalendar()*).
+* a *function* name should describe its return value (like *numberOfNonzeros()*).
+* a *boolean function* name should sound like a question (like *isInternalURL()*).
 
-> Now is a good time to read Section 4 in *[Searching the Web](media/searchingtheweb.pdf)*, the paper about search engines.
+A good routine name
 
-## Indexer demo
+* avoids nondescriptive verbs (like *do*, *perform*)
+* describes everything the routine does
+* is as long as necessary
+* follows naming conventions!
 
-**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a36d11ab-5263-4904-9520-ad16017c24fa)** of our Indexer in action.
+A routine's body should not be **too long**.
+If you find your routine approaching 200 lines, you should break it up - or have a darn good reason you should not break it up.
+
+### Cohesion
+
+> "Cohesion refers to how closely [or strongly] the operations in a routine are related." -- McConnell
+
+One study found that 50% of high-cohesion routines were fault-free, while 18% of low-cohesion routines were fault-free.
+
+Good routines have ***strong cohesion***.
+
+**Acceptable cohesion**:
+
+* **Functional cohesion** (strongest and best kind): performs one and only one operation.
+* **Sequential cohesion**: contains operations that must be performed in a sequential order.
+* **Communicational cohesion**: contains operations that make use of the same data, but are not otherwise related.
+* **Temporal cohesion**: contains operations that do several things, because all are done at the same time.
+
+**Unacceptable cohesion**:
+
+* **Procedural cohesion**: contains operations that must be performed in a sequential order, but don't share the same data.
+* **Logical cohesion**: several things in a routine, only one executed, depending on a flag parameter.
+(Exception - it can be  ok if using a `switch` statement to call one of many other (cohesive) functions.)
+* **Coincidental cohesion**: no apparent reason for things to be together in a routine!
+
+### Coupling
+
+> "The degree of coupling refers to the strength of a connection between two routines. Coupling is a complement to cohesion." -- McConnell
+
+Good code has ***loose coupling*** among routines.
+
+> "Make the coupling of routines as simple as possible."
+
+**Criteria** for evaluating coupling between routines:
+
+* **size** (number of connections)
+* **intimacy** (directness of connection; better to use direct parameter passing than indirect global variables)
+* **visibility** (best if connection is obvious)
+* **flexibility** (how easily you can change connections)
+
+Go for minimal interconnectedness, and make what interconnections you have simple and obvious.
+"If a program were a piece of wood, you'd try to split it with the grain."
+
+
+#### Kinds of coupling
+
+* **Simple-data coupling**: the only data passed from one routine to another is through parameters, and is nonstructured.
+* **Data-structure coupling**: one routine passes a data structure to another; best if it really needs the whole data structure.
+* **Control coupling**: one routine tells the other what to do.
+* **Global-data coupling**: two routines use the same global data; may be tolerable if read-only.
+* **Pathological coupling**: one routine uses the data inside the other routine. (Somewhat hard to do in C and C++.)
+
+> "Try to create routines that depend little on other routines."
+
+
+#### Defensive programming
+
+Best practices:
+
+* Use assert() or other tests to insert sanity checks into your code.
+* Be particularly suspicious of parameters and input values that come from another module (including the user!), i.e., data that crosses a module interface.
+
+#### Routine parameters
+
+Best practices:
+
+* Put parameters in input-modify-output order; put "status" or "error" variables last.
+* Use all the parameters.
+* Use a consistent order among similar routines.
+* Document assumptions about parameters: *Preconditions* are assumptions about the parameters (or internal data-structure state) before the routine executes, and *postconditions* are assumptions about the parameters, data structure, and return value after the routine exits.
+
+#### Macros
+
+You can write *macros* in C with #define - these are handled by the C preprocessor.
+Macros can be handy, on occasion, but it is usually better to use `inline` functions or `const` variables for these purposes.
+You get better syntax, type checking, and better debugger support.
+
+## Modules
+
+A *module* is a collection of related routines that, together, encapsulate a data structure, subsystem, or task.
+In object-oriented programming, a module is typically called a *class*.
+
+Why modules?
+
+* It is sometimes necessary to have strong coupling between routines.
+* In that case you should group those routines into a *module*; the module has strong cohesion.
+* Strive for strong intra-module cohesion and loose inter-module coupling.
+* A well-designed module (in C) or class (in C++ or Java) encourages *information hiding*.
+
+#### Information hiding
+
+A good module serves to "hide" implementation details inside the module, providing a clean abstraction and clear interface to other modules.
+
+Each module programmer makes many implementation decisions, which should largely be unknown to code outside the module.
+Thus the module is
+
+* less coupled to others,
+* more maintainable,
+* more self-testable,
+* more replacable,
+* more debuggable (can insert debugging code easily),
+* more reliable (can insert checks in a few places),
+* more understandable (hides complexity).
+
+#### Collaborative work
+
+Modules (classes) are an excellent mechanism for dividing work among programmers, because module boundaries and interfaces are clear, and there is otherwise little coupling.
+Thus, the module programmer has wide flexibility and authority on the implementation details of her module, as long as she sticks to the agreed-upon interface for the module and clearly documents the interface.
+
+## Examples
+
+Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion.c);
+for each function, what kinds of cohesion and coupling do you see?
+What function could perhaps be better named?
+When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion-annotated.c) for our take on those questions.
+
+
+---
+<!-- END cohesion -->
+
+<!-- UNIT read-git-flow -->
+
+# Reading: Git-flow tutorials <a name=unit-read-git-flow>
+
+Here are two tutorial-style overviews and the original blog post about git-flow.
+
+[Atlassian tutorial about git-flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+
+[GitHub overview of git-flow](https://guides.github.com/introduction/flow/)
+
+[Original git-flow post](https://nvie.com/posts/a-successful-git-branching-model/)
+
+[Visualizing git concepts with D3](https://onlywei.github.io/explain-git-with-d3/)
 
 
 
 ---
-<!-- END indexer -->
-
-<!-- UNIT read-coding -->
-
-# Reading: More tips about coding <a name=unit-read-coding>
-
-More valuable lessons about logging and coding.
-
- * *[Verbose Logging Will Disturb Your Sleep](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_90/README.md)*, by Johannes Brodwall
- * *[Code Layout Matters](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_13/README.md)*, by Steve Freeman.
- * *[Only the Code Tells the Truth](https://github.com/97-things/97-things-every-programmer-should-know/blob/master/en/thing_62/README.md)*, by Peter Sommerlad.
-
----
-<!-- END read-coding -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before completing Lab 5 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
-<!-- UNIT querier -->
-
-# Unit: TSE Querier (demo) <a name=unit-querier>
-
-The third component of the Tiny Search Engine is the *Querier*, which reads the index produced by the Indexer and the page files produced by the Crawler, to interactively answer written queries entered by the user.
-
-**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c9ddf20a-f3a5-4323-945a-ad1801785c84)**
-
-Our Querier loads the index into memory (a data structure we developed for the Indexer) and then prompts the user for queries.
-Queries are comprised of words, with optional `and`/`or` operators.
-For example,
-
-```
-computer science
-computer and science
-computer or science
-baseball or basketball or ultimate frisbee
-```
-
-The first two examples are treated identically, matching only documents that have *both* words - not necessarily together (as in the phrase "computer science").
-The third picks up documents that have *either* word.
-The fourth matches documents that mention baseball, or basketball, or both "ultimate" and the word "frisbee" (not necessarily together).
-
-Here's an example run, with the output truncated a bit:
-
-```
-$./querier ~/shared/tse-output/crawler/crawler.data/data22 ~/shared/tse-output/indexer/indexer.data
-Query? Europe travel
-Query: europe travel
-Matches 1 documents (ranked):
-score	1 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
------------------------------------------------
-Query? Europe and travel
-Query: europe and travel
-Matches 1 documents (ranked):
-score	1 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
------------------------------------------------
-Query? Europe or travel
-Query: europe or travel
-Matches 56 documents (ranked):
-score	5 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
-score	3 doc	8: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/Computer_science.html
-score	1 doc	9: http://cs50tse.cs.dartmouth.edu/tse/toscrape/
-score	1 doc  10: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/page-2.html
-score	1 doc  11: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/its-only-the-himalayas_981/index.html
-score	1 doc  31: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/crime_51/index.html
-score	1 doc  32: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/erotica_50/index.html
-score	1 doc  33: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/cultural_49/index.html
-score	1 doc  34: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/politics_48/index.html
-score	1 doc  35: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/health_47/index.html
-score	1 doc  36: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/novels_46/index.html
-score	1 doc  37: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/short-stories_45/index.html
-score	1 doc  38: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/suspense_44/index.html
-score	1 doc  39: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/christian_43/index.html
-score	1 doc  40: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/historical_42/index.html
-score	1 doc  41: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/self-help_41/index.html
-score	1 doc  42: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/academic_40/index.html
-score	1 doc  43: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/spirituality_39/index.html
-score	1 doc  44: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/contemporary_38/index.html
-score	1 doc  45: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/thriller_37/index.html
-score	1 doc  46: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/biography_36/index.html
-score	1 doc  47: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/business_35/index.html
-score	1 doc  48: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/christian-fiction_34/index.html
-score	1 doc  49: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/food-and-drink_33/index.html
-score	1 doc  50: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/history_32/index.html
-score	1 doc  51: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/horror_31/index.html
-score	1 doc  52: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/humor_30/index.html
-score	1 doc  53: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/adult-fiction_29/index.html
-score	1 doc  54: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/parenting_28/index.html
-score	1 doc  55: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/autobiography_27/index.html
-score	1 doc  56: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/psychology_26/index.html
-score	1 doc  57: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/art_25/index.html
-score	1 doc  58: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/paranormal_24/index.html
-score	1 doc  59: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/poetry_23/index.html
-score	1 doc  60: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/science_22/index.html
-score	1 doc  61: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/young-adult_21/index.html
-score	1 doc  62: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/new-adult_20/index.html
-score	1 doc  63: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/fantasy_19/index.html
-score	1 doc  64: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/add-a-comment_18/index.html
-score	1 doc  65: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sports-and-games_17/index.html
-score	1 doc  66: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/science-fiction_16/index.html
-score	1 doc  67: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/default_15/index.html
-score	1 doc  68: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/music_14/index.html
-score	1 doc  69: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/nonfiction_13/index.html
-score	1 doc  70: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/religion_12/index.html
-score	1 doc  71: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/childrens_11/index.html
-score	1 doc  72: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/fiction_10/index.html
-score	1 doc  73: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/womens-fiction_9/index.html
-score	1 doc  74: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/romance_8/index.html
-score	1 doc  75: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/philosophy_7/index.html
-score	1 doc  76: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/classics_6/index.html
-score	1 doc  77: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
-score	1 doc  78: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/historical-fiction_4/index.html
-score	1 doc  79: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/mystery_3/index.html
-score	1 doc  81: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books_1/index.html
-score	1 doc  82: http://cs50tse.cs.dartmouth.edu/tse/toscrape/index.html
------------------------------------------------
-Query? Tiny Search Engine
-Query: tiny search engine
-No documents match.
------------------------------------------------
-Query? TSE
-Query: tse
-Matches 2 documents (ranked):
-score	2 doc	1: http://cs50tse.cs.dartmouth.edu/tse/
-score	1 doc  83: http://cs50tse.cs.dartmouth.edu/tse/letters/
------------------------------------------------
-Query? git-flow
-Error: bad character '-' in query.
-Query? and dartmouth harvard
-Query: and dartmouth harvard
-Error: 'and' cannot be first
-Query?	  spaces   do  not  matter
-Query: spaces do not matter
-No documents match.
------------------------------------------------
-Query? exit
-Query: exit
-Matches 3 documents (ranked):
-score	2 doc	6: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/Unix.html
-score	1 doc	7: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/C_(programming_language).html
-score	1 doc  59: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/poetry_23/index.html
------------------------------------------------
-Query? ^D
-$ 
-```
-
-You can see the querier prompts `Query?` and then echos the pre-processed query before computing the matches.
-Preprocessing strips leading and trailing spaces, compacts internal spaces, and lowercases all words.
-
-
----
-<!-- END querier -->
-
-<!-- UNIT querier-expressions -->
-
-# Unit: Querier parsing: expressions <a name=unit-querier-expressions>
-
-The querier supports queries that combine words with the *and* and *or* operators.
-Let's think about how one evaluates an expression involving operators.
-Consider an arithmetic analogy.
-
-## Arithmetic expressions
-
-Consider the following arithmetic expression:
-
-```c
-sum = a + b + c + d
-```
-
-Since addition is a *left-associative* operator, this means the same thing as
-
-```c
-sum = (((a + b) + c) + d)
-```
-
-This means we can scan the expression from left to right, accumulating a sum as we go, effectively like this:
-
-```c
-sum = 0
-sum = sum + a
-sum = sum + b
-sum = sum + c
-sum = sum + d
-```
-
-Here, the `sum` acts as an *accumulator*.
-(Indeed, many early hardware architectures include an explicit register called an 'accumulator'.)
-
-We often see this approach generalized in code:
-
-```c
-int n = 5;
-int array[n] = {42, 34, 12, -5, 19};
-int sum = 0;
-for (int i = 0; i < n; i++)
-	sum += array[i];
-printf("sum = %d; average = %f\n", sum, (float) sum / n);
-```
-
-### Precedence
-
-What if you have a mixture of operators, with precedence?
-
-Consider the following arithmetic expression:
-
-```c
-sum = a + b * c + d
-```
-
-Both addition and multiplication are *left-associative* operators, but multiplication takes *precedence* over addition.
-Thus, we implicitly rewrite the above expression as follows:
-
-```c
-sum = ((a + (b * c)) + d)
-```
-
-or, in sequence,
-
-```c
-sum = 0
-sum = sum + a 
-prod = 1
-prod = prod * b
-prod = prod * c
-sum = sum + prod
-sum = sum + d
-```
-
-Notice how we 'step aside' from the sum for a moment while we compute the product `b * c` ... using an exactly analogous process.  `prod` is an accumulator for the product; it is initialized to the *multiplicative identity* (1) instead of the *additive identity* (0), for reasons I hope are obvious.
-But then we just multiply in each of the successive items, one at a time.
-
-This generalizes to longer expressions like
-
-```c
-sum = a * b + c * d * e + f + g * h * i
-```
-
-becomes
-
-```c
-sum = 0
-prod = 1
-prod = prod * a
-prod = prod * b
-sum = sum + prod
-prod = 1
-prod = prod * c
-prod = prod * d
-prod = prod * e
-sum = sum + prod
-prod = 1
-prod = prod * f
-sum = sum + prod
-prod = 1
-prod = prod * g
-prod = prod * h
-prod = prod * i
-sum = sum + prod
-```
-
-Let's add some indentation to make this a little easier to read:
-
-```c
-sum = 0
-	prod = 1
-	prod = prod * a
-	prod = prod * b
-sum = sum + prod
-	prod = 1
-	prod = prod * c
-	prod = prod * d
-	prod = prod * e
-sum = sum + prod
-	prod = 1
-	prod = prod * f
-sum = sum + prod
-	prod = 1
-	prod = prod * g
-	prod = prod * h
-	prod = prod * i
-sum = sum + prod
-```
-
-Notice what I did with `f`, and that I *never add anything to `sum` other than `prod`*.
-
-This structure should give you a hint about how you might write code to evaluate such expressions...
-if you have a `product` function to scan the expression left to right from a given starting point, accumulating a product of individual items until it sees a `+` or the end of the expression, you can then write a function `sum` that scans the expression left to right from the start, accumulating a sum of products by calling `product` at the start and after each `+`.
-
-## Query expressions
-
-Let's map this new insight onto the TSE query syntax.
-That syntax combines *words* with two operators: *and*, *or*.
-Each operator is left-associative, just like *multiply* and *add*.
-The *and* operator takes precedence over the *or* operator, just like *multiply* takes precedence over *add*.
-Although the syntax allows *and* to be omitted, you should mentally insert an *and* wherever an operator is missing.
-
-Of course, we're not doing arithmetic; we're querying a document index for documents that contain words.
-The result of a single-word query is the set of all documents which contain that word.
-In a multi-word query expression, the "value" of each word is the set of documents matching that word, and the *and/or* operators manipulate those sets: the *and* operator computes a *set intersection*, and the *or* operator computes a *set union*.
-
-The same *accumulator* idea works here, too.
-For a sequence of words connected by *and*,
-
-```
-result = A and B and C       # original query
-result = ((A and B) and C)   # rewritten, left-associative
-
-result = A            # there is no "intersect identity", so just assign
-result = result ^ B   # here I use ^ to represent set intersection
-result = result ^ C
-```
-
-For a sequence of words connected by *or*,
-
-```
-result = X or Y
-
-result = {}           # empty set, the "union identity"
-result = result v X   # here I use v to represent set union
-result = result v Y
-```
-
-And for a more complex query we need to leverage precedence:
-
-```
-result = X or A and B and C or Y        # original query
-result = ((X or (A and B and C)) or Y)  # rewritten, per precedence
-
-result = {}
-result = result v X
-	temp = A
-	temp = temp ^ B
-	temp = temp ^ C
-result = result v temp
-	temp = Y
-result = result v temp	
-```
-
-Of course, there may be many *and sequences*, all within one *or sequence*:
-
-```
-result = A and B or P and Q or R and S and T or Z
-
-result = {}
-	temp = A
-	temp = temp ^ B
-result = result v temp
-	temp = P
-	temp = temp ^ Q
-result = result v temp
-	temp = R
-	temp = temp ^ S
-	temp = temp ^ T
-result = result v temp
-	temp = Z
-result = result v temp
-```
-
-Notice what I did with `Z`, and that I *never union anything to `result` other than `temp`*.
-
-
----
-<!-- END querier-expressions -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Activity 5 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
-<!-- UNIT querier-chop -->
-
-# Optional: Querier parsing: chopping a string into sub-strings <a name=unit-querier-chop>
-
-Here's a nice trick for breaking a single string `char* line` into an array of strings `char* words[]`.
-In the example below, the query has two words, and there are leading spaces, separating spaces, and trailing space, terminated by a null.
-Because in C a "string" is just a pointer to an array of characters terminated by a null `\0` character, we can chop this single string into multiple strings by replacing two of the spaces with nulls, and recording a pointer to the beginning of each word.
-We don't need to allocate any memory for these new strings, or copy these strings - they stay right where they are.
-
-![diagram of Chopping a string into array of strings](media/querier/chopping.png)
-
-
-## Related example
-
-We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/covid/covid.c).
-The details are different – that code knew exactly how many fields to expect, the words were separated by precisely one comma, and there was the added complexity of quoted fields.
-
-In the query string, you don't know how many words to expect (but what is the maximum number of words in a string of length *n*?)
-
-In the query string, you may need to slide past spaces and tabs at the front of the string, or over many spaces/tabs between words, as shown above.
-So think about sliding two pointers along the array, starting at `line`.
-One pointer might be `char* word` and you slide it over to the first non-space; the other pointer might be `char* rest` and you slide it from `word` to the first non-letter.
-Squash that character `*rest` with a null, and you've created a null-terminated string starting at `word`.
-
-*Think carefully* about the edge cases, as you construct the loops and slide the pointers.
-
-
----
-<!-- END querier-chop -->
-
-<!-- UNIT querier-testing -->
-
-# Unit: Querier fuzz-testing <a name=unit-querier-testing>
-
-In a recent unit we talked about *unit testing*, and the difference between *glass-box testing* and *black-box testing*.
-Usually, these tests are based on a carefully constructed series of test cases, devised to test all code sequences and push on the "edge cases".
-
-However, such tests are only as good as the test writer - who must study the code (for glass-box testing) or the specs (for black-box testing) to think of the suitable test cases.
-It's possible they will miss some important cases.
-
-Another solution, therefore, is ***fuzz testing***, a form of black-box testing in which you fire thousands of random inputs at the program to see how it reacts.
-The chances of triggering an unconsidered test case is far greater if you try a lot of cases!
-
-**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=acab720d-bf47-4465-b442-ad18017b5507)**
-
-We provide `fuzzquery.c`, a fuzz-testing program, for testing a querier.
-It generates a series of random queries on stdout, which it then pipes to the querier on stdin.
-Here's the core of the fuzz tester:
-
-```c
-/**************** generateQuery ****************/
-/* generate one random query and print to stdout.
- * pull random words from the wordlist and from the dictionary.
- */
-static void
-generateQuery(const wordlist_t* wordlist, const wordlist_t* dictionary)
-{
-  // some parameters that affect query generation
-  const int maxWords = 6;            // generate 1..maxWords
-  const float orProbability = 0.3;   // P(OR between two words)
-  const float andProbability = 0.2;  // P(AND between two words)
-  const float dictProbability = 0.2; // P(draw from dict instead of wordlist)
-
-  int qwords = rand() % maxWords + 1; // number of words in query
-  for (int qw = 0; qw < qwords; qw++) {
-    // draw a word either dictionary or wordlist
-    if ((rand() % 100) < (dictProbability * 100)) {
-      printf("%s ", dictionary->words[rand() % dictionary->nWords]);
-    } else {
-      printf("%s ", wordlist->words[rand() % wordlist->nWords]);
-    }
-
-    // last word?
-    if (qw < qwords-1) {
-      // which operator to print?
-      int op = rand() % 100;
-      if (op < (andProbability * 100)) {
-        printf("AND ");
-      }
-      else if (op < (andProbability * 100 + orProbability * 100)) {
-        printf("OR ");
-      }
-    }
-  }
-  printf("\n");
-}
-```
-
-With the following setup,
-
-```bash
-cd tse
-seed="http://cs50tse.cs.dartmouth.edu/tse/toscrape/index.html"
-pdir="data/toscrape-2"
-indx="data/toscrape-2.index"
-mkdir $pdir
-crawler/crawler $seed $pdir 2
-indx="data/toscrape-2.index"
-```
-
-And here's the output of 10 random queries:
-
-```bash
-$ querier/fuzzquery $indx 10 0
-querier/fuzzquery: generating 10 queries from 13563 words
-inthe AND quarters 
-hangs OR visited kahneman OR beneath shopping 
-nationally holery OR predicts 
-answers axell conduct OR christine OR Mississippians OR sorbonne 
-endowment OR cosmic lover sketchbook AND priest OR bfed 
-orientation iceland describe worse OR defeating 
-clerks 
-arnold streusel OR braved 
-multiplatform 
-patience OR nightstruck OR bowerbird AND antoinette AND stances 
-$
-```
-
-And here's what happens when we pipe it to our querier:
-
-```
-$ querier/fuzzquery $indx 10 0 | querier/querier $pdir $indx
-querier/fuzzquery: generating 10 queries from 13563 words
-Query: inthe and quarters 
-No documents match.
------------------------------------------------
-Query: hangs or visited kahneman or beneath shopping 
-Matches 3 documents (ranked):
-score   1 doc 171: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/night-shift-night-shift-1-20_335/index.html
-score   1 doc 536: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-last-painting-of-sara-de-vos_259/index.html
-score   1 doc 569: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-last-mile-amos-decker-2_754/index.html
------------------------------------------------
-Query: nationally holery or predicts 
-Matches 1 documents (ranked):
-score   1 doc 246: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-grand-design_405/index.html
------------------------------------------------
-Query: answers axell conduct or christine or mississippians or sorbonne 
-Matches 2 documents (ranked):
-score   2 doc 357: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/a-piece-of-sky-a-grain-of-rice-a-memoir-in-four-meditations_878/index.html
-score   1 doc 367: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/orchestra-of-exiles-the-story-of-bronislaw-huberman-the-israel-philharmonic-and-the-one-thousand-jews-he-saved-from-nazi-horrors_337/index.html
------------------------------------------------
-Query: endowment or cosmic lover sketchbook and priest or bfed 
-Matches 2 documents (ranked):
-score   1 doc  28: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/olio_984/index.html
-score   1 doc  20: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/black-dust_976/index.html
------------------------------------------------
-Query: orientation iceland describe worse or defeating 
-Matches 1 documents (ranked):
-score   2 doc 499: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/beowulf_126/index.html
------------------------------------------------
-Query: clerks 
-Matches 1 documents (ranked):
-score   1 doc 157: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/a-distant-mirror-the-calamitous-14th-century_652/index.html
------------------------------------------------
-Query: arnold streusel or braved 
-Matches 1 documents (ranked):
-score   1 doc 150: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-mathews-men-seven-brothers-and-the-war-against-hitlers-u-boats_408/index.html
------------------------------------------------
-Query: multiplatform 
-Matches 1 documents (ranked):
-score   1 doc 204: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/m-train_598/index.html
------------------------------------------------
-Query: patience or nightstruck or bowerbird and antoinette and stances 
-Matches 9 documents (ranked):
-score   5 doc 524: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/patience_916/index.html
-score   1 doc 511: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
-score   1 doc 518: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/i-hate-fairyland-vol-1-madly-ever-after-i-hate-fairyland-compilations-1-5_899/index.html
-score   1 doc 519: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-3-a-terrible-plan-lumberjanes-9-12_905/index.html
-score   1 doc 520: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-1-beware-the-kitten-holy-lumberjanes-1-4_906/index.html
-score   1 doc 521: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-2-friendship-to-the-max-lumberjanes-5-8_907/index.html
-score   1 doc 522: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/orange-the-complete-collection-1-orange-the-complete-collection-1_914/index.html
-score   1 doc 523: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/outcast-vol-1-a-darkness-surrounds-him-outcast-1_915/index.html
-score   1 doc 255: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/young-adult_21/page-2.html
------------------------------------------------
-```
-
-We could generate a different series of random queries by changing the random seed, and we can run a lot more queries, too!
-
-```
-$ querier/fuzzquery $indx 10 999 | querier/querier $pdir $indx > /dev/null
-querier/fuzzquery: generating 10 queries from 13563 words
-$ querier/fuzzquery $indx 10000 9999 | querier/querier $pdir $indx > /dev/null
-querier/fuzzquery: generating 10000 queries from 13563 words
-```
-
-The fuzz tester does not test *all* aspects of the querier; in particular, it will not generate syntactically incorrect inputs.
-Those should be tested by another program, perhaps another fuzz tester.
-Furthermore, it does not verify whether the querier actually produces the right answers!
-
-For regression testing, we might save the querier output in a file, and then compare the output of a fresh test run against the saved results from earlier runs.
-If we had earlier believed those results to be correct, then seeing unchanged output would presumably indicate the results (and thus the new code) are still correct.
-
-
----
-<!-- END querier-testing -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before completing Lab 6 <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
+<!-- END read-git-flow -->
 
 <!-- UNIT git-conflict -->
 
@@ -12000,35 +10919,546 @@ $ git switch feature2
 ---
 <!-- END protect-main -->
 
-<!-- UNIT read-git-flow -->
+<!-- UNIT querier -->
 
-# Reading: Git-flow tutorials <a name=unit-read-git-flow>
+# Unit: TSE Querier (demo) <a name=unit-querier>
 
-Here are two tutorial-style overviews and the original blog post about git-flow.
+The third component of the Tiny Search Engine is the *Querier*, which reads the index produced by the Indexer and the page files produced by the Crawler, to interactively answer written queries entered by the user.
 
-[Atlassian tutorial about git-flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c9ddf20a-f3a5-4323-945a-ad1801785c84)**
 
-[GitHub overview of git-flow](https://guides.github.com/introduction/flow/)
+Our Querier loads the index into memory (a data structure we developed for the Indexer) and then prompts the user for queries.
+Queries are comprised of words, with optional `and`/`or` operators.
+For example,
 
-[Original git-flow post](https://nvie.com/posts/a-successful-git-branching-model/)
+```
+computer science
+computer and science
+computer or science
+baseball or basketball or ultimate frisbee
+```
 
-[Visualizing git concepts with D3](https://onlywei.github.io/explain-git-with-d3/)
+The first two examples are treated identically, matching only documents that have *both* words - not necessarily together (as in the phrase "computer science").
+The third picks up documents that have *either* word.
+The fourth matches documents that mention baseball, or basketball, or both "ultimate" and the word "frisbee" (not necessarily together).
 
+Here's an example run, with the output truncated a bit:
+
+```
+$./querier ~/shared/tse-output/crawler/crawler.data/data22 ~/shared/tse-output/indexer/indexer.data
+Query? Europe travel
+Query: europe travel
+Matches 1 documents (ranked):
+score	1 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
+-----------------------------------------------
+Query? Europe and travel
+Query: europe and travel
+Matches 1 documents (ranked):
+score	1 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
+-----------------------------------------------
+Query? Europe or travel
+Query: europe or travel
+Matches 56 documents (ranked):
+score	5 doc  80: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/travel_2/index.html
+score	3 doc	8: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/Computer_science.html
+score	1 doc	9: http://cs50tse.cs.dartmouth.edu/tse/toscrape/
+score	1 doc  10: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/page-2.html
+score	1 doc  11: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/its-only-the-himalayas_981/index.html
+score	1 doc  31: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/crime_51/index.html
+score	1 doc  32: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/erotica_50/index.html
+score	1 doc  33: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/cultural_49/index.html
+score	1 doc  34: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/politics_48/index.html
+score	1 doc  35: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/health_47/index.html
+score	1 doc  36: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/novels_46/index.html
+score	1 doc  37: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/short-stories_45/index.html
+score	1 doc  38: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/suspense_44/index.html
+score	1 doc  39: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/christian_43/index.html
+score	1 doc  40: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/historical_42/index.html
+score	1 doc  41: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/self-help_41/index.html
+score	1 doc  42: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/academic_40/index.html
+score	1 doc  43: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/spirituality_39/index.html
+score	1 doc  44: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/contemporary_38/index.html
+score	1 doc  45: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/thriller_37/index.html
+score	1 doc  46: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/biography_36/index.html
+score	1 doc  47: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/business_35/index.html
+score	1 doc  48: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/christian-fiction_34/index.html
+score	1 doc  49: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/food-and-drink_33/index.html
+score	1 doc  50: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/history_32/index.html
+score	1 doc  51: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/horror_31/index.html
+score	1 doc  52: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/humor_30/index.html
+score	1 doc  53: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/adult-fiction_29/index.html
+score	1 doc  54: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/parenting_28/index.html
+score	1 doc  55: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/autobiography_27/index.html
+score	1 doc  56: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/psychology_26/index.html
+score	1 doc  57: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/art_25/index.html
+score	1 doc  58: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/paranormal_24/index.html
+score	1 doc  59: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/poetry_23/index.html
+score	1 doc  60: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/science_22/index.html
+score	1 doc  61: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/young-adult_21/index.html
+score	1 doc  62: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/new-adult_20/index.html
+score	1 doc  63: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/fantasy_19/index.html
+score	1 doc  64: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/add-a-comment_18/index.html
+score	1 doc  65: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sports-and-games_17/index.html
+score	1 doc  66: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/science-fiction_16/index.html
+score	1 doc  67: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/default_15/index.html
+score	1 doc  68: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/music_14/index.html
+score	1 doc  69: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/nonfiction_13/index.html
+score	1 doc  70: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/religion_12/index.html
+score	1 doc  71: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/childrens_11/index.html
+score	1 doc  72: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/fiction_10/index.html
+score	1 doc  73: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/womens-fiction_9/index.html
+score	1 doc  74: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/romance_8/index.html
+score	1 doc  75: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/philosophy_7/index.html
+score	1 doc  76: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/classics_6/index.html
+score	1 doc  77: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
+score	1 doc  78: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/historical-fiction_4/index.html
+score	1 doc  79: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/mystery_3/index.html
+score	1 doc  81: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books_1/index.html
+score	1 doc  82: http://cs50tse.cs.dartmouth.edu/tse/toscrape/index.html
+-----------------------------------------------
+Query? Tiny Search Engine
+Query: tiny search engine
+No documents match.
+-----------------------------------------------
+Query? TSE
+Query: tse
+Matches 2 documents (ranked):
+score	2 doc	1: http://cs50tse.cs.dartmouth.edu/tse/
+score	1 doc  83: http://cs50tse.cs.dartmouth.edu/tse/letters/
+-----------------------------------------------
+Query? git-flow
+Error: bad character '-' in query.
+Query? and dartmouth harvard
+Query: and dartmouth harvard
+Error: 'and' cannot be first
+Query?	  spaces   do  not  matter
+Query: spaces do not matter
+No documents match.
+-----------------------------------------------
+Query? exit
+Query: exit
+Matches 3 documents (ranked):
+score	2 doc	6: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/Unix.html
+score	1 doc	7: http://cs50tse.cs.dartmouth.edu/tse/wikipedia/C_(programming_language).html
+score	1 doc  59: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/poetry_23/index.html
+-----------------------------------------------
+Query? ^D
+$ 
+```
+
+You can see the querier prompts `Query?` and then echos the pre-processed query before computing the matches.
+Preprocessing strips leading and trailing spaces, compacts internal spaces, and lowercases all words.
 
 
 ---
-<!-- END read-git-flow -->
+<!-- END querier -->
 
-<!-- UNIT milestone -->
+<!-- UNIT querier-expressions -->
 
-# Milestone: Before git-flow Activity <a name=unit-milestone>
+# Unit: Querier parsing: expressions <a name=unit-querier-expressions>
 
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
+The querier supports queries that combine words with the *and* and *or* operators.
+Let's think about how one evaluates an expression involving operators.
+Consider an arithmetic analogy.
+
+## Arithmetic expressions
+
+Consider the following arithmetic expression:
+
+```c
+sum = a + b + c + d
+```
+
+Since addition is a *left-associative* operator, this means the same thing as
+
+```c
+sum = (((a + b) + c) + d)
+```
+
+This means we can scan the expression from left to right, accumulating a sum as we go, effectively like this:
+
+```c
+sum = 0
+sum = sum + a
+sum = sum + b
+sum = sum + c
+sum = sum + d
+```
+
+Here, the `sum` acts as an *accumulator*.
+(Indeed, many early hardware architectures include an explicit register called an 'accumulator'.)
+
+We often see this approach generalized in code:
+
+```c
+int n = 5;
+int array[n] = {42, 34, 12, -5, 19};
+int sum = 0;
+for (int i = 0; i < n; i++)
+	sum += array[i];
+printf("sum = %d; average = %f\n", sum, (float) sum / n);
+```
+
+### Precedence
+
+What if you have a mixture of operators, with precedence?
+
+Consider the following arithmetic expression:
+
+```c
+sum = a + b * c + d
+```
+
+Both addition and multiplication are *left-associative* operators, but multiplication takes *precedence* over addition.
+Thus, we implicitly rewrite the above expression as follows:
+
+```c
+sum = ((a + (b * c)) + d)
+```
+
+or, in sequence,
+
+```c
+sum = 0
+sum = sum + a 
+prod = 1
+prod = prod * b
+prod = prod * c
+sum = sum + prod
+sum = sum + d
+```
+
+Notice how we 'step aside' from the sum for a moment while we compute the product `b * c` ... using an exactly analogous process.  `prod` is an accumulator for the product; it is initialized to the *multiplicative identity* (1) instead of the *additive identity* (0), for reasons I hope are obvious.
+But then we just multiply in each of the successive items, one at a time.
+
+This generalizes to longer expressions like
+
+```c
+sum = a * b + c * d * e + f + g * h * i
+```
+
+becomes
+
+```c
+sum = 0
+prod = 1
+prod = prod * a
+prod = prod * b
+sum = sum + prod
+prod = 1
+prod = prod * c
+prod = prod * d
+prod = prod * e
+sum = sum + prod
+prod = 1
+prod = prod * f
+sum = sum + prod
+prod = 1
+prod = prod * g
+prod = prod * h
+prod = prod * i
+sum = sum + prod
+```
+
+Let's add some indentation to make this a little easier to read:
+
+```c
+sum = 0
+	prod = 1
+	prod = prod * a
+	prod = prod * b
+sum = sum + prod
+	prod = 1
+	prod = prod * c
+	prod = prod * d
+	prod = prod * e
+sum = sum + prod
+	prod = 1
+	prod = prod * f
+sum = sum + prod
+	prod = 1
+	prod = prod * g
+	prod = prod * h
+	prod = prod * i
+sum = sum + prod
+```
+
+Notice what I did with `f`, and that I *never add anything to `sum` other than `prod`*.
+
+This structure should give you a hint about how you might write code to evaluate such expressions...
+if you have a `product` function to scan the expression left to right from a given starting point, accumulating a product of individual items until it sees a `+` or the end of the expression, you can then write a function `sum` that scans the expression left to right from the start, accumulating a sum of products by calling `product` at the start and after each `+`.
+
+## Query expressions
+
+Let's map this new insight onto the TSE query syntax.
+That syntax combines *words* with two operators: *and*, *or*.
+Each operator is left-associative, just like *multiply* and *add*.
+The *and* operator takes precedence over the *or* operator, just like *multiply* takes precedence over *add*.
+Although the syntax allows *and* to be omitted, you should mentally insert an *and* wherever an operator is missing.
+
+Of course, we're not doing arithmetic; we're querying a document index for documents that contain words.
+The result of a single-word query is the set of all documents which contain that word.
+In a multi-word query expression, the "value" of each word is the set of documents matching that word, and the *and/or* operators manipulate those sets: the *and* operator computes a *set intersection*, and the *or* operator computes a *set union*.
+
+The same *accumulator* idea works here, too.
+For a sequence of words connected by *and*,
+
+```
+result = A and B and C       # original query
+result = ((A and B) and C)   # rewritten, left-associative
+
+result = A            # there is no "intersect identity", so just assign
+result = result ^ B   # here I use ^ to represent set intersection
+result = result ^ C
+```
+
+For a sequence of words connected by *or*,
+
+```
+result = X or Y
+
+result = {}           # empty set, the "union identity"
+result = result v X   # here I use v to represent set union
+result = result v Y
+```
+
+And for a more complex query we need to leverage precedence:
+
+```
+result = X or A and B and C or Y        # original query
+result = ((X or (A and B and C)) or Y)  # rewritten, per precedence
+
+result = {}
+result = result v X
+	temp = A
+	temp = temp ^ B
+	temp = temp ^ C
+result = result v temp
+	temp = Y
+result = result v temp	
+```
+
+Of course, there may be many *and sequences*, all within one *or sequence*:
+
+```
+result = A and B or P and Q or R and S and T or Z
+
+result = {}
+	temp = A
+	temp = temp ^ B
+result = result v temp
+	temp = P
+	temp = temp ^ Q
+result = result v temp
+	temp = R
+	temp = temp ^ S
+	temp = temp ^ T
+result = result v temp
+	temp = Z
+result = result v temp
+```
+
+Notice what I did with `Z`, and that I *never union anything to `result` other than `temp`*.
 
 
 ---
-<!-- END milestone -->
+<!-- END querier-expressions -->
+
+<!-- UNIT querier-chop -->
+
+# Optional: Querier parsing: chopping a string into sub-strings <a name=unit-querier-chop>
+
+Here's a nice trick for breaking a single string `char* line` into an array of strings `char* words[]`.
+In the example below, the query has two words, and there are leading spaces, separating spaces, and trailing space, terminated by a null.
+Because in C a "string" is just a pointer to an array of characters terminated by a null `\0` character, we can chop this single string into multiple strings by replacing two of the spaces with nulls, and recording a pointer to the beginning of each word.
+We don't need to allocate any memory for these new strings, or copy these strings - they stay right where they are.
+
+![diagram of Chopping a string into array of strings](media/querier/chopping.png)
+
+
+## Related example
+
+We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/covid/covid.c).
+The details are different – that code knew exactly how many fields to expect, the words were separated by precisely one comma, and there was the added complexity of quoted fields.
+
+In the query string, you don't know how many words to expect (but what is the maximum number of words in a string of length *n*?)
+
+In the query string, you may need to slide past spaces and tabs at the front of the string, or over many spaces/tabs between words, as shown above.
+So think about sliding two pointers along the array, starting at `line`.
+One pointer might be `char* word` and you slide it over to the first non-space; the other pointer might be `char* rest` and you slide it from `word` to the first non-letter.
+Squash that character `*rest` with a null, and you've created a null-terminated string starting at `word`.
+
+*Think carefully* about the edge cases, as you construct the loops and slide the pointers.
+
+
+---
+<!-- END querier-chop -->
+
+<!-- UNIT querier-testing -->
+
+# Unit: Querier fuzz-testing <a name=unit-querier-testing>
+
+In a recent unit we talked about *unit testing*, and the difference between *glass-box testing* and *black-box testing*.
+Usually, these tests are based on a carefully constructed series of test cases, devised to test all code sequences and push on the "edge cases".
+
+However, such tests are only as good as the test writer - who must study the code (for glass-box testing) or the specs (for black-box testing) to think of the suitable test cases.
+It's possible they will miss some important cases.
+
+Another solution, therefore, is ***fuzz testing***, a form of black-box testing in which you fire thousands of random inputs at the program to see how it reacts.
+The chances of triggering an unconsidered test case is far greater if you try a lot of cases!
+
+**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=acab720d-bf47-4465-b442-ad18017b5507)**
+
+We provide `fuzzquery.c`, a fuzz-testing program, for testing a querier.
+It generates a series of random queries on stdout, which it then pipes to the querier on stdin.
+Here's the core of the fuzz tester:
+
+```c
+/**************** generateQuery ****************/
+/* generate one random query and print to stdout.
+ * pull random words from the wordlist and from the dictionary.
+ */
+static void
+generateQuery(const wordlist_t* wordlist, const wordlist_t* dictionary)
+{
+  // some parameters that affect query generation
+  const int maxWords = 6;            // generate 1..maxWords
+  const float orProbability = 0.3;   // P(OR between two words)
+  const float andProbability = 0.2;  // P(AND between two words)
+  const float dictProbability = 0.2; // P(draw from dict instead of wordlist)
+
+  int qwords = rand() % maxWords + 1; // number of words in query
+  for (int qw = 0; qw < qwords; qw++) {
+    // draw a word either dictionary or wordlist
+    if ((rand() % 100) < (dictProbability * 100)) {
+      printf("%s ", dictionary->words[rand() % dictionary->nWords]);
+    } else {
+      printf("%s ", wordlist->words[rand() % wordlist->nWords]);
+    }
+
+    // last word?
+    if (qw < qwords-1) {
+      // which operator to print?
+      int op = rand() % 100;
+      if (op < (andProbability * 100)) {
+        printf("AND ");
+      }
+      else if (op < (andProbability * 100 + orProbability * 100)) {
+        printf("OR ");
+      }
+    }
+  }
+  printf("\n");
+}
+```
+
+With the following setup,
+
+```bash
+cd tse
+seed="http://cs50tse.cs.dartmouth.edu/tse/toscrape/index.html"
+pdir="data/toscrape-2"
+indx="data/toscrape-2.index"
+mkdir $pdir
+crawler/crawler $seed $pdir 2
+indx="data/toscrape-2.index"
+```
+
+And here's the output of 10 random queries:
+
+```bash
+$ querier/fuzzquery $indx 10 0
+querier/fuzzquery: generating 10 queries from 13563 words
+inthe AND quarters 
+hangs OR visited kahneman OR beneath shopping 
+nationally holery OR predicts 
+answers axell conduct OR christine OR Mississippians OR sorbonne 
+endowment OR cosmic lover sketchbook AND priest OR bfed 
+orientation iceland describe worse OR defeating 
+clerks 
+arnold streusel OR braved 
+multiplatform 
+patience OR nightstruck OR bowerbird AND antoinette AND stances 
+$
+```
+
+And here's what happens when we pipe it to our querier:
+
+```
+$ querier/fuzzquery $indx 10 0 | querier/querier $pdir $indx
+querier/fuzzquery: generating 10 queries from 13563 words
+Query: inthe and quarters 
+No documents match.
+-----------------------------------------------
+Query: hangs or visited kahneman or beneath shopping 
+Matches 3 documents (ranked):
+score   1 doc 171: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/night-shift-night-shift-1-20_335/index.html
+score   1 doc 536: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-last-painting-of-sara-de-vos_259/index.html
+score   1 doc 569: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-last-mile-amos-decker-2_754/index.html
+-----------------------------------------------
+Query: nationally holery or predicts 
+Matches 1 documents (ranked):
+score   1 doc 246: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-grand-design_405/index.html
+-----------------------------------------------
+Query: answers axell conduct or christine or mississippians or sorbonne 
+Matches 2 documents (ranked):
+score   2 doc 357: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/a-piece-of-sky-a-grain-of-rice-a-memoir-in-four-meditations_878/index.html
+score   1 doc 367: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/orchestra-of-exiles-the-story-of-bronislaw-huberman-the-israel-philharmonic-and-the-one-thousand-jews-he-saved-from-nazi-horrors_337/index.html
+-----------------------------------------------
+Query: endowment or cosmic lover sketchbook and priest or bfed 
+Matches 2 documents (ranked):
+score   1 doc  28: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/olio_984/index.html
+score   1 doc  20: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/black-dust_976/index.html
+-----------------------------------------------
+Query: orientation iceland describe worse or defeating 
+Matches 1 documents (ranked):
+score   2 doc 499: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/beowulf_126/index.html
+-----------------------------------------------
+Query: clerks 
+Matches 1 documents (ranked):
+score   1 doc 157: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/a-distant-mirror-the-calamitous-14th-century_652/index.html
+-----------------------------------------------
+Query: arnold streusel or braved 
+Matches 1 documents (ranked):
+score   1 doc 150: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/the-mathews-men-seven-brothers-and-the-war-against-hitlers-u-boats_408/index.html
+-----------------------------------------------
+Query: multiplatform 
+Matches 1 documents (ranked):
+score   1 doc 204: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/m-train_598/index.html
+-----------------------------------------------
+Query: patience or nightstruck or bowerbird and antoinette and stances 
+Matches 9 documents (ranked):
+score   5 doc 524: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/patience_916/index.html
+score   1 doc 511: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/sequential-art_5/index.html
+score   1 doc 518: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/i-hate-fairyland-vol-1-madly-ever-after-i-hate-fairyland-compilations-1-5_899/index.html
+score   1 doc 519: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-3-a-terrible-plan-lumberjanes-9-12_905/index.html
+score   1 doc 520: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-1-beware-the-kitten-holy-lumberjanes-1-4_906/index.html
+score   1 doc 521: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/lumberjanes-vol-2-friendship-to-the-max-lumberjanes-5-8_907/index.html
+score   1 doc 522: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/orange-the-complete-collection-1-orange-the-complete-collection-1_914/index.html
+score   1 doc 523: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/outcast-vol-1-a-darkness-surrounds-him-outcast-1_915/index.html
+score   1 doc 255: http://cs50tse.cs.dartmouth.edu/tse/toscrape/catalogue/category/books/young-adult_21/page-2.html
+-----------------------------------------------
+```
+
+We could generate a different series of random queries by changing the random seed, and we can run a lot more queries, too!
+
+```
+$ querier/fuzzquery $indx 10 999 | querier/querier $pdir $indx > /dev/null
+querier/fuzzquery: generating 10 queries from 13563 words
+$ querier/fuzzquery $indx 10000 9999 | querier/querier $pdir $indx > /dev/null
+querier/fuzzquery: generating 10000 queries from 13563 words
+```
+
+The fuzz tester does not test *all* aspects of the querier; in particular, it will not generate syntactically incorrect inputs.
+Those should be tested by another program, perhaps another fuzz tester.
+Furthermore, it does not verify whether the querier actually produces the right answers!
+
+For regression testing, we might save the querier output in a file, and then compare the output of a fresh test run against the saved results from earlier runs.
+If we had earlier believed those results to be correct, then seeing unchanged output would presumably indicate the results (and thus the new code) are still correct.
+
+
+---
+<!-- END querier-testing -->
 
 <!-- UNIT read-scrum -->
 
@@ -12043,17 +11473,6 @@ Read the [*The Scrum Guide*](https://www.scrum.org/resources/scrum-guide) for a 
 ---
 <!-- END read-scrum -->
 
-<!-- UNIT milestone -->
-
-# Milestone: Before Monday 10 May <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
-
 <!-- UNIT read-clean -->
 
 # Reading: Keep the build clean <a name=unit-read-clean>
@@ -12065,187 +11484,6 @@ Some final tips on testing and building code, as you head into the project.
 
 ---
 <!-- END read-clean -->
-
-<!-- UNIT cohesion -->
-
-# Unit: Cohesion and coupling <a name=unit-cohesion>
-
-In this unit we discuss some high-level design principles.
-
-* *routines* - types and names
-* *cohesion* - and why we want strong cohesion
-* *coupling* - and why we want weak coupling
-
-Many of these concepts come from chapter 5 of *Code Complete* by Steve McConnell. [Microsoft Press, 1993.]
-
-## Routines
-
-We often use the word *routine* as a general concept, to refer to  a *function* or a *procedure*.
-We typically use the word *procedure* to refer to a function with no return value.
-In other languages, routines might be called *subroutines* or *methods*.
-
-There are many reasons to break a program into *routines*:
-
-* Reduce complexity
-* Avoid duplicate code
-* Limit effects of changes (narrow scope of change to a routine)
-* Hide sequences (a form of information hiding)
-* Improve performance (optimize in one place)
-* Centralize control (e.g., controlling devices, files, data structures... more information hiding)
-* Hide data structures (classes, or abstract data types)
-* Hide global data (access routines centralize control of globals)
-* Hide pointer operations (makes it easier to read)
-* Promote code reuse (easier to reuse code in a routine)
-* Plan for a family of programs (isolate parts that may change in a few routines)
-* Improve readability (named routine is more readable; avoid deep nesting, etc.)
-* Improve portability (isolate nonportable features)
-* Isolate complex operations (algorithm, protocols, etc.)
-* Isolate use of nonstandard language functions (isolate nonportable features)
-* Simplify complicated boolean tests (inlines are great here)
-
-Routines should be well named:
-
-* a *procedure* name should be a strong verb followed by object (like *printCalendar()*).
-* a *function* name should describe its return value (like *numberOfNonzeros()*).
-* a *boolean function* name should sound like a question (like *isInternalURL()*).
-
-A good routine name
-
-* avoids nondescriptive verbs (like *do*, *perform*)
-* describes everything the routine does
-* is as long as necessary
-* follows naming conventions!
-
-A routine's body should not be **too long**.
-If you find your routine approaching 200 lines, you should break it up - or have a darn good reason you should not break it up.
-
-### Cohesion
-
-> "Cohesion refers to how closely [or strongly] the operations in a routine are related." -- McConnell
-
-One study found that 50% of high-cohesion routines were fault-free, while 18% of low-cohesion routines were fault-free.
-
-Good routines have ***strong cohesion***.
-
-**Acceptable cohesion**:
-
-* **Functional cohesion** (strongest and best kind): performs one and only one operation.
-* **Sequential cohesion**: contains operations that must be performed in a sequential order.
-* **Communicational cohesion**: contains operations that make use of the same data, but are not otherwise related.
-* **Temporal cohesion**: contains operations that do several things, because all are done at the same time.
-
-**Unacceptable cohesion**:
-
-* **Procedural cohesion**: contains operations that must be performed in a sequential order, but don't share the same data.
-* **Logical cohesion**: several things in a routine, only one executed, depending on a flag parameter.
-(Exception - it can be  ok if using a `switch` statement to call one of many other (cohesive) functions.)
-* **Coincidental cohesion**: no apparent reason for things to be together in a routine!
-
-### Coupling
-
-> "The degree of coupling refers to the strength of a connection between two routines. Coupling is a complement to cohesion." -- McConnell
-
-Good code has ***loose coupling*** among routines.
-
-> "Make the coupling of routines as simple as possible."
-
-**Criteria** for evaluating coupling between routines:
-
-* **size** (number of connections)
-* **intimacy** (directness of connection; better to use direct parameter passing than indirect global variables)
-* **visibility** (best if connection is obvious)
-* **flexibility** (how easily you can change connections)
-
-Go for minimal interconnectedness, and make what interconnections you have simple and obvious.
-"If a program were a piece of wood, you'd try to split it with the grain."
-
-
-#### Kinds of coupling
-
-* **Simple-data coupling**: the only data passed from one routine to another is through parameters, and is nonstructured.
-* **Data-structure coupling**: one routine passes a data structure to another; best if it really needs the whole data structure.
-* **Control coupling**: one routine tells the other what to do.
-* **Global-data coupling**: two routines use the same global data; may be tolerable if read-only.
-* **Pathological coupling**: one routine uses the data inside the other routine. (Somewhat hard to do in C and C++.)
-
-> "Try to create routines that depend little on other routines."
-
-
-#### Defensive programming
-
-Best practices:
-
-* Use assert() or other tests to insert sanity checks into your code.
-* Be particularly suspicious of parameters and input values that come from another module (including the user!), i.e., data that crosses a module interface.
-
-#### Routine parameters
-
-Best practices:
-
-* Put parameters in input-modify-output order; put "status" or "error" variables last.
-* Use all the parameters.
-* Use a consistent order among similar routines.
-* Document assumptions about parameters: *Preconditions* are assumptions about the parameters (or internal data-structure state) before the routine executes, and *postconditions* are assumptions about the parameters, data structure, and return value after the routine exits.
-
-#### Macros
-
-You can write *macros* in C with #define - these are handled by the C preprocessor.
-Macros can be handy, on occasion, but it is usually better to use `inline` functions or `const` variables for these purposes.
-You get better syntax, type checking, and better debugger support.
-
-## Modules
-
-A *module* is a collection of related routines that, together, encapsulate a data structure, subsystem, or task.
-In object-oriented programming, a module is typically called a *class*.
-
-Why modules?
-
-* It is sometimes necessary to have strong coupling between routines.
-* In that case you should group those routines into a *module*; the module has strong cohesion.
-* Strive for strong intra-module cohesion and loose inter-module coupling.
-* A well-designed module (in C) or class (in C++ or Java) encourages *information hiding*.
-
-#### Information hiding
-
-A good module serves to "hide" implementation details inside the module, providing a clean abstraction and clear interface to other modules.
-
-Each module programmer makes many implementation decisions, which should largely be unknown to code outside the module.
-Thus the module is
-
-* less coupled to others,
-* more maintainable,
-* more self-testable,
-* more replacable,
-* more debuggable (can insert debugging code easily),
-* more reliable (can insert checks in a few places),
-* more understandable (hides complexity).
-
-#### Collaborative work
-
-Modules (classes) are an excellent mechanism for dividing work among programmers, because module boundaries and interfaces are clear, and there is otherwise little coupling.
-Thus, the module programmer has wide flexibility and authority on the implementation details of her module, as long as she sticks to the agreed-upon interface for the module and clearly documents the interface.
-
-## Examples
-
-Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion.c);
-for each function, what kinds of cohesion and coupling do you see?
-What function could perhaps be better named?
-When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion-annotated.c) for our take on those questions.
-
-
----
-<!-- END cohesion -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Design Review <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
 
 <!-- UNIT ncurses -->
 
@@ -12330,17 +11568,6 @@ I have found the following set of functions sufficient for CS50; read the man pa
 
 ---
 <!-- END ncurses -->
-
-<!-- UNIT milestone -->
-
-# Milestone: Before Project Implementation <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
 
 <!-- UNIT read-network -->
 
@@ -13412,16 +12639,5 @@ $
 
 ---
 <!-- END threads -->
-
-<!-- UNIT milestone -->
-
-# Milestone: End of the course! <a name=unit-milestone>
-
-<!-- Shutterstock image licensed by David Kotz; unlimited web distribution -->
-![the word 'milestone' on a one-way street sign](media/milestone-shutterstock-289537016-crop.jpg)
-
-
----
-<!-- END milestone -->
 
 <!-- END -->

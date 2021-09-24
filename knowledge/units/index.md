@@ -15,6 +15,11 @@ Like any budding hacker you need to do some experimenting, find information to f
 ---
 
 
+
+
+---
+
+### Week Sep-15 Fall 2021
 * Unit: [Welcome to CS50!](overview.md)
 * Unit: [Introduction to Unix](intro-unix.md)
 * History: [Terminals](hist-terminal.md)
@@ -27,9 +32,7 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [Standard input and output](bash-stdin-out.md)
 * History: [Unix pipes](hist-pipes.md)
 * Optional: [MacOS tip](macos.md)
-* Milestone: [Before Activity 1](milestone.md)
-
-
+* Reading: [Unix and shell programming](read-shell.md)
 * Unit: [Special characters, quoting, and sed](bash-quoting.md)
 * Unit: [Shell scripts and conditional expressions](bash-conditional.md)
 * Unit: [Looping in shell](bash-loops.md)
@@ -37,26 +40,29 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [Shell 'while' loops](bash-while.md)
 * Optional: [Shell tips and tricks](bash-tips.md)
 * History: [Origin of "Artificial Intelligence"](hist-ai.md)
-* Milestone: [Before completing Lab 1](milestone.md)
 
 
-* Reading: [Unix and shell programming](read-shell.md)
+---
+
+### Week Sep-20 Fall 2021
+* Unit: [Git concepts and commands](git.md)
+* Reading: [Git reference and reading](read-git.md)
 * Reading: [C programming](read-c1.md)
 * Unit: [Introduction to C](c-intro.md)
 * Unit: [The C compilation process](c-compile.md)
-* Unit: [Git concepts and commands](git.md)
-* Reading: [Git reference and reading](read-git.md)
-* Milestone: [Before Activity 2](milestone.md)
-
-
 * History: [Programming languages](hist-c.md)
 * Unit: [C - naming constants, variables, functions](c-names.md)
 * Unit: [C - math library](c-math.md)
+* Unit: [C - global and local scopes](c-scopes.md)
+* Unit: [C - strings](c-string.md)
 * Optional: [C - operators](c-operators.md)
 * Optional: [C - control flow](c-flow.md)
 * Optional: [C - types](c-types.md)
-* Unit: [C - global and local scopes](c-scopes.md)
-* Unit: [C - strings](c-string.md)
+
+
+---
+
+### Week Sep-27 Fall 2021
 * Unit: [C - command-line arguments](c-args.md)
 * Unit: [C - files: opening, reading, and writing](c-stdio.md)
 * Optional: [C - gets, fgets, and buffer overflows](c-gets.md)
@@ -64,12 +70,6 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [C demo: sorter0, sorter1](c-sorter01.md)
 * Reading: [C programming, memory allocation, data structures](read-c2.md)
 * History: [BASIC invented here](hist-basic.md)
-* Milestone: [Before completing Lab 2](milestone.md)
-
-
-* Milestone: [Before Activity 3](milestone.md)
-
-
 * Unit: [Mad Libs](madlibs.md)
 * Unit: [Memory, pointers, and malloc](memory.md)
 * Unit: [Dynamic memory allocation](malloc.md)
@@ -85,6 +85,11 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Binary trees in C](trees.md)
 * Optional: [C - arrays of pointers and more](c-arrays.md)
 * History: [Why do we call it a 'core dump'?](core-memory.md)
+
+
+---
+
+### Week Oct-4 Fall 2021
 * Unit: [Modules and Makefiles](makefiles1.md)
 * Optional: [More about make and Makefiles](makefiles2.md)
 * Optional: [Tips about Makefiles](makefiles-tips.md)
@@ -93,12 +98,8 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Lab3 bag module](lab3-bag.md)
 * Optional: [Lab3 mem module](lab3-mem.md)
 * Optional: [Lab3 file module](lab3-file.md)
-* Milestone: [Before Activity 4](milestone.md)
-
-
 * Unit: [Comments as contracts](contracts.md)
 * Optional: [Valgrind, for debugging memory errors](valgrind.md)
-* Unit: [Debugging techniques and 'gdb'](gdb.md)
 * Reading: [Testing and debugging](read-test.md)
 * Unit: [Testing - why?](testing-intro.md)
 * Unit: [Unit testing - bag](testing-bag.md)
@@ -106,65 +107,47 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Optional: [Unit testing - binary tree](testing-trees.md)
 * Optional: [Examples of famous bugs](testing-bugs.md)
 * History: [President Kemeny on "Computers and Values”, May 1984](kemeny.md)
-* Milestone: [Before completing Lab 3](milestone.md)
-
-
 * Reading: [Practical programmer tips](read-design.md)
-* Unit: [Software design methodology](design.md)
-* Milestone: [Before Activity 5](milestone.md)
-
-
 * Reading: [Searching the web](read-search.md)
 * Unit: [Searching The Web](search.md)
 * Unit: [TSE Crawler requirements and design](crawler.md)
+
+
+---
+
+### Week Oct-11 Fall 2021
 * Optional: [Tricks for logging progress](crawler-logging.md)
 * Unit: [Building and using libraries with Makefiles](libraries.md)
 * Reading: [Bugs and debugging](read-bugs.md)
-* Milestone: [Before completing Lab 4](milestone.md)
-
-
-* Unit: [Iterators](iterators.md)
+* Unit: [Software design methodology](design.md)
 * Unit: [Indexer Design](indexer.md)
 * Reading: [More tips about coding](read-coding.md)
-* Milestone: [Before completing Lab 5](milestone.md)
 
 
-* Unit: [TSE Querier (demo)](querier.md)
-* Unit: [Querier parsing: expressions](querier-expressions.md)
-* Milestone: [Before Activity 5](milestone.md)
+---
 
-
-* Optional: [Querier parsing: chopping a string into sub-strings](querier-chop.md)
-* Unit: [Querier fuzz-testing](querier-testing.md)
-* Milestone: [Before completing Lab 6](milestone.md)
-
-
+### Week Oct-28 Fall 2021
+* Unit: [Iterators](iterators.md)
+* Unit: [Cohesion and coupling](cohesion.md)
+* Reading: [Git-flow tutorials](read-git-flow.md)
 * Unit: [Git - merge conflicts](git-conflict.md)
 * Unit: [Git flow](git-flow.md)
 * Unit: [Protecting the main branch](protect-main.md)
-* Reading: [Git-flow tutorials](read-git-flow.md)
-* Milestone: [Before git-flow Activity](milestone.md)
 
 
+---
+
+### Week Oct-25 Fall 2021
+* Unit: [TSE Querier (demo)](querier.md)
+* Unit: [Querier parsing: expressions](querier-expressions.md)
+* Optional: [Querier parsing: chopping a string into sub-strings](querier-chop.md)
+* Unit: [Querier fuzz-testing](querier-testing.md)
 * Reading: [Scrum project management](read-scrum.md)
-* Milestone: [Before Monday 10 May](milestone.md)
-
-
 * Reading: [Keep the build clean](read-clean.md)
-* Unit: [Cohesion and coupling](cohesion.md)
-* Milestone: [Before Design Review](milestone.md)
-
-
 * Optional: [nCurses](ncurses.md)
-* Milestone: [Before Project Implementation](milestone.md)
-
-
 * Extra: [Reading: Networking](read-network.md)
 * Extra: [Socket programming and TCP](sockets.md)
 * Extra: [UDP sockets](udp.md)
 * Extra: [Concurrent servers (fork)](fork.md)
 * Extra: [Concurrency with threads](threads.md)
-* Milestone: [End of the course!](milestone.md)
-
-
 <!-- END -->
