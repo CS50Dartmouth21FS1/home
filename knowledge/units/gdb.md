@@ -194,7 +194,7 @@ I strongly recommend that you go through the sequence of steps below and use the
 Don't worry, you can't break anything.
 Just like the shell commands you'll only need a subset of the the complete set of `gdb` commands to become an effective debugger.
 
-We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bugsort.c).
+We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bugsort.c).
 
 The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order.
 It then prints them out, separated by spaces.

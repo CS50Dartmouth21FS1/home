@@ -20,11 +20,11 @@ This first version of the program simply reads a list of lines into memory, and 
 It has a hard-coded limit on the length of each input line, and the number of input lines; it ignores extra characters on each line and extra lines.
 Its code comprises three files, two of which you've seen in earlier demos:
 
-* [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter0.c)
-* [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c)
-* [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h)
+* [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter0.c)
+* [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c)
+* [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h)
 
-Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter0.c).
+Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter0.c).
 
 * the inclusion of a local include file `readline.h` - indicated as local because its filename in quotes `"readline.h"` rather than brackets, as in standard include files like `<stdio.h>`.
 * use of `const` for values that will never change.
@@ -37,9 +37,9 @@ Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21
 
 ## sorter1
 
-* [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c)
-* [freadline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/freadline.c)
-* [freadline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/freadline.h)
+* [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c)
+* [freadline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/freadline.c)
+* [freadline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/freadline.h)
 
 This example shows how to use command-line arguments, and how to open and read from a file.
 

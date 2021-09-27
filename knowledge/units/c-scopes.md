@@ -34,7 +34,7 @@ Global names (variables, functions, types, etc.) are visible from the point wher
 Thus, they are typically declared near the top of the file.
 
 This rule (from the declaration to the end of the file) is the main reason why we tend to declare all a file's functions near the top of the file: so they can be called from any point within the file.
-For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c), which declares three functions near the top:
+For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c), which declares three functions near the top:
 
 ```c
 /* function prototype *declaration*; the function is *defined* below */
@@ -57,18 +57,18 @@ If a global name is declared or defined with a `static` modifier, it means that 
 If a global name is declared with an `extern` modifier, it means it is not necessarily defined (implemented) within this file; the linker will need to later find its definition in another file, and *link* its use in this file with the implementation in that other file.
 The variable may be *declared* as `extern` in all files, but must be *defined* (and not as a `static`!) in exactly one file.
 
-Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
+Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
 
 ```c
 extern bool readLine(char* buf, const int len);
 ```
 
-Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top of its file, declaring function `readLine()`.
+Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) near the top of its file, declaring function `readLine()`.
 In this case, the compiler also finds the *definition* of function `readLine()`.
 That's fine; the function is declared in several files, but defined in only one.
 
 > If neither `static` or `extern` modifier is applied, that name may be accessed from another source file... though in that file, it would need to be labeled with the `extern` modifier.
-> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
+> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
 > In such a small program, this issue is not important, but in a larger, more sophisticated program, we should mark those functions `static`.
 
 
@@ -101,7 +101,7 @@ Variables may also be declared at the beginning of a statement block, but may no
 Such variables are visible until the end of that block.
 
 The most common use of this capability is for *loop variables*, specifically, for loops.
-For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c) below.
+For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sqrt.c) below.
 
 ![labeled diagram of the sqrt code](media/c-scopes/c-scopes.png)
 

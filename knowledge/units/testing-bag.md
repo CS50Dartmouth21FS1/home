@@ -9,7 +9,7 @@ This unit explores a clever approach to *glass-box* testing of a single-file mod
 In [Lab3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) you are provided an implementation of the **bag** module; an earlier [unit video](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/lab3-bag.md) walks through the module code.
 The module includes a simple unit-test program `bagtest.c`; is that program a glass-box or black-box testing program?
 
-In this unit we explore a *glass-box* approach to unit-test **bag**, right inside `bag.c`; it is found in the example called [bag-unit](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag-unit).
+In this unit we explore a *glass-box* approach to unit-test **bag**, right inside `bag.c`; it is found in the example called [bag-unit](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag-unit).
 Study the code; here's an overview.
 
 Notice we added a `main()` function at the bottom of `bag.c`.

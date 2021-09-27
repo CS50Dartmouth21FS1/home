@@ -54,7 +54,7 @@ If we have a *pointer to a struct,* however, we normally use `->` to dereference
 
 ## Linked lists
 
-In our continuing series of examples, [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c), we declare a `struct listnode` and use it to build a linked list.
+In our continuing series of examples, [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c), we declare a `struct listnode` and use it to build a linked list.
 Each list node has a pointer to a string and a pointer to the next node.
 The list includes a dummy *head node* to simplify list management.
 The variable `head` is a pointer to that dummy node.
@@ -77,16 +77,16 @@ After adding three nodes, the list might look like this:
 ## Examples
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b082ed1e-523a-4eb0-a606-ad0b011b85c7)**
-of [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), which revises [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) to use linked list instead of an array.
+of [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), which revises [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) to use linked list instead of an array.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6125845-a074-46b6-8b2d-ad0b01396b0b)**
-of [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c), which extends [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c) to keep the list sorted.
+of [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c), which extends [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c) to keep the list sorted.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ce1280c4-6bd9-49b8-ac56-ad0b013b5758)**
-of [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c), which extends [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c) to remove duplicates.
+of [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c), which extends [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c) to remove duplicates.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=47f9aac8-8bae-4f35-891c-ad0b013ec75b)**
-of [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter7.c), which extends [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c) to free the list at the end.
+of [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter7.c), which extends [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c) to free the list at the end.
 
 To see what changes from version to version, try something like this:
 
@@ -106,7 +106,7 @@ I decided to record my thought process while debugging, in case you might find i
 **[:arrow_forward: Video: debugging](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=284d8c5c-565a-40ba-93c5-acb10000603d)**.
 After finding and fixing the bug, I walk through another approach that you may find useful.
 
-The corrected program is now called [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c).
+The corrected program is now called [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c).
 
 ## Coding style - memory allocation
 
@@ -123,13 +123,13 @@ For example, if your program manipulates things of type `struct listnode`, you w
 The first function calls `malloc(sizeof(struct listnode))` and initializes all of its contents, perhaps using parameters passed by the caller.
 The second calls `free(nodep)`.
 Both involve careful error-checking code.
-See example [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter7.c).
+See example [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter7.c).
 
 There are many advantages to this approach:
 
 * The mainline code is more readable, because it's clear what `listnode_new()` is doing.
 * The `new` function acts like a 'constructor' in object-oriented languages and can ensure the newly returned memory is initialized to something reasonable (at least, not the garbage returned by `malloc`).
 * Code involving `malloc` can sometimes be tricky, and you isolate that trickiness in one spot and focus on getting it right once.
-* Some new types might need multiple `malloc` calls, as in our linked-list examples [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c).
+* Some new types might need multiple `malloc` calls, as in our linked-list examples [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c).
 All those `malloc` calls (and corresponding `free` calls) can be in the `new`/`delete` functions.
 * You can insert debugging output or reference-counting logic, or set debugger breakpoints, in these `new`/`free` functions and immediately have that feature apply to *all* occurrences of your program's work with this type.

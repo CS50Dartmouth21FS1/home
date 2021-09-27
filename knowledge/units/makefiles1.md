@@ -418,7 +418,7 @@ clean:
 
 The macro definitions at the top make it easy for a reader to quickly see what program will be built and from what files.
 
-I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8-makefile) in our examples directory.
+I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
 You can play with it by copying all the relevant files, e.g.,
 
 ```bash

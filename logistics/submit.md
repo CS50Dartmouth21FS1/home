@@ -116,4 +116,4 @@ Thus, for example,
 The lab specs will often provide more specific instructions.
 
 Use of a good `.gitignore` file and care when using `git add` will help avoid the addition of extraneous files.
-Most lab starter kits come with a `.gitignore` file, which you can extend; we also include CS50-recommended rules as [.gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) in the examples repo.
+Most lab starter kits come with a `.gitignore` file, which you can extend; we also include CS50-recommended rules as [.gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/main/.gitignore) in the examples repo.

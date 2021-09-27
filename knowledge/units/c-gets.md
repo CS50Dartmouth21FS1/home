@@ -21,7 +21,7 @@ I won't go into more detail here, because it's too much of a digression... in th
 
 Let's look at an example that could have been named `really-bad-code.c`.
 
-**Example: [buffer-overflow.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/buffer-overflow.c)**
+**Example: [buffer-overflow.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/buffer-overflow.c)**
 
 Warning! this does not follow CS50 style!
 Even the compiler warns us about the danger:

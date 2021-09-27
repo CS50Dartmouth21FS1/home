@@ -22,7 +22,7 @@ $ mygcc sqrt.c -lm -o sqrt
 
 The `-l` option indicates you want to link with one of the standard libraries, and the library called `m` is the math library.
 
-Look at the example [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c), and the following example run:
+Look at the example [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sqrt.c), and the following example run:
 
 ```bash
 $ ./sqrt

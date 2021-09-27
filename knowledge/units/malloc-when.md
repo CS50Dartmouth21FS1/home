@@ -15,7 +15,7 @@ There are two ways to allocate space in memory for a string (an array of `char`)
 2. **malloc space for an array** if you do not know the size of the array, need to return the array (pointer) to the caller of the function allocating the array, or need to store the array pointer in a data-structure that outlives this function call.
 
 In *both* cases the resulting array variable is a pointer, i.e., the address of the first item in the array.
-Recall that pointers are just addresses in memory, as explained in the [memory unit](#unit-memory) and demonstrated in the [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c) example.
+Recall that pointers are just addresses in memory, as explained in the [memory unit](#unit-memory) and demonstrated in the [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c) example.
 
 Let's look at each of those two cases.
 

@@ -2282,7 +2282,7 @@ If you `cd` to a directory with an executable file called, say, `ls` and you don
 If `.` is on your `PATH` before `/bin` you will run the local command `./ls` instead of the official `/bin/ls`... and the local `ls` may be malicious and do something bad!
 
 Fourth, this script has no comments, and is limited to png files.
-Let's look instead at [imagepage.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/imagepage.sh).
+Let's look instead at [imagepage.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/imagepage.sh).
 
 ```bash
 #!/bin/bash
@@ -2445,12 +2445,12 @@ We have come across some of them already.
 The variable `$#` tells you how many arguments were on the command line; if there were three arguments, for example, they would be available as `$1`, `$2`, and `$3`.
 In the command line `myscript.sh a b c`, then, `$#=3`, `$0=myscript.sh`, `$1=a`, `$2=b`, and `$3=c`.
 
-See example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/args.sh).
+See example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/args.sh).
 It prints `$#` and `$0` as well as `$1`, `$2`, `$3`.
 It double-quotes the variable substitution, but also prints single-quotes so we can easily see the beginning and ending of each string substituted.
 Try it with no arguments, and one or two arguments.
 
-The two variables `$*` and `$@` both provide the list of command-line arguments, but with subtle differences; again, look at example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/args.sh), to see the difference.
+The two variables `$*` and `$@` both provide the list of command-line arguments, but with subtle differences; again, look at example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/args.sh), to see the difference.
 
 Let's try it on a command with four simple arguments.
 
@@ -2549,7 +2549,7 @@ The `while do` command is perfect for this.
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4813c35b-d598-4ae0-94d2-acfc016f900c)**
 
-The contents of [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1a.sh) use the 'while-do' construct.
+The contents of [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1a.sh) use the 'while-do' construct.
 The script allows the user to guess a number between 1-100.
 
 ```bash
@@ -2606,7 +2606,7 @@ $
 Notice the command used by `while` is `[`, that is, the `test` command.
 As written, the expression `[ $guess != $answer ]` compares the contents of the two variables *as strings*.
 In this game, though, we want the user to guess a number, so we really should compare them *as numbers*.
-We need to use the more advanced bash operator `[[`, which leads us to [guess1b.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1b.sh).
+We need to use the more advanced bash operator `[[`, which leads us to [guess1b.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1b.sh).
 The loop now looks like:
 
 ```bash
@@ -2625,7 +2625,7 @@ For more info, see the relevant section of the [Bash reference manual](https://w
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=929ba055-7374-4e0e-ba5e-acfc01717e04)**
 
 Let's make this game more interesting by giving the user guidance; notice the `if` statement inside the loop.
-See [guess2.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess2.sh):
+See [guess2.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess2.sh):
 
 ```bash
 while [[ $guess -ne $answer ]]; do
@@ -2681,7 +2681,7 @@ $
 
 Like most procedural languages, shell scripts have structure and function support.
 Typically, it is a good idea to use functions to make scripts more readable and structured.
-In what follows, we add a function to create [guess3.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess3.sh).
+In what follows, we add a function to create [guess3.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess3.sh).
 To demonstrate function arguments, I updated the prompt to remind the user of the expected range of their guess.
 
 ```bash
@@ -2733,7 +2733,7 @@ Finally, we should be careful about what the user enters as a guess.
 It might be an empty string, or a non-number, or multiple words.
 We should never use `$guess` without quoting it, `"$guess"`, because otherwise the shell will paste all of its words separately... likely leading to syntax errors.
 
-In [guess4.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess4.sh) we now see why it was important to move the user input into a function: because that function can also encapsulate the error-checking code.
+In [guess4.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess4.sh) we now see why it was important to move the user input into a function: because that function can also encapsulate the error-checking code.
 
 ```bash
 function askguess() {
@@ -2784,7 +2784,7 @@ although the [Bash reference manual](https://www.gnu.org/software/bash/manual/ba
 
 Sometimes you want to discard the first argument (or two) and then loop over the remainder.
 The `shift` command is there to help!
-Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/shifter.sh):
+Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/shifter.sh):
 
 ```bash
 echo I see $# arguments: "$@"
@@ -3290,7 +3290,7 @@ The inclusion of derived files can lead to conflicts, and (because derived binar
 It is also a good idea to exclude editor-produced backup files, operating-system files (like `.DS_Store` on MacOS) that are meaningful only to the local user, and so forth.
 
 So, git looks for a file called `.gitignore` in the current working directory *and any parent directory, up to the root of the repository*, to see what files you want it to ignore.
-For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/.gitignore) file, and place it in the root directory of every lab starter kit.
+For CS50 we recommend this [gitignore](https://github.com/CS50Dartmouth21FS1/examples/blob/main/.gitignore) file, and place it in the root directory of every lab starter kit.
 This file excludes common patterns, like the `.o` object files produced by the C compiler and `~` backup files produced by emacs.
 
 **You will need to add/extend gitignore files.**
@@ -3427,7 +3427,7 @@ A *compiler*, on the other hand, checks the code and translates it to a simple c
 
 ## Examples
 
-In class we iteratively build a C version of our friend [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1a.sh), and then enhance it.
+In class we iteratively build a C version of our friend [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1a.sh), and then enhance it.
 
 > ***NOTE: if the `mygcc` command doesn't work for you on plank,***
 > you may have overlooked one of the setup steps in the 'Systems' section of
@@ -3494,7 +3494,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1.c): (simple replacement for the bash program)
+[guess1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1.c): (simple replacement for the bash program)
 
 * notice the `#include` files, which textually include some standard C definitions into the code there.
 * specifically, we always include `stdio.h` and `stdlib.h` because they provide important library functions.
@@ -3509,7 +3509,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess2.c): (provide the user guidance toward answer)
+[guess2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess2.c): (provide the user guidance toward answer)
 
 * we just add an `if` statement to provide guidance.
 * we always use curly brackets for nesting, though they are not always required.
@@ -3518,7 +3518,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess3.c): (move the repeated code into a function)
+[guess3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess3.c): (move the repeated code into a function)
 
 * we move the repeated ask/input code to a function.
 * we place the function before `main()` because otherwise `main` will not know it exists.
@@ -3529,7 +3529,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess4.c): (move the function to the bottom, so main() stays at top)
+[guess4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess4.c): (move the function to the bottom, so main() stays at top)
 
 * we move the function to the bottom, allowing `main()` to stay at the top, for readability.
 * to do so, we must *declare* the function `askGuess` before `main()` so `main` knows it exists.
@@ -3539,7 +3539,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess5.c): (add command-line arguments, check validity of guess, allow them to quit early)
+[guess5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess5.c): (add command-line arguments, check validity of guess, allow them to quit early)
 
 * we add command-line arguments, which arrive as parameters to `main()`: an array of strings, and a number of arguments.
 * the command name is always `argv[0]`, and subsequent arguments (if any) are `argv[1]`, ...
@@ -3556,7 +3556,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c): (read input as a string, convert to integer, check input more carefully)
+[guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c): (read input as a string, convert to integer, check input more carefully)
 
 This example takes a major step forward, by leveraging a separate module I've written, in `readline.c` and `readline.h`.
 (See the unit about the [compilation process](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-compile.md).)
@@ -3653,7 +3653,7 @@ We'll come back to explain pointers later.
 
 ## atoi
 
-Another example, which explores the same `sscanf` trick used in `guess6`, is [atoi.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/atoi.c).
+Another example, which explores the same `sscanf` trick used in `guess6`, is [atoi.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/atoi.c).
 
 There actually is a function `atoi()` in the standard C library, but I find it too weak; it does not adequately catch and indicate errors in translation, like the approach in our version.
 
@@ -3809,7 +3809,7 @@ $ mygcc sqrt.c -lm -o sqrt
 
 The `-l` option indicates you want to link with one of the standard libraries, and the library called `m` is the math library.
 
-Look at the example [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c), and the following example run:
+Look at the example [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sqrt.c), and the following example run:
 
 ```bash
 $ ./sqrt
@@ -3880,7 +3880,7 @@ Global names (variables, functions, types, etc.) are visible from the point wher
 Thus, they are typically declared near the top of the file.
 
 This rule (from the declaration to the end of the file) is the main reason why we tend to declare all a file's functions near the top of the file: so they can be called from any point within the file.
-For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c), which declares three functions near the top:
+For example, look at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c), which declares three functions near the top:
 
 ```c
 /* function prototype *declaration*; the function is *defined* below */
@@ -3903,18 +3903,18 @@ If a global name is declared or defined with a `static` modifier, it means that 
 If a global name is declared with an `extern` modifier, it means it is not necessarily defined (implemented) within this file; the linker will need to later find its definition in another file, and *link* its use in this file with the implementation in that other file.
 The variable may be *declared* as `extern` in all files, but must be *defined* (and not as a `static`!) in exactly one file.
 
-Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
+Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c); because it includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) near the top, the code from that file is incorporated into `guess6` right at that point, including the line
 
 ```c
 extern bool readLine(char* buf, const int len);
 ```
 
-Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) near the top of its file, declaring function `readLine()`.
+Later, in a separate run of the compiler, [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c) *also* includes [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) near the top of its file, declaring function `readLine()`.
 In this case, the compiler also finds the *definition* of function `readLine()`.
 That's fine; the function is declared in several files, but defined in only one.
 
 > If neither `static` or `extern` modifier is applied, that name may be accessed from another source file... though in that file, it would need to be labeled with the `extern` modifier.
-> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
+> Look again at [guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c); the three functions it declares and defines are not marked `static` or `extern`; they would thus be potentially visible to other code modules linked with this program.
 > In such a small program, this issue is not important, but in a larger, more sophisticated program, we should mark those functions `static`.
 
 
@@ -3947,7 +3947,7 @@ Variables may also be declared at the beginning of a statement block, but may no
 Such variables are visible until the end of that block.
 
 The most common use of this capability is for *loop variables*, specifically, for loops.
-For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sqrt.c) below.
+For example, we diagram the core of [sqrt.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sqrt.c) below.
 
 ![labeled diagram of the sqrt code](media/c-scopes/c-scopes.png)
 
@@ -4084,7 +4084,7 @@ For example:
 
 `fred++`  will get (old) value and then increment `fred`
 
-Take a close look at the output of [increment.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/increment.c):
+Take a close look at the output of [increment.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/increment.c):
 
 ```bash
 $ mygcc -o increment increment.c
@@ -4117,7 +4117,7 @@ See H&S pp.231-233.
 You can also combine an operation with an assignment;
 for example, `a += 2` is equivalent to `a = a + 2`.
 
-Explore the example [combined.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/combined.c).
+Explore the example [combined.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/combined.c).
 
 
 ## Precedence of operators
@@ -4371,7 +4371,7 @@ C's only guarantee is that:
 
     sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long)
 
-Examine [data-types.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/data-types.c), which defines variables of each of the base types and prints the `sizeof` each one.
+Examine [data-types.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/data-types.c), which defines variables of each of the base types and prints the `sizeof` each one.
 
 ```bash
 $ mygcc data-types.c -o data-types
@@ -4477,13 +4477,13 @@ Those come later.
 Variables, constants, and functions can be declared `extern`, meaning that their implementation occurs in a different C source file.
 It is common to see `extern` declarations in a header (`.h`) file, which when included in a source (`.c`) file allows the compiler to learn about the existence of something whose definition lays elsewhere.
 The compiler makes a note of it, leaving it for the linker to resolve later.
-For example, we see the following *declaration* in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h):
+For example, we see the following *declaration* in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h):
 
 ```c
 extern bool readLine(char* buf, const int len);
 ```
 
-and then in [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c) we see the *definition* (implementation) of that function:
+and then in [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c) we see the *definition* (implementation) of that function:
 
 ```c
 bool 
@@ -4543,7 +4543,7 @@ int main(const int argc, const char* argv[])
 The following program prints out its command line.
 Note that `argv[0]` is the command name and `argv[1]` ... `argv[argc-1]` are the command-line arguments (after any expansion or subsitutions done by the shell).
 
-Look at a quick run of the tiny program [arguments.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/arguments.c):
+Look at a quick run of the tiny program [arguments.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/arguments.c):
 
 ```bash
 $ mygcc arguments.c -o args
@@ -4569,7 +4569,7 @@ We can pass that pointer to functions like `printf`, wherever it expects a strin
 A common activity at the start of a C program is to search the argument list for command-line switches commencing with a dash character.
 The remaining command-line parameters are often assumed to be filenames.
 
-Study the example [nosort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/nosort.c), which shows one way to parse the command line of a hypothetical replacement for the `sort` command.
+Study the example [nosort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/nosort.c), which shows one way to parse the command line of a hypothetical replacement for the `sort` command.
 Its commandline should look like `nosort [-r] [-u] [-n] filename...`
 as follows:
 
@@ -4773,7 +4773,7 @@ We'll talk more about addresses and pointers in an upcoming unit.
 
 Below is a common idiom that reads a file character by character and, in this case, simply prints it right back out.
 (It's like `cat` without command-line arguments.)
-From [getput.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/getput.c):
+From [getput.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/getput.c):
 
 ```c
   while ((c = getchar()) != EOF) {
@@ -4795,7 +4795,7 @@ For details on this family of functions, `man 3 getchar`.
 
 ## Choose the right approach
 
-Sometimes, it is convenient to read input line by line; for that we recommend the `readline()` function from [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c).
+Sometimes, it is convenient to read input line by line; for that we recommend the `readline()` function from [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c).
 
 Other times, it is more convenient for the logic of the program to read input character by character, as above.
 
@@ -4840,7 +4840,7 @@ I won't go into more detail here, because it's too much of a digression... in th
 
 Let's look at an example that could have been named `really-bad-code.c`.
 
-**Example: [buffer-overflow.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/buffer-overflow.c)**
+**Example: [buffer-overflow.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/buffer-overflow.c)**
 
 Warning! this does not follow CS50 style!
 Even the compiler warns us about the danger:
@@ -5000,11 +5000,11 @@ This first version of the program simply reads a list of lines into memory, and 
 It has a hard-coded limit on the length of each input line, and the number of input lines; it ignores extra characters on each line and extra lines.
 Its code comprises three files, two of which you've seen in earlier demos:
 
-* [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter0.c)
-* [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.c)
-* [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h)
+* [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter0.c)
+* [readline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.c)
+* [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h)
 
-Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter0.c).
+Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter0.c).
 
 * the inclusion of a local include file `readline.h` - indicated as local because its filename in quotes `"readline.h"` rather than brackets, as in standard include files like `<stdio.h>`.
 * use of `const` for values that will never change.
@@ -5017,9 +5017,9 @@ Here are some things to notice in [sorter0.c](https://github.com/CS50Dartmouth21
 
 ## sorter1
 
-* [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c)
-* [freadline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/freadline.c)
-* [freadline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/freadline.h)
+* [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c)
+* [freadline.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/freadline.c)
+* [freadline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/freadline.h)
 
 This example shows how to use command-line arguments, and how to open and read from a file.
 
@@ -5088,7 +5088,7 @@ The other players -- who cannot see the story -- respond with words, and the fir
 When all blanks are full, the first player reads the complete story.
 The results are often amusing!
 
-In [Activity 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/activities/activity3) we look at [madlib.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/madlib.c).
+In [Activity 3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/activities/activity3) we look at [madlib.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/madlib.c).
 Read the code and the questions posed in the activity, carefully, before you look at the 
 [solution](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/activities/activity3/solution.md).
 It's worth studying!
@@ -5110,16 +5110,16 @@ These same concepts underly nearly all procedural languages, though some languag
 In this unit we use a set of [slides](media/memory/memory-pointers-C.pdf) to explain memory, addresses, and pointers, complementing the notes below.
 The slides reference several examples:
 
-* [pointer0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer0.c)
-* [pointer1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer1.c)
-* [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer2.c)
-* [pointer3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer3.c)
-* [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c)
-* [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c)
+* [pointer0.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer0.c)
+* [pointer1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer1.c)
+* [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer2.c)
+* [pointer3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer3.c)
+* [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c)
+* [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c)
 
 Since then, we added another example:
 
-* [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c)
+* [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c)
 
 ## Memory, and addresses
 
@@ -5145,7 +5145,7 @@ Because `xp` has type `int*`, `*xp` has type int, and we are able to assign that
 
 > By the way, the `NULL` pointer is simply address zero (0x00000).
 The OS arranges for that memory segment to be illegal for reading or for writing, so if you try to dereference a null pointer for reading or writing (think `char* p=NULL; char c = *p;`) the OS will catch it and trigger a 'segmentation fault'.
-> Compile and run [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c) to experience this 'segfault' for yourself!
+> Compile and run [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c) to experience this 'segfault' for yourself!
 
 Check out this [animated explanation of pointers](https://www.youtube.com/watch?v=5VnDaHBi8dM).
 Fun!
@@ -5160,7 +5160,7 @@ Each byte in memory has a unique numeric *address*, such as from 0x00000000 thro
 
 C stores all your program's code, and all of the data your process manipulates, in four distinct regions of memory (aka *segments*).
 There's nothing special about each region - they're all somewhere in that linear sequence of bytes - but C manages each differently.
-The [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c) example does a nice job of explaining and demonstrating the fact that pointers are just addresses, and distinguishing these four regions.
+The [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c) example does a nice job of explaining and demonstrating the fact that pointers are just addresses, and distinguishing these four regions.
 
 Let's look at each region in turn.
 
@@ -5247,7 +5247,7 @@ We'll get into the details in one of the next units.
 
 ## crash.c
 
-Let's look at [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/crash.c) to see what happens when we dereference a NULL pointer.
+Let's look at [crash.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/crash.c) to see what happens when we dereference a NULL pointer.
 
 ```c
 int main()
@@ -5343,7 +5343,7 @@ Unlike `malloc()`, `calloc()` initializes the chunk to all-zeroes, and `realloc(
 
 ## Example: sorter2
 
-Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c).
+Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c).
 It uses a new "readLine" function called `freadLinep`, which allocates space for the string returned.
 
 > As an aside, notice `readlinep.c` has a "unit test" at the bottom.
@@ -5356,7 +5356,7 @@ You may want to read more about the [implementation](https://github.com/CS50Dart
 
 ## Example: sorter3
 
-We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter3.c).
+We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter3.c).
 
 This example is admittedly a bit advanced for us at this point; it demonstrates use of the generic pointer type `void*`, the need to *cast* our pointers to that type, and the use of function pointers.
 We'll come back to function pointers later!
@@ -5406,7 +5406,7 @@ There are two ways to allocate space in memory for a string (an array of `char`)
 2. **malloc space for an array** if you do not know the size of the array, need to return the array (pointer) to the caller of the function allocating the array, or need to store the array pointer in a data-structure that outlives this function call.
 
 In *both* cases the resulting array variable is a pointer, i.e., the address of the first item in the array.
-Recall that pointers are just addresses in memory, as explained in the [memory unit](#unit-memory) and demonstrated in the [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointers.c) example.
+Recall that pointers are just addresses in memory, as explained in the [memory unit](#unit-memory) and demonstrated in the [pointers.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointers.c) example.
 
 Let's look at each of those two cases.
 
@@ -5595,7 +5595,7 @@ To summarize: it is totally fine to allocate narrow-scope string variables, or o
 
 **[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ddb533aa-1a98-45f1-84d3-ad0a0011f32d)**
 
-Earlier we developed a simple `readline()` function (and its companion `freadline()` to read from a file), which in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h) has prototype
+Earlier we developed a simple `readline()` function (and its companion `freadline()` to read from a file), which in [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h) has prototype
 
 ```c
 extern bool readLine(char *buf, const int len);
@@ -5605,7 +5605,7 @@ This would read from stdin into `buf` until it encountered a newline, or the buf
 In the latter case it would return false and discard the whole line of input.
 
 To be more accommodating, we developed `readLinep` (and its companion `freadLinep`).
-In [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.h) we see the prototypes:
+In [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.h) we see the prototypes:
 
 ```c
 extern char* readLinep(void);
@@ -5617,7 +5617,7 @@ Notice that `readLinep` is an "inline" function, which means that it is compiled
 
 ## freadLinep
 
-The definition (implementation) of `freadLinep` is in [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.c).
+The definition (implementation) of `freadLinep` is in [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.c).
 
 Notice it returns a string - and yet it takes no pointer to a buffer.
 Instead, it allocates heap memory and returns a pointer to the new string; it returns NULL on error.
@@ -5689,12 +5689,12 @@ Recall the [process of compiling a C program](https://github.com/CS50Dartmouth21
 ![](media/c-compile/compilation.png)
 
 Let's take a closer look at the contents and purpose of `readlinep.h`.
-That file was first used in the example [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c), and in all subsequent examples of that series.
+That file was first used in the example [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c), and in all subsequent examples of that series.
 
 These examples actually depend on *two* files:
 
-* [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.c): a C 'source' file that *defines* the function `readLinep`.
-* [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readlinep.h): a C 'header' file that *declares* the function `readLinep`, used by any source file that wants to invoke the function.
+* [readlinep.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.c): a C 'source' file that *defines* the function `readLinep`.
+* [readlinep.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readlinep.h): a C 'header' file that *declares* the function `readLinep`, used by any source file that wants to invoke the function.
 
 **In CS50, *every* source file that does not include `main()` will need a corresponding header file, a header file that must be included both by that source file and by any other source file needing to interface with that source file.**
 
@@ -5775,7 +5775,7 @@ To repeat,
 
 Recall the [unit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md) about conditional compilation with `#ifdef...#endif`.
 As a matter of style, and sometimes necessity, we use these same directives in *every* header file.
-Take another look at [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/readline.h); all of its content is wrapped in an `#ifdef`:
+Take another look at [readline.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/readline.h); all of its content is wrapped in an `#ifdef`:
 
 ```c
 #ifndef __READLINEP_H__
@@ -5866,7 +5866,7 @@ You learned about linked lists in CS10, and may want to review the CS10 linked-l
 * [SimpleList.java](media/cs10/SimpleList.java)
 * [SinglyLinked.java](media/cs10/SinglyLinked.java)
 
-You may want to review the material we discussed at the end of the last unit, and study the code for [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c) and following.
+You may want to review the material we discussed at the end of the last unit, and study the code for [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c) and following.
 
 
 
@@ -5883,7 +5883,7 @@ You may want to review the material we discussed at the end of the last unit, an
 A demonstration of a method for hiding the messy work of command-line argument parsing & validating, in a utility function I like to call `parseArgs()`.
 As your own programs become more complicated, I highly recommend you take a similar approach - it declutters the `main()` function so the reader can focus on the top-level logic of the program, clearly separating the code required to parse the command line from the logic of actually doing what the program is meant to do.
 
-See the completed example code [parseArgs.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/parseArgs.c).
+See the completed example code [parseArgs.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/parseArgs.c).
 
 
 ---
@@ -6025,7 +6025,7 @@ If we have a *pointer to a struct,* however, we normally use `->` to dereference
 
 ## Linked lists
 
-In our continuing series of examples, [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c), we declare a `struct listnode` and use it to build a linked list.
+In our continuing series of examples, [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c), we declare a `struct listnode` and use it to build a linked list.
 Each list node has a pointer to a string and a pointer to the next node.
 The list includes a dummy *head node* to simplify list management.
 The variable `head` is a pointer to that dummy node.
@@ -6048,16 +6048,16 @@ After adding three nodes, the list might look like this:
 ## Examples
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b082ed1e-523a-4eb0-a606-ad0b011b85c7)**
-of [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), which revises [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) to use linked list instead of an array.
+of [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), which revises [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) to use linked list instead of an array.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6125845-a074-46b6-8b2d-ad0b01396b0b)**
-of [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c), which extends [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c) to keep the list sorted.
+of [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c), which extends [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c) to keep the list sorted.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ce1280c4-6bd9-49b8-ac56-ad0b013b5758)**
-of [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c), which extends [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c) to remove duplicates.
+of [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c), which extends [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c) to remove duplicates.
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=47f9aac8-8bae-4f35-891c-ad0b013ec75b)**
-of [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter7.c), which extends [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c) to free the list at the end.
+of [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter7.c), which extends [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c) to free the list at the end.
 
 To see what changes from version to version, try something like this:
 
@@ -6077,7 +6077,7 @@ I decided to record my thought process while debugging, in case you might find i
 **[:arrow_forward: Video: debugging](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=284d8c5c-565a-40ba-93c5-acb10000603d)**.
 After finding and fixing the bug, I walk through another approach that you may find useful.
 
-The corrected program is now called [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c).
+The corrected program is now called [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c).
 
 ## Coding style - memory allocation
 
@@ -6094,14 +6094,14 @@ For example, if your program manipulates things of type `struct listnode`, you w
 The first function calls `malloc(sizeof(struct listnode))` and initializes all of its contents, perhaps using parameters passed by the caller.
 The second calls `free(nodep)`.
 Both involve careful error-checking code.
-See example [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter7.c).
+See example [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter7.c).
 
 There are many advantages to this approach:
 
 * The mainline code is more readable, because it's clear what `listnode_new()` is doing.
 * The `new` function acts like a 'constructor' in object-oriented languages and can ensure the newly returned memory is initialized to something reasonable (at least, not the garbage returned by `malloc`).
 * Code involving `malloc` can sometimes be tricky, and you isolate that trickiness in one spot and focus on getting it right once.
-* Some new types might need multiple `malloc` calls, as in our linked-list examples [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter6.c).
+* Some new types might need multiple `malloc` calls, as in our linked-list examples [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c), [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c), and [sorter6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter6.c).
 All those `malloc` calls (and corresponding `free` calls) can be in the `new`/`delete` functions.
 * You can insert debugging output or reference-counting logic, or set debugger breakpoints, in these `new`/`free` functions and immediately have that feature apply to *all* occurrences of your program's work with this type.
 
@@ -6172,7 +6172,7 @@ A function pointer is simply that address.
 
 We can refer to the function's address simply by naming the function, without the syntax of calling a function.
 That is, `foo` is, by itself, the address of a function, whereas `foo(a, b, c)` calls that function and passes arguments `a`, `b`, and `c`.
-In our [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/pointer2.c) example, we passed the address of functions `main` and `change` to `printf` so it could print those addresses for us to examine.
+In our [pointer2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/pointer2.c) example, we passed the address of functions `main` and `change` to `printf` so it could print those addresses for us to examine.
 
 If I have a function called `myPrint`, like this:
 
@@ -6240,7 +6240,7 @@ Here the `struct` type itself is not even named, but the typedef is formed and c
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3a2f1124-d3d0-4b37-bcb0-ad0b0147e91d)**
 
 Here, we live-code a *bag* data structure and use it to make a new version of our `sorter` series.
-We start from [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter5.c) and modify it with the goal of coding functions that manipulate a generic "bag of things".
+We start from [sorter5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter5.c) and modify it with the goal of coding functions that manipulate a generic "bag of things".
 
 > The video is long, but builds up the entire module from scratch and talks through *why* each approach is taken.
 > The resulting implementation is slightly different than the resulting clean version of the code, linked below; I encourage you to study those files and note the comments and other stylistic aspects of a complete module.
@@ -6267,9 +6267,9 @@ The example demonstrates
  * The use of `void*` to represent "a pointer to anything" and its use to build a bag of generic things.
 
 The complete program, after some cleanup, is in 
-[sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8.c),
-[bag8.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag8.h),
-[bag8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag8.c).
+[sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8.c),
+[bag8.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag8.h),
+[bag8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag8.c).
 
 A complete *bag* module is included in the [Lab 3 starter kit](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3).
 
@@ -6304,7 +6304,7 @@ Review those lectures, and code examples:
 
 ## Tree module
 
-The ultimate tree module ([tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/)) has the following files:
+The ultimate tree module ([tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/)) has the following files:
 
 * `Makefile`, with rules to compile and test the code.
 * `tree.h`, which defines the interface to this module.
@@ -6331,7 +6331,7 @@ In this example, the recursion elegantly handles the base case, happily passing 
 
 The ultimate `tree` was originally developed as a series of successively better examples:
 
-***Example: [tree0](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree0/)***
+***Example: [tree0](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree0/)***
 
 The original binary-tree module stores integer 'data', each with a unique integer 'key'.
 A simple test program (which could be improved!) demonstrates how to use `tree_insert` to build a tree; it could have called `tree_new` the first time, but does not have to do so as long as it keeps track of the pointer returned by the first call.
@@ -6339,17 +6339,17 @@ Note the use of recursion in `tree_insert` and `tree_find`, and look for the use
 
 Notice the "phony" Makefile target that allows you to type `make test` -- compiling and running the test program all in one command -- and the phony target `make clean` that will remove the compiled program, intermediate files, and editor backup files.
 
-***Example: [tree1](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree1/)***
+***Example: [tree1](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree1/)***
 
 This version introduces a `typedef` to make the `struct treenode` type more opaque and yet more readable for users of this module.
 
-***Example: [tree2](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree2/)***
+***Example: [tree2](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree2/)***
 
 This version changes the tree from storing integers (with integer keys) to storing arbitrary pointers (with integer keys).
 This tree is much more versatile because it can store pointers to any type of thing.
 The test code only stores strings (which have addresses in static/global storage) but could have stored things created with `malloc`; it's up to the user of the `tree` module to manage the pointers stored in the tree.
 
-***Example: [tree3](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree3/)***
+***Example: [tree3](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree3/)***
 
 This code demonstrates an important design pattern:
 
@@ -6367,7 +6367,7 @@ This design also gives us the possibility of including other information about t
 Notice how some functions inside `tree.c` are marked `static`, which indicates they are only visible within the file.
 (They are analogous to `private` methods in Java.) These private function prototypes are declared near the top of the file `tree.c`, so they are known to all other functions within this file, but not in `tree.h`, because no other C files will be able to use these 'private' functions anyway.
 
-***Example: [tree4](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree4/)***
+***Example: [tree4](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree4/)***
 
 Here, we change the tree so it is keyed on words (strings) rather than integers.
 That is, we use a `char*` as key instead of an `int` as key, to enable storage of 'things' that are organized by words instead of numbers.
@@ -6375,7 +6375,7 @@ That is, we use a `char*` as key instead of an `int` as key, to enable storage o
 Notice that it uses `malloc` to make a copy of the key string, and `strcmp` for comparing keys.
 If the tree node were to be removed, the code would need to `free(node->key)` before `free(node)`.
 
-***Example: [tree5](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree5/)***
+***Example: [tree5](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree5/)***
 
 Here we extend the `tree_print` function to accept a function pointer representing a 'callback function' to be used when desiring to print the contents of a node.
 Think about it: the tree stores 'things' (pointers of type `void*`) indexed by strings (pointers of type `char*`), but the tree code has no idea what those 'things' are or how to print them.
@@ -6389,7 +6389,7 @@ That function must have a prototype like
 and must be provided to the tree module as a parameter, as in `tree_print(tree, myprint)`.
 
 
-***Example: [tree6](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree6/)***
+***Example: [tree6](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree6/)***
 
 This version adds a `tree_delete()` function, demonstrating how you need to delete the tree - but first delete its contents.
 
@@ -6411,14 +6411,14 @@ Stylistically, it may be wise to write
 so any accidental use of `t` will at least trigger a segfault.
 This approach is not required - just a defensive programming measure - one that you should consider adopting.
 
-***Example: [tree7](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree7/)***
+***Example: [tree7](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/)***
 
 This version shows how to add "testing" code to your module with `#ifdef`, and how to turn that on and off from the Makefile; and how you might track malloc/free in a module to detect memory leaks or ensure that everything gets free'd.
 Review the `mem` module in
-[mem.h](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree7/mem.h) and
-[mem.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree7/mem.c).
+[mem.h](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/mem.h) and
+[mem.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree7/mem.c).
 
-***Example: [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree8/)***
+***Example: [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree8/)***
 
 tree8 finally has an interesting test program!
 It reads weather reports from the National Weather Service and stores them in the binary tree.
@@ -6427,7 +6427,7 @@ It shows how you might track malloc/free in the main program and notice a memory
 It shows a more interesting 'print' function, and a simple 'delete' function.
 Try it!
 
-***Example: [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/)***
+***Example: [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/)***
 
 This example integrates a unit test using a fancy set of pre-processor macros for unit testing; both of these concepts (unit tests and pre-processor) are subject of later units.
 
@@ -6519,7 +6519,7 @@ Array elements can also be pointers.
 In other words, an array of pointers to something else.
 A common example is an array of pointers to strings.
 
-In [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c) we saw an array of strings declared as a two-dimensional array of characters:
+In [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c) we saw an array of strings declared as a two-dimensional array of characters:
 
 ```c
 const int maxLines = 100;   // maximum number of lines                        
@@ -6529,7 +6529,7 @@ char lines[maxLines][maxLength];
 
 This array consumes `maxLines * maxLength * sizeof(char)` bytes.
 
-In [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) we saw an array of strings declared as a one-dimensional array of pointers to char (aka, pointer to a string):
+In [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) we saw an array of strings declared as a one-dimensional array of pointers to char (aka, pointer to a string):
 
 ```c
 const int maxLines = 100;   // maximum number of lines                        
@@ -7130,7 +7130,7 @@ clean:
 
 The macro definitions at the top make it easy for a reader to quickly see what program will be built and from what files.
 
-I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8-makefile) in our examples directory.
+I saved a slight variant of this Makefile as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
 You can play with it by copying all the relevant files, e.g.,
 
 ```bash
@@ -7498,7 +7498,7 @@ It is helpful to think of this paragraph comment as defining a ***contract*** be
 
 You'll see these kinds of comments in our starter kits and in most of our examples; we expect you to write equally good comments in your code.
 
-We recommend you copy-paste from the [contract.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/contract.c) example, as a template for your code.
+We recommend you copy-paste from the [contract.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/contract.c) example, as a template for your code.
 
 Consider an example, in `bag.h` that follows a slightly different format but conveys the same kind of information:
 
@@ -8350,7 +8350,7 @@ This unit explores a clever approach to *glass-box* testing of a single-file mod
 In [Lab3](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/labs/lab3) you are provided an implementation of the **bag** module; an earlier [unit video](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/lab3-bag.md) walks through the module code.
 The module includes a simple unit-test program `bagtest.c`; is that program a glass-box or black-box testing program?
 
-In this unit we explore a *glass-box* approach to unit-test **bag**, right inside `bag.c`; it is found in the example called [bag-unit](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag-unit).
+In this unit we explore a *glass-box* approach to unit-test **bag**, right inside `bag.c`; it is found in the example called [bag-unit](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag-unit).
 Study the code; here's an overview.
 
 Notice we added a `main()` function at the bottom of `bag.c`.
@@ -8551,10 +8551,10 @@ We include it here for those who may be interested.
 
 This approach makes sophisticated use of the *C preprocessor* to implement glass-box unit testing.
 
-You may have studied the example [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree8/), which demonstrated a binary-tree data structure.
-Here we enhance it to become [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/) (to a computer scientist, `A` comes next after `9`).
+You may have studied the example [tree8](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree8/), which demonstrated a binary-tree data structure.
+Here we enhance it to become [tree9](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/) (to a computer scientist, `A` comes next after `9`).
 
-Look at [tree9/tree.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/tree.c) and its [Makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees/tree9/Makefile).
+Look at [tree9/tree.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/tree.c) and its [Makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees/tree9/Makefile).
 
 Like the [glass-box unit test for the **bag** module](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/testing-bag.md),
 the `tree9` code has a `main()` function, protected by `#ifdef UNIT_TEST ... #endif` so it is only compiled-in when we want to compile a unit test.
@@ -9460,14 +9460,14 @@ You'll be following this practice in the Tiny Search Engine (TSE, Labs 4-6).
 
 **[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=75352fce-227e-4519-99b3-ad1400f11022)**
 
-Recall the Makefile we wrote in the [unit about Makefiles](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/makefiles1.md) -- available as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8-makefile) in our examples directory.
+Recall the Makefile we wrote in the [unit about Makefiles](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/makefiles1.md) -- available as [sorter8-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8-makefile) in our examples directory.
 
 In this video demonstration, I modify that Makefile to leverage the TSE `libcs50` library.
 
-I adapted [sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter8.c) for use with a library-provided *bag*, resulting in file `sorter.c` in one directory, and dropped in the `libcs50` directory as a peer.
-This program is now available as [sorter9.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter9.c).
+I adapted [sorter8.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter8.c) for use with a library-provided *bag*, resulting in file `sorter.c` in one directory, and dropped in the `libcs50` directory as a peer.
+This program is now available as [sorter9.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter9.c).
 
-I then adapted the Makefile for *sorter* to leverage `libcs50`; that Makefile is available as [sorter9-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter9-makefile).
+I then adapted the Makefile for *sorter* to leverage `libcs50`; that Makefile is available as [sorter9-makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter9-makefile).
 Notice several important features:
 
 * definition of macro `L` as a shorthand for the directory name (not the library name) where the library lives.
@@ -10019,7 +10019,7 @@ In Lab 6 these iterators are helpful in combining the set of matches for one wor
 
 ## Coding an iterator
 
-Recall the [bag module](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/bag-unit/bag.c), which has a `bag_iterate()` method:
+Recall the [bag module](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bag-unit/bag.c), which has a `bag_iterate()` method:
 
 ```c
 void
@@ -10161,8 +10161,8 @@ Let's look at some more complex examples.
 ***Merging two sets.***
 We'll start with a simple case.
 Here the sets represent schools, where the `key` is the name of the school.
-See [set_iterate1](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate1.c).
-(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate.makefile).)
+See [set_iterate1](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate1.c).
+(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate.makefile).)
 
 ```c
   set_t* setA;
@@ -10215,8 +10215,8 @@ At the end, setB is unchanged but setA should have all items from both sets.
 ***Merging two sets and their data.***
 Now a more interesting case, in which the set items each hold data we want to combine.
 In this simple test, that datum is just an integer - actually, a pointer to an integer.
-See [set_iterate2](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate2.c).
-(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/set_iterate.makefile).)
+See [set_iterate2](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate2.c).
+(Note also [set_iterate.makefile](https://github.com/CS50Dartmouth21FS1/examples/blob/main/set_iterate.makefile).)
 
 In this example, setA and setB each contain a set of school names, and a number for each school (say, perhaps, the number of people you know at each school).
 When merging two sets you want the data in the resulting set to represent the sum of the values in each set.
@@ -10446,10 +10446,10 @@ Thus, the module programmer has wide flexibility and authority on the implementa
 
 ## Examples
 
-Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion.c);
+Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/main/cohesion.c);
 for each function, what kinds of cohesion and coupling do you see?
 What function could perhaps be better named?
-When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion-annotated.c) for our take on those questions.
+When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/main/cohesion-annotated.c) for our take on those questions.
 
 
 ---
@@ -11278,7 +11278,7 @@ We don't need to allocate any memory for these new strings, or copy these string
 
 ## Related example
 
-We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/covid/covid.c).
+We saw an example of this concept when chopping up 'csv' (comma-separated values) data from the vaccine dataset, in the [covid example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/covid/covid.c).
 The details are different – that code knew exactly how many fields to expect, the words were separated by precisely one comma, and there was the added complexity of quoted fields.
 
 In the query string, you don't know how many words to expect (but what is the maximum number of words in a string of length *n*?)
@@ -11513,7 +11513,7 @@ The *ncurses* library was designed to make it easier for software developers to 
 
 ## Example: curses
 
-Our examples repo includes a minimal example, [curses.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/curse.c).
+Our examples repo includes a minimal example, [curses.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/curse.c).
 I encourage you to compile and play with it!
 Once open, you can type characters onto the screen, and move around with emacs-like control characters.
 Some things to notice:
@@ -11529,7 +11529,7 @@ Some things to notice:
 
 ## Example: Conway's Game of Life
 
-Our examples repo includes an even cooler example, [Conway's Game of Life](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/life.c).
+Our examples repo includes an even cooler example, [Conway's Game of Life](https://github.com/CS50Dartmouth21FS1/examples/blob/main/life.c).
 Compile and run it!
 In that code there is a comment `// CURSES` to help you find the curses-specific code.
 Some things to notice:
@@ -11853,7 +11853,7 @@ Otherwise, before calling the `accept()` function, the `cliaddr` parameter has t
 
 ## <a id="tcp-example">TCP client/server example</a>
 
-In this example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server), we see a basic TCP client that can talk to our basic TCP server.
+In this example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server), we see a basic TCP client that can talk to our basic TCP server.
 
 This code demonstrates
 
@@ -11868,7 +11868,7 @@ This code demonstrates
 
 ## <a id="http-example">HTTP-over-TCP client/server example</a>
 
-In this example, [client-server-http](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-http), we enhance the basic example to support HTTP.
+In this example, [client-server-http](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-http), we enhance the basic example to support HTTP.
 The client can connect to our HTTP server, or to real HTTP servers.
 The server can serve our basic HTTP client, or real browsers.
 
@@ -11907,8 +11907,8 @@ UDP is a *non-reliable* protocol, which means that the datagrams might be lost, 
 (In contrast, TCP ensures that the every byte sent by the sender arrives, in order, exactly once.)
 This feature is both a strength and a weakness.
 
-Let's rewrite our original example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server) with UDP "datagrams" instead of TCP "streams".
-See the [client-server-udp](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp) example.
+Let's rewrite our original example, [client-server](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server) with UDP "datagrams" instead of TCP "streams".
+See the [client-server-udp](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp) example.
 
 Our program still has a client and a server, even though UDP does not impose that structure on us.
 Our client no longer uses `connect()` to make a connection to the server.
@@ -11998,13 +11998,13 @@ The client waits to receive the message; thus, the client strictly alternates be
 
 ## <a id="chat">UDP chat server</a>
 
-In the above UDP client-server [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp), the client sends datagrams to a server, and the server echos them back to the client.
+In the above UDP client-server [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp), the client sends datagrams to a server, and the server echos them back to the client.
 For each datagram, the client read a line of input from stdin.
 
 Let's make that echo server into a simple chat application, allowing the user sitting at the server terminal to respond from stdin.
 
 Our first attempt is straightforward; we replace the code that echoed the original datagram with a call to `readlinep()` and send that buffer instead.
-From `chatserver1.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select):
+From `chatserver1.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select):
 
 ```c
       // send a response back to the client
@@ -12102,7 +12102,7 @@ Clearly, we need a better solution.
 The solution is to use the `select()` Unix function, which waits for input to be ready on one or more file descriptors.
 We'll ask `select()` to return when either stdin (file descriptor 0) or `comm_sock` has input read.
 
-See `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select).
+See `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select).
 
 It takes a little setup to call `select`, as you'll see at the top of the loop.
 But then we check the return value: if negative, there was an error; if zero, there are no file descriptors ready so there must have been a timeout; if positive, one or both of the stdin or the socket must be ready for input.
@@ -12210,7 +12210,7 @@ In this program (not shown above), the server prints messages from other clients
 I made that choice only because the crude interface would just get too complicated if messages came from many places (to which client should I send the lines read from stdin?).
 With a little effort, this chatclient and chatserver could support multi-client chatting.
 
-Take a good look at the code for both `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-udp-select) - including the functions I did not include above - to better understand sockets, datagrams, and `select`.
+Take a good look at the code for both `chatclient2.c` and `chatserver2.c` in the new [example](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-udp-select) - including the functions I did not include above - to better understand sockets, datagrams, and `select`.
 Have fun!
 
 #### Timeouts
@@ -12264,7 +12264,7 @@ This unit aims
 
 ## Our HTTP server
 
-Recall our [client-server-http](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-http) example, in which we explored simple HTTP client and server programs.
+Recall our [client-server-http](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-http) example, in which we explored simple HTTP client and server programs.
 The client was able to connect to real web servers, and the server was able to serve real web browsers, and of course our client could connect to our server.
 
 The catch?
@@ -12277,7 +12277,7 @@ The solution: 'fork' a copy of the server for each new client!
 
 ## <a id="forking">A forking web server</a>
 
-Take a look at the new [client-server-http-fork](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/client-server-http-fork) example.
+Take a look at the new [client-server-http-fork](https://github.com/CS50Dartmouth21FS1/examples/blob/main/client-server-http-fork) example.
 The client is exactly the same.
 The server is just a bit different.
 
@@ -12475,7 +12475,7 @@ Also, type `man pthread` for information on syntax, etc.
 
 You have to write C code to create a thread.
 If you do it right, when it runs that C code will create a new thread of execution that runs at the same time!
-Consider the simple example ([print_i.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/print_i.c)), and its output:
+Consider the simple example ([print_i.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/print_i.c)), and its output:
 
 ```bash
 $ ./print_i
@@ -12499,7 +12499,7 @@ $
 You cannot always predict the exact sequence of execution of threads running in parallel.
 Lots of factors affect how often and long a thread actually gets to execute: the amount of real memory, number of processors and/or cores, and what the thread's code is trying to do (e.g., I/O, computation, system call, etc.), among others.
 
-In the example [random.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/random.c), what gets output first?
+In the example [random.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/random.c), what gets output first?
 We do not know what order the values will be written out.
 If the main thread completes before the `print_i()` thread has executed then it will die.
 Here's the output from several runs:
@@ -12544,7 +12544,7 @@ This means that regardless of how many threads might be executing the very same 
 This is usually accomplished by ensuring all the variables used by the thread are stored on its stack (rather than global variables).
 If there is shared data, access to that shared data is typically serialized using some sort of mutual exclusion mechanism (more on this later).
 
-Consider the output of the [unsafe.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/unsafe.c) example, first with the `c = NULL` commented out, and then with it not commented out.
+Consider the output of the [unsafe.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/unsafe.c) example, first with the `c = NULL` commented out, and then with it not commented out.
 
 ```bash
 # comment out the "c = NULL;" line
@@ -12588,7 +12588,7 @@ There are two functions:
 
     If the mutex is locked by some prior `pthread_mutex_lock()` function, this function will unlock the mutex; otherwise it does nothing.
 
-In the example [mutex.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/mutex.c), our goal is to ensure that at any time there is only one thread calling function `print()`.
+In the example [mutex.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/mutex.c), our goal is to ensure that at any time there is only one thread calling function `print()`.
 Here's the output, first with the mutex commented out, and then with the mutex uncommented.
 
 ```bash
@@ -12617,7 +12617,7 @@ $
 ### Deadlocks
 
 Of course, you have to be careful with mutex - you could end up in a deadlock!
-See the [deadlock.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/threads/deadlock.c) example.
+See the [deadlock.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/threads/deadlock.c) example.
 
 Here's the output with the `sleep(1)` commented out, and then with the `sleep(1)` uncommented.
 

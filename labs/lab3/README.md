@@ -166,7 +166,7 @@ When adding a new item with `set_insert()` or `hashtable_insert()`, both modules
 
 You are encouraged to follow the style and layout of the `bag` module when developing new modules.
 
-You can also learn a lot from our [binary trees](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/trees) example.
+You can also learn a lot from our [binary trees](https://github.com/CS50Dartmouth21FS1/examples/blob/main/trees) example.
 You are welcome to copy snippets of code from this (or any other) CS50 example code as long as you add a comment indicating you've done so.
 
 We suggest implementing the **set** and **counters** as simplified linked lists, much like we did for `bag`.
@@ -176,7 +176,7 @@ Your **hashtable** module, on the other hand, should make use of the **set** dat
 Indeed, your hashtable should likely be an array of pointers to sets.
 Allocating an array of pointers can be tricky; recall the unit about [C arrays](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-arrays.md).
 
-***Linked lists*** were demonstrated in [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter4.c) through [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter7.c), although you will need to generalize.
+***Linked lists*** were demonstrated in [sorter4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter4.c) through [sorter7.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter7.c), although you will need to generalize.
 They were also covered in CS10; see the [notes](https://www.cs.dartmouth.edu/~tjp/cs10/notes6.html).
 
 ***Hashtables were also covered in CS10:***

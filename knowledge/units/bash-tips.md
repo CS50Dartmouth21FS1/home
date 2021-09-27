@@ -7,7 +7,7 @@ although the [Bash reference manual](https://www.gnu.org/software/bash/manual/ba
 
 Sometimes you want to discard the first argument (or two) and then loop over the remainder.
 The `shift` command is there to help!
-Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/shifter.sh):
+Play with example [shifter.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/shifter.sh):
 
 ```bash
 echo I see $# arguments: "$@"

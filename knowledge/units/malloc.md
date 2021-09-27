@@ -39,7 +39,7 @@ Unlike `malloc()`, `calloc()` initializes the chunk to all-zeroes, and `realloc(
 
 ## Example: sorter2
 
-Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c).
+Let's revise our [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c) program, using an array of pointers instead of a two-dimensional array of characters: the result is [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c).
 It uses a new "readLine" function called `freadLinep`, which allocates space for the string returned.
 
 > As an aside, notice `readlinep.c` has a "unit test" at the bottom.
@@ -52,7 +52,7 @@ You may want to read more about the [implementation](https://github.com/CS50Dart
 
 ## Example: sorter3
 
-We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter3.c).
+We can extend [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) to sort the array using the library function `qsort()`, which implements the quicksort algorithm, resulting in [sorter3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter3.c).
 
 This example is admittedly a bit advanced for us at this point; it demonstrates use of the generic pointer type `void*`, the need to *cast* our pointers to that type, and the use of function pointers.
 We'll come back to function pointers later!

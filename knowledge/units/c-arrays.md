@@ -66,7 +66,7 @@ Array elements can also be pointers.
 In other words, an array of pointers to something else.
 A common example is an array of pointers to strings.
 
-In [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter1.c) we saw an array of strings declared as a two-dimensional array of characters:
+In [sorter1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter1.c) we saw an array of strings declared as a two-dimensional array of characters:
 
 ```c
 const int maxLines = 100;   // maximum number of lines                        
@@ -76,7 +76,7 @@ char lines[maxLines][maxLength];
 
 This array consumes `maxLines * maxLength * sizeof(char)` bytes.
 
-In [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/sorter2.c) we saw an array of strings declared as a one-dimensional array of pointers to char (aka, pointer to a string):
+In [sorter2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/sorter2.c) we saw an array of strings declared as a one-dimensional array of pointers to char (aka, pointer to a string):
 
 ```c
 const int maxLines = 100;   // maximum number of lines                        

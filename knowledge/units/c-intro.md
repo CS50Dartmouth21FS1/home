@@ -37,7 +37,7 @@ A *compiler*, on the other hand, checks the code and translates it to a simple c
 
 ## Examples
 
-In class we iteratively build a C version of our friend [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1a.sh), and then enhance it.
+In class we iteratively build a C version of our friend [guess1a.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1a.sh), and then enhance it.
 
 > ***NOTE: if the `mygcc` command doesn't work for you on plank,***
 > you may have overlooked one of the setup steps in the 'Systems' section of
@@ -104,7 +104,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess1.c): (simple replacement for the bash program)
+[guess1.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess1.c): (simple replacement for the bash program)
 
 * notice the `#include` files, which textually include some standard C definitions into the code there.
 * specifically, we always include `stdio.h` and `stdlib.h` because they provide important library functions.
@@ -119,7 +119,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess2.c): (provide the user guidance toward answer)
+[guess2.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess2.c): (provide the user guidance toward answer)
 
 * we just add an `if` statement to provide guidance.
 * we always use curly brackets for nesting, though they are not always required.
@@ -128,7 +128,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess3.c): (move the repeated code into a function)
+[guess3.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess3.c): (move the repeated code into a function)
 
 * we move the repeated ask/input code to a function.
 * we place the function before `main()` because otherwise `main` will not know it exists.
@@ -139,7 +139,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess4.c): (move the function to the bottom, so main() stays at top)
+[guess4.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess4.c): (move the function to the bottom, so main() stays at top)
 
 * we move the function to the bottom, allowing `main()` to stay at the top, for readability.
 * to do so, we must *declare* the function `askGuess` before `main()` so `main` knows it exists.
@@ -149,7 +149,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess5.c): (add command-line arguments, check validity of guess, allow them to quit early)
+[guess5.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess5.c): (add command-line arguments, check validity of guess, allow them to quit early)
 
 * we add command-line arguments, which arrive as parameters to `main()`: an array of strings, and a number of arguments.
 * the command name is always `argv[0]`, and subsequent arguments (if any) are `argv[1]`, ...
@@ -166,7 +166,7 @@ $ diff guess[23].c
 
 > see video demo above
 
-[guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/guess6.c): (read input as a string, convert to integer, check input more carefully)
+[guess6.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/guess6.c): (read input as a string, convert to integer, check input more carefully)
 
 This example takes a major step forward, by leveraging a separate module I've written, in `readline.c` and `readline.h`.
 (See the unit about the [compilation process](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-compile.md).)
@@ -263,6 +263,6 @@ We'll come back to explain pointers later.
 
 ## atoi
 
-Another example, which explores the same `sscanf` trick used in `guess6`, is [atoi.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/atoi.c).
+Another example, which explores the same `sscanf` trick used in `guess6`, is [atoi.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/atoi.c).
 
 There actually is a function `atoi()` in the standard C library, but I find it too weak; it does not adequately catch and indicate errors in translation, like the approach in our version.

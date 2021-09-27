@@ -85,7 +85,7 @@ If you `cd` to a directory with an executable file called, say, `ls` and you don
 If `.` is on your `PATH` before `/bin` you will run the local command `./ls` instead of the official `/bin/ls`... and the local `ls` may be malicious and do something bad!
 
 Fourth, this script has no comments, and is limited to png files.
-Let's look instead at [imagepage.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/imagepage.sh).
+Let's look instead at [imagepage.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/imagepage.sh).
 
 ```bash
 #!/bin/bash
@@ -248,12 +248,12 @@ We have come across some of them already.
 The variable `$#` tells you how many arguments were on the command line; if there were three arguments, for example, they would be available as `$1`, `$2`, and `$3`.
 In the command line `myscript.sh a b c`, then, `$#=3`, `$0=myscript.sh`, `$1=a`, `$2=b`, and `$3=c`.
 
-See example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/args.sh).
+See example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/args.sh).
 It prints `$#` and `$0` as well as `$1`, `$2`, `$3`.
 It double-quotes the variable substitution, but also prints single-quotes so we can easily see the beginning and ending of each string substituted.
 Try it with no arguments, and one or two arguments.
 
-The two variables `$*` and `$@` both provide the list of command-line arguments, but with subtle differences; again, look at example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/args.sh), to see the difference.
+The two variables `$*` and `$@` both provide the list of command-line arguments, but with subtle differences; again, look at example [args.sh](https://github.com/CS50Dartmouth21FS1/examples/blob/main/args.sh), to see the difference.
 
 Let's try it on a command with four simple arguments.
 

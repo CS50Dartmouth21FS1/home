@@ -27,7 +27,7 @@ int main(const int argc, const char* argv[])
 The following program prints out its command line.
 Note that `argv[0]` is the command name and `argv[1]` ... `argv[argc-1]` are the command-line arguments (after any expansion or subsitutions done by the shell).
 
-Look at a quick run of the tiny program [arguments.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/arguments.c):
+Look at a quick run of the tiny program [arguments.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/arguments.c):
 
 ```bash
 $ mygcc arguments.c -o args
@@ -53,7 +53,7 @@ We can pass that pointer to functions like `printf`, wherever it expects a strin
 A common activity at the start of a C program is to search the argument list for command-line switches commencing with a dash character.
 The remaining command-line parameters are often assumed to be filenames.
 
-Study the example [nosort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/nosort.c), which shows one way to parse the command line of a hypothetical replacement for the `sort` command.
+Study the example [nosort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/nosort.c), which shows one way to parse the command line of a hypothetical replacement for the `sort` command.
 Its commandline should look like `nosort [-r] [-u] [-n] filename...`
 as follows:
 

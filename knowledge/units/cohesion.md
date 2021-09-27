@@ -155,7 +155,7 @@ Thus, the module programmer has wide flexibility and authority on the implementa
 
 ## Examples
 
-Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion.c);
+Study this [example code](https://github.com/CS50Dartmouth21FS1/examples/blob/main/cohesion.c);
 for each function, what kinds of cohesion and coupling do you see?
 What function could perhaps be better named?
-When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/fall21s1/cohesion-annotated.c) for our take on those questions.
+When finished, take a look at our [annotated version](https://github.com/CS50Dartmouth21FS1/examples/blob/main/cohesion-annotated.c) for our take on those questions.
