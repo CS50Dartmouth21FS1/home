@@ -116,10 +116,11 @@ Like any budding hacker you need to do some experimenting, find information to f
 ---
 
 ### Week Oct-11 Fall 2021
+* Unit: [Software design methodology](design.md)
 * Optional: [Tricks for logging progress](crawler-logging.md)
 * Unit: [Building and using libraries with Makefiles](libraries.md)
+* Unit: [Using the gnu debugger](gdb.md)
 * Reading: [Bugs and debugging](read-bugs.md)
-* Unit: [Software design methodology](design.md)
 * Unit: [Indexer Design](indexer.md)
 * Reading: [More tips about coding](read-coding.md)
 

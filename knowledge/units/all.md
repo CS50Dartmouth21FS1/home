@@ -9391,6 +9391,223 @@ You have to handle them and and still get to the goal.
 ---
 <!-- END crawler -->
 
+<!-- UNIT design -->
+
+# Unit: Software design methodology <a name=unit-design>
+
+In this unit, we introduce a simple software design methodology.
+It's by no means the only methodology - but it's straightforward and useful for CS50.
+
+There are many techniques for the design and development of good code, including
+top-down or bottom-up design,
+divide and conquer (breaking the system down into smaller more understandable components),
+structured design (data-flow approach), and
+object-oriented design (modularity, abstraction, and information-hiding).
+For a quick survey of these and other techniques, see *[A Survey of Major Software Design Methodologies](media/design/survey.html)* (author unknown).
+
+Many of these techniques use similar approaches, and embrace fundamental concepts like
+abstraction,
+data representation,
+data flow,
+data structures,
+and
+top-down decomposition from requirements to structure.
+
+It seems unlikely that someone could give you 10 steps to follow and be assured of great system software.
+Every non-trivial project has its special cases, unique environments, or unexpected uses.
+It's often best to begin development of a module, or a system, with small experiments - building a prototype and throwing it away - because you can learn (and make mistakes) building small prototype systems.
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Prototype to Learn.**
+>  Prototyping is a learning experience. Its value lies not in the code you produce, but in the lessons you learn.
+
+Clarity comes from the experience of working from requirements, through system design, implementation and testing, to integration and customer feedback on the requirements.
+
+The following figure shows the software design methodology that we use in the design of the TinySearchEngine and the project.
+
+![Software system design methodology](media/design/SWDesignMethology.png)
+
+------------------------------------------------------------------------
+
+Let's step through the phases of software design, as shown in the figure above.
+
+## Procurement phase
+
+The procurement phase of a project represents its early stages.
+It represents deep discussion between a customer and provider of software systems.
+As a software developer, you have to clearly understand and capture the customers' needs. Often some of the requirements are specified separately by regulatory agencies, national or international standards bodies, or industry standards groups.  These provide additional requirements that the customer expects to be included.
+
+In our case, you are the provider and we (CS50 staff) are your customer.
+
+---
+
+## Requirements spec
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Don't Gather Requirements -- Dig for Them.**
+>  Requirements rarely lie on the surface. They're buried deep beneath layers of assumptions, misconceptions, and politics.
+
+The system *Requirements Spec* captures all the requirements of the system that the customer wants built.
+Typically the provider and customer get into deep discussion of requirements and their cost.
+The requirements *must* be written down, and reviewed by both customer and provider, to be sure all are in agreement.
+Sometimes these documents are written in contractual (legal) language.
+If the customer gets a system that does not meet the spec, or the two parties disagree about whether the finished product meets the spec, lawyers may get involved.
+If a system is late, financial penalties may arise.
+
+> "*The hardest part of design... is keeping features out.*" -- Anonymous
+
+The system requirement spec may have a variety of requirements typically considered ***the shalls*** - such as, *"the crawler shall only crawl webpages within the cs50 website"*.
+These requirements include functional requirements, performance requirements, security requirements, and cost requirements.
+
+A common challenge during this phase is that the customer either doesn't know what he/she really wants or expresses it poorly (in some extreme cases the customer may not be able to provide you with the ultimate intended use of your system due to proprietary or security concerns).
+You must realize that the customer may have these difficulties and iterate with the customer until you both are in full agreement.
+One useful technique is to provide the customer with the system requirements specification (and sometimes later specs too) and then have the customer explain the spec to you.
+It is amazing how many misunderstandings and false assumptions come to light when the customer is doing the explaining.
+
+The Requirements Spec may address many or all of the following issues:
+
+ * *functionality* - what should the system do?
+ * *performance* - goals for speed, size, energy efficiency, etc.
+ * *cost* - goals for cost, if system operation incurs costs
+ * *compliance* - with federal/state law or institutional policy
+ * *compatibility* - with standards or with existing systems
+ * *security* - against a specific threat model under certain trust assumptions
+
+A new concern of system development is the issue of the services-oriented model referred to as the "cloud" (Software As A Service, Infrastructure As A Service, etc.).
+The decision of whether to develop a specific system running in a traditional manner or to build a cloud-based solution should be made early, as it will affect many of the later stages of the development process.
+Some would argue about where it needs to fit in the methodology, but we feel that the sooner you (and the customer) know where this system is headed, the better.
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Make quality a requirements issue.**
+>  Involve your users in determining the project's real quality requirements.
+
+Although the customer may make some assumptions on this point, it's in your best interests to make it a priority.
+Remember the "broken window theory":
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Don't Live with Broken Windows.**
+>  Fix bad designs, wrong decisions, and poor code when you see them.
+
+---
+
+## Design spec
+
+In this phase, you translate the requirements into a full system-design specification. The *Design Spec* is the result of studying the system requirements and applying the art of design *(the magic)* with a design team.
+This design specification shows how the complete system is broken up into specific subsystems, and all of the requirements are mapped to those subsystems.
+The Design spec for a system, subsystem, or module includes:
+
+-   User interface
+-   Inputs and outputs
+-   Functional decomposition into modules
+-   Dataflow through modules
+-   Pseudo code (plain English-like language) for logic/algorithmic flow
+-   Major data structures
+-   Testing plan
+
+To this last point:
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Design to Test.**
+>  Start thinking about testing before you write a line of code.
+
+The Design Specification is independent of your choice of language, operating system, and hardware.
+In principle, it could be implemented in any language from Java to micro-code and run on anything from a Cray supercomputer to a toaster.
+
+---
+
+## Implementation phase
+
+In this phase, we turn the Design Spec into an Implementation Spec, then code up the modules, unit-test each module, integrate the modules and test them as an integrated sub-system and then system.
+
+### Implementation Spec
+
+The *Implementation Spec* represents a further refinement and decomposition of the system.
+It is *language, operating system, and hardware dependent* (sometimes, the language abstracts the OS or HW out of the equation).
+The implementation spec includes many or all of these topics:
+
+-   Detailed pseudo code for each of the objects/components/functions,
+-   Definition of detailed APIs, interfaces, function prototypes and their parameters,
+-   Data structures (e.g., `struct` names and members),
+-   Security and privacy properties,
+-   Error handling and recovery,
+-   Resource management,
+-   Persistent storage (files, database, etc).
+-   Testing plan
+
+### Coding
+
+Coding is often the fun part of the software development cycle - but not usually the largest amount of time.
+As a software developer in industry, you might spend only about 20% of your time coding (perhaps a lot more if you're in a startup).
+The rest of the time will be dealing with the other phases of the methodology, particularly, the last few: testing, integration, fixing problems with the product and meetings with your team and with your customers.
+
+#### Goals during coding:
+
+- Correctness: The program is correct (i.e., does it work) and error free; that is, does its behavior match the functional requirements in the specifications.
+
+- Clarity: The code is easy to read, well commented, and uses good variable and function names.
+In essence, is it easy to use, understand, and maintain
+
+    > Clarity makes sure that the code is easy to understand by people with a range of skills, and across a variety of machine architectures and operating systems. [Kernighan & Pike]
+
+- Simplicity: The code is as simple as possible, but no simpler.
+
+    > Simplicity keeps the program short and manageable. [Kernighan & Pike]
+
+- Generality: The program can easily adapt to change.
+
+    > Generality means the code can work well in a broad range of situations and is tolerant of new environments (or can be easily made to do so). [Kernighan & Pike]
+
+### Unit and sub-system testing
+
+[Pragmatic Programmer Tip](https://pragprog.com/tips/):
+
+> **Test your software, or your users will.**
+
+Testing is a critical part of the whole process of any development effort, whether you're building bridges or software.
+Unit testing of modules in isolation, and integration testing as modules are assembled into sub-systems and, ultimately, the whole system, result in better, safer, more reliable code.
+
+The ultimate goal of testing is to exercise all paths through the code.
+Of course, with most applications this may prove to be a daunting task.
+Most of the time the code will execute a small set of the branches in the module.
+So when special conditions occur and newly executed code paths fail, it can be really hard to find those problems in large, complex pieces of code.
+
+The better organized and modularized your code is, the easier it will be to understand, test, and maintain - even by you!
+
+Write test scripts (tools) throughout the development process to quickly give confidence that even though new code has been added, no new bugs emerged **and** no fixed bugs reappeared (Regression test!).
+
+### Integration testing
+
+The system is incrementally developed, put together and tested at various levels.
+Subsystems could integrate many modules, and sometimes, new hardware.
+The developer will run the integrated system against the original requirements to see if there are any 'gotchas'.
+For example, some performance requirements can only be tested once the full system comes together, while other, commonly used utility functions could have performance analysis done on them early on.
+You can simulate external influences as well, such as increasing the external processing or communications load on the host system as a way to see how your program operates when the host system is heavily loaded or resource limited.
+
+[Pragmatic Programmer Tip #81](https://pragprog.com/tips/):
+
+> **Don't Think Outside the Box -- Find the Box.**
+> *When faced with an impossible problem, identify the real constraints. Ask yourself: “Does it have to be done this way? Does it have to be done at all?""*
+
+When faced with an impossible problem, identify the real constraints.
+Ask yourself: "Does it have to be done this way? Does it have to be done at all?"
+
+## Feedback phase
+
+In this phase, the design team sits down with its customer and demonstrates its implementation.
+The customer and the team review the original requirement spec and check each requirement for completion.
+
+In the TSE and project we emphasize understanding the requirements of the system we want to build, writing good design and implementation specs *before* coding.
+In CS50 we put special weight on the coding principles of simplicity, clarity, and generality.
+
+
+---
+<!-- END design -->
+
 <!-- UNIT crawler-logging -->
 
 # Optional: Tricks for logging progress <a name=unit-crawler-logging>
@@ -9703,6 +9920,603 @@ crawler: crawler.o $(LLIBS)
 ---
 <!-- END libraries -->
 
+<!-- UNIT gdb -->
+
+# Unit: Using the gnu debugger <a name=unit-gdb>
+
+> “Debugging is twice as hard as writing the code in the first place.
+> Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.” - Brian Kernighan
+
+As we turn our attention towards larger, more complex C programs we stress the importance of good style, good documentation, and strong testing.
+The goal is to avoid bugs through careful design and good style - and to discover what bugs remain through strong testing.
+
+Once you discover the existence of a bug, how do you track it down so you know *why* the program is misbehaving and then how to fix it?
+
+**We strongly recommend learning `gdb` for debugging C programs**.
+It takes a bit of practice, but its use will save you *lots* of time in CS50 and subsequent courses.
+We introduce and demonstrate `gdb` below; but first, a note about debugging.
+
+## Techniques for limiting those pesky bugs
+
+> "Don't Panic" -- Hitchhiker's Guide to the Galaxy
+
+**[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=712bcb67-c276-4a93-9aef-ad0d015e4fbd)**
+
+The trouble with bugs is that no two are the same.
+Bugs can be simple: bad pointers and array subscript errors; while others are sometime difficult to debug: the systems might run for days and then fail because of a slow memory leak or numeric overflow problem.
+Still others might depend upon a subtlety in the timing of events, such as messages arriving over the network or the user hitting 'Enter' at just the right moment.
+
+Programmers aim to understand the nature of the bug they are trying to swat:
+*is it reproducible?* (does it always fail under the same set of conditions),
+*does it always manifest itself in the same way?*, and so on.
+These are clues that help track down those pesky bugs in complex systems.
+
+The complexity of a program is related to the number of interacting components; we have already seen programs with multiple functions and code spread across two or three files, and that use one or more libraries (stdio, stdlib, and the math library).
+One rule of thumb is that the number of bugs grows with the number of interactions.
+Reducing the complexity and interactions enables us to focus in on the location of bugs in code.
+Gordon Bell summed it up this way:
+
+> "The cheapest, fastest, and most reliable components of a computer system are the ones that aren't there."
+>  -- [Gordon Bell](http://research.microsoft.com/en-us/um/people/gbell/)
+
+His point is that the importance of a simple design cannot be overemphasized.
+
+Techniques that help reduce debugging time include:
+
+-   a good design and design methodology;
+-   consistent style (e.g., use C program idioms as much as possible);
+-   boundary condition tests;
+-   assertions and sanity testing;
+-   defensive programming;
+-   designing for testing;
+-   avoid files that have a large number of functions, and functions that have a large number of lines; Aim for functions that do one thing, and do it well!
+-   limit use of global variables whenever possible; and
+-   leverage desk-checking tools.
+
+
+## Approaches to debugging
+
+> Insanity: doing the same thing over and over again and expecting different results.  
+-- Unknown
+
+When tracking down pesky bugs we can think of the following steps to finding and correcting them - a sort of "bug lifecycle":
+
+* **Testing:** discovering what bugs exist.
+We have already designed some simple tests for programs in this class.
+* **Stabilization:** find a minimal input sequence that reliably reproduces the buggy behavior.
+* **Localization:** identify the function/line of the code responsible.
+* **Correction:** fix the code!
+* **Verification:** re-test the code fix and confirm it works... not just on the sequence that generated the buggy behavior, but on *all* possible tests to ensure your bug fix did not break some other behavior!
+* **Extrapolation:** imagine other examples that are related to the one that caused this bug to occur and test those too.
+
+There are many ways that people approach debugging - not all of which are effective.
+
+1. Ignore the bug; assume it will never happen again.
+2. Sift through warning/error messages; once all of the messages are gone, assume the program is correct.
+3. Insert `printf` statements throughout the code to inspect of variables and control flow.
+4. Use specialized debugging tools (e.g., plugins integrated into your favorite IDE, commandline tools like `gdb` and `valgrind`).
+
+The first approach is clearly not a good idea; bugs *will* recur if given the chance.
+
+Eliminating all of the warnings and errors is a good idea (and indeed is required when submitting assignments in cs50 :).
+Without proper testing, however, there is no guarantee that your program is correct.
+
+Print-style debugging can be useful for simple situations, but can lead to ugly, unreadable code.
+If you take this approach, even a little, use discipline to enable/disable such messages with a single switch (as shown below).
+
+Let's look at better approaches.
+
+### Code Inspection
+
+Many times people rush and "hack" the debug phase and sit at the terminal hoping to eventually track down that bug via trial and error.
+Inexperienced programmers do this as their first resort.
+You will find this approach to be very time consuming - put more plainly, it will take longer than other techniques.
+
+One of the most effective debug tools is you:
+***sit down and read your code!***
+
+Pretend you are a computer and execute the code with a pen and paper.
+As you read your code, keep some of the following tips in mind:
+
+* Draw diagrams! Especially for data structures.
+* Regarding for/while loops, and recursion, think about the base case, and the boundary conditions, and work inductively toward the general case.
+Errors most often occur at the base case or at the boundary cases.
+
+Code inspection is very useful.
+Good programmers closely trace through their code in detail.
+Look for boundary conditions of structures, arrays, loops, and recursion; bugs often exist at the boundary.
+Look at edge cases – "empty" or "full" conditions.
+
+Once you have read your code and convinced yourself it works and bugs remain, you need to instrument your code and start the detective work.
+
+Sometimes while debugging you will discover other, unrelated bugs that haven't yet manifested themselves.
+FIX THEM!
+
+Pragmatic Programmer Tip:
+
+> **Don't live with broken windows:**
+>  Fix bad designs, wrong decisions, and poor code  when you see them.
+
+Pragmatic Programmer Tip:
+
+> **Fix the Problem, Not the Blame:**
+>  It doesn't really matter whether the bug is your fault or someone else's – it is still your problem,  and it still needs to be fixed.
+
+
+## The printf approach to debugging
+
+"All I need is printf(), right?"
+
+You may have been using print statements to help you debug your code.
+That method can only get you so far.
+Sometimes, the underlying bug may even interfere with printf's limited contribution to your efforts.
+For example, if you have a segfault that occurs after your printf is executed but its string never gets displayed because the process crashes - you might think that the bug occurs before your `printf` when really the bug happens much later.
+The takeaway here is that `printf` is not your friend in these examples; too often it's a red herring.
+
+What happens if your system runs for hours and only under a certain set of system conditions the code fails?
+Working your way through thousands of `printf` outputs may not help.
+When a bug is buried deep in the execution of your software you need sophisticated tools to track those down.
+You need more than `printf` to attack these bugs.
+
+Just because `stdout` shows some of your prints were executed doesn't always mean that the last message written to `stdout` is from the last `printf` before the program had a problem.  
+Unix output is often _lazy_, meaning that the system will _eventually_ send the message to stdout but only when it is ready (e.g., some minimum number of characters to print to make it worthwhile, when the system is doing output for your process as well as others, etc.).
+This may seem unimportant, but it means that your program _may execute the code following the `printf()` before the output appears_.
+So, if you are using `printf()` for debugging, you should follow it with a `fflush(stdout)` which tells the system "print it NOW" before your program continues.
+
+If you do use `printf` debugging, please use the C preprocessor to conditionally turn on/off the debugging output with one switch; that is, using `#ifdef DEBUG` and [conditional compilation](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md).
+
+## The GNU Debugger (gdb)
+
+**[:arrow_forward: Video demo](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ca07df68-be42-4fcc-b521-ad0d015fd9bc)**
+
+See our [gdb resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/logistics/systems.md#gdb) for manuals and tutorial documents.
+
+**Note:** before using `gdb`, ensure you compile all C source files with the `-ggdb` flag - our standard `.bashrc` file defines `mygcc` with this flag, and your `Makefile` should include this flag in its definition of `CFLAGS`.
+This flag ensures that useful metadata is packaged with your executable at compile time that `gdb` needs to help you debug your programs.
+
+The gdb debugger is invoked with the shell command `gdb`; it then prints its own prompt and accepts its own wide range of commands.
+Once started, it reads commands from the terminal until you tell it to exit with the gdb command `quit`.
+You can get online help from `gdb` itself by using the command `help`.
+
+```
+$ gdb
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+...
+(gdb) help
+List of classes of commands:
+
+aliases -- Aliases of other commands
+breakpoints -- Making program stop at certain points
+data -- Examining data
+files -- Specifying and examining files
+internals -- Maintenance commands
+obscure -- Obscure features
+running -- Running the program
+stack -- Examining the stack
+status -- Status inquiries
+support -- Support facilities
+tracepoints -- Tracing of program execution without stopping the program
+user-defined -- User-defined commands
+
+Type "help" followed by a class name for a list of commands in that class.
+Type "help all" for the list of all commands.
+Type "help" followed by command name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+(gdb) 
+```
+
+You can run `gdb` with no arguments or options; but the most usual way to start GDB is with one argument, specifying an executable program as the argument:
+
+```bash
+$ gdb program
+```
+
+### GDB demo
+
+In the following examples we will use a lot of the basic `gdb` commands - `break`, `run`, `next`, `step`, `continue`, `display`, `print`, and `frame` (read about [stack frames](http://sourceware.org/gdb/current/onlinedocs/gdb/Frames.html); this is an important concept in C and very useful for debugging and poking around in your code and looking at variables).
+
+I strongly recommend that you go through the sequence of steps below and use these debugging commands.
+Don't worry, you can't break anything.
+Just like the shell commands you'll only need a subset of the the complete set of `gdb` commands to become an effective debugger.
+
+We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bugsort.c).
+
+The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order.
+It then prints them out, separated by spaces.
+Easy, right?
+
+```
+$ echo 1 2 3 4 5 6 7 8 9 0 | ./bugsort
+0 9 9 9 9 9 9 9 9 9 
+```
+
+Um, I guess not.
+
+Let's try running our program in `gdb`.
+When `gdb` starts up it prints out a bunch of information about its version and license, then drops into the `gdb` "shell."
+
+```
+$ gdb bugsort
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+...
+Reading symbols from bugsort...done.
+(gdb)
+```
+
+Notice that last line about "reading symbols"; `gdb` is reading special debug-related information the compiler produced, about all the "symbols" in the program.
+
+> A *symbol* is a function name, variable name, data type name, etc.
+> This information may be stored inside the executable file (here, `bugsort`), or (as on MacOS) in an adjacent folder (`bugsort.dSYM`).
+> The compiler saves this information because our alias `mygcc` includes the `-ggdb` argument.
+
+One of a debugger's most powerful features is the ability to set "breakpoints" in our code; when we run our program and the debugger encounters a breakpoint, the execution of the program stops at that point.
+Let's set a few breakpoints:
+
+```
+(gdb) break main
+Breakpoint 1 at 0x773: file bugsort.c, line 19.
+(gdb) list 26
+21	  int sorted[numSlots];   // the array of items
+22	  
+23	  /* fill the array with numbers */
+24	  for (int n = 0; n < numSlots; n++) {
+25	    int item;     // a new item
+26	    scanf("%d", &item);   // read a new item
+27	    for (int i = n; i > 0; i--) {
+28	      if (sorted[i] > item) {
+29	        sorted[i+1] = sorted[i]; // bump it up to make room
+30	      } else {
+(gdb) 
+31	        sorted[i] = item; // drop the new item here
+32	      }
+33	    }
+34	  }
+35	  
+36	  /* print the numbers */
+37	  for (int n = 0; n < numSlots; n++) {
+38	    printf("%d ", sorted[n]);
+39	  }
+40	  putchar('\n');
+(gdb) break 27
+Breakpoint 2 at 0x817: file bugsort.c, line 27.
+(gdb) break 37
+Breakpoint 3 at 0x878: file bugsort.c, line 37.
+(gdb) 
+```
+
+Notice that we can list the code around a line number by specifying that line number.
+Notice further that you can just hit "enter" at the gdb commandline to mean "do it again", or in the case of `list`, "list some more".
+
+Notice that we can set breakpoints by identifying the name of a function (e.g., "main"), or by specifying a particular line in our source code (e.g., lines 27 and 37).
+> When you are debugging programs with multiple files you can also set breakpoints in different files by specifying the file as well as the function name/line of code where you'd like to enable a breakpoint.
+
+If you want to see the breakpoints you've currently created, run `info break` (as shown above).
+
+```
+(gdb) info break
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000000773 in main at bugsort.c:19
+2       breakpoint     keep y   0x0000000000000817 in main at bugsort.c:27
+3       breakpoint     keep y   0x0000000000000878 in main at bugsort.c:37
+(gdb) 
+```
+
+You can also clear all of your breakpoints (`clear`), clear specific breakpoints (`clear` *function* or `clear` *line*), or even disable breakpoints so that you can leave them in place, but temporarily disabled.
+
+```
+(gdb) disable 2
+(gdb) info break
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000000773 in main at bugsort.c:19
+2       breakpoint     keep n   0x0000000000000817 in main at bugsort.c:27
+3       breakpoint     keep y   0x0000000000000878 in main at bugsort.c:37
+(gdb) 
+```
+
+Notice under the "Enb" column the second breakpoint is disabled.
+
+At this point we've started `gdb` and told it about some breakpoints we want set, but we haven't actually started running our program.
+
+Let's run our program now:
+
+```
+(gdb) run
+Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort 
+
+Breakpoint 1, main () at bugsort.c:19
+19	{
+(gdb) 
+```
+
+As expected, the debugger started our program running but "paused" the program as soon as it hit the breakpoint that we set at the `main` function.
+Once the program has stopped we can "poke around" a bit.
+
+Now let's `step` one line of code at a time; we type `step` and then, for convenience, just hit Enter each time to go one more step.
+
+```
+(gdb) step
+20	  const int numSlots = 10;  // number of slots in array
+(gdb) step
+21	  int sorted[numSlots];   // the array of items
+(gdb) 
+24	  for (int n = 0; n < numSlots; n++) {
+(gdb) 
+26	    scanf("%d", &item);   // read a new item
+(gdb) 
+__isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
+27	isoc99_scanf.c: No such file or directory.
+(gdb) 
+```
+
+Oops! Stepping line by line is nice but gdb's `step` command allowed us to walk right down into the icky details of `scanf`!
+It is cool that we can "step" into functions but `scanf` does a lot of work that we aren't interested in - and we don't have the source code anyway.
+If you find yourself deep down in some function that you accidentally stepped into, use the `finish` command to start the program running again until just after the function in the current stack frame returns.
+
+```
+(gdb) finish
+Run till exit from #0  __isoc99_scanf (format=0x555555554964 "%d")
+    at isoc99_scanf.c:27
+11 22 33 44 55 66 77 88 99 00
+main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+Value returned is $1 = 1
+(gdb) 
+```
+
+Of course, when `scanf` continued it expected me to enter some input.
+I proceeded to enter 10 numbers, just as in our prior experiment.
+(In this case the input is from the keyboard, and in the prior case it was from a pipeline; either way it is coming via stdin and scanf does not care.)
+
+Now that we are back up in `main` function, at line 27.
+It also conveniently prints the return value for `scanf`, i.e., `Value returned is $1 = 1` (because `scanf` successfully read 1 item matching the pattern `%d`).
+I can examine what number was read by printing the variable value:
+
+```
+(gdb) print item
+$2 = 11
+```
+
+We're about to enter inner `for` loop.
+Let's take one step.
+
+```
+(gdb) step
+24	  for (int n = 0; n < numSlots; n++) {
+```
+
+Huh?  we never entered the inner `for` loop - we came right back around and are about to re-execute line 24.
+(Think about why.)
+
+To avoid stepping *into* functions we can use the alternative `gdb` command called `next` which is similar to `step` in that it executes one line of code and then pauses at the next line of code, however `next` will step *over* functions so that we don't end up deep down in some code that isn't relevant to us (i.e., deep inside of the details of `scanf`); let's try that now:
+
+```
+(gdb) next
+26	    scanf("%d", &item);   // read a new item
+(gdb) next
+27	    for (int i = n; i > 0; i--) {
+(gdb) print item
+$3 = 22
+(gdb) print n
+$4 = 1
+(gdb) 
+```
+
+Back at that breakpoint, and this time `item=22` and `n=1`.
+
+Moving on,
+
+```
+(gdb) next
+28	      if (sorted[i] > item) {
+(gdb) 
+31	        sorted[i] = item; // drop the new item here
+(gdb) 
+27	    for (int i = n; i > 0; i--) {
+(gdb) 
+24	  for (int n = 0; n < numSlots; n++) {
+(gdb) 
+26	    scanf("%d", &item);   // read a new item
+(gdb) print sorted[0]
+$5 = 0
+(gdb) print sorted[1]
+$6 = 22
+(gdb) 
+```
+
+Ahah, this time we went into the inner loop and dropped in our item.
+We then came back around to the top of the main loop.
+As you can see, I printed contents of two elements of the array, too.
+
+We can print the memory address of these variables:
+
+```
+(gdb) print &n
+$7 = (int *) 0x7fffffffdde0
+(gdb) print &sorted
+$8 = (int (*)[10]) 0x7fffffffdda0
+(gdb) 
+```
+
+Pretty cool, right?
+Notice that `gdb` is nice enough to also give us information about the *type* of the thing that we are looking at!
+
+If we `step` a bit further, and into `scanf`, I can show you the `backtrace` command:
+
+```
+(gdb) step
+25	    scanf("%d", &item);		// read a new item
+(gdb) step
+__isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
+27	isoc99_scanf.c: No such file or directory.
+(gdb) backtrace
+#0  __isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
+#1  0x0000555555554817 in main () at bugsort.c:26
+(gdb) 
+```
+
+Which shows the function-call stack, from inner to outer.
+Above we are inside `__isoc99_scanf` (aka `scanf`) and that was called from `main`.
+
+Let's finish `scanf`:
+
+```
+(gdb) finish
+Run till exit from #0  __isoc99_scanf (format=0x555555554964 "%d")
+    at isoc99_scanf.c:27
+main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+Value returned is $9 = 1
+(gdb) print item
+$10 = 33
+(gdb) 
+```
+
+Notice I did not need to type any input because scanf is still chewing on that input I provided the first time it asked me for input.
+
+OK, I'm getting tired of stepping.
+Rather than stepping line by line, I want to start the program running again (at least until it hits the breakpoint again) so that I can speed up the process getting back to the code where I can enter a password and verify the changes.
+To do this I can simply use the `continue` command which will continue the execution of the program until it is stopped again for some reason.
+First, I'm going to re-enable that breakpoint I disabled earlier.
+
+```
+(gdb) enable 2
+(gdb) continue
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+(gdb) 
+```
+
+It ran a bit further then hit that breakpoint.
+Let's automate things a little better, by providing some commands that should be run on certain breakpoints:
+
+```
+(gdb) commands 2
+Type commands for breakpoint(s) 2, one per line.
+End with a line saying just "end".
+>print n
+>print item
+>end
+(gdb) continue
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$11 = 4
+$12 = 55
+(gdb) 
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$13 = 5
+$14 = 66
+(gdb) 
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$15 = 6
+$16 = 77
+(gdb) 
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$17 = 7
+$18 = 88
+(gdb) 
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$19 = 8
+$20 = 99
+(gdb) 
+Continuing.
+
+Breakpoint 2, main () at bugsort.c:27
+27	    for (int i = n; i > 0; i--) {
+$21 = 9
+$22 = 0
+(gdb) 
+Continuing.
+
+Breakpoint 3, main () at bugsort.c:37
+37	  for (int n = 0; n < numSlots; n++) {
+(gdb) 
+```
+
+Now I just hit Enter each time, and it took another loop and shows me the values of `n` and `item`.  Handy!
+The last one broke out of the initial loop and landed me at breakpoint 3, just before the values will be printed.
+I can explore a bit more before that loop runs.
+
+```
+(gdb) print sorted[0]
+$23 = 0
+(gdb) print sorted[9]
+$24 = 32767
+(gdb) continue
+Continuing.
+0 99 99 99 99 99 99 99 32767 32767 
+[Inferior 1 (process 38631) exited normally]
+(gdb) 
+```
+
+At this point we've seen some useful `gdb` commands and you are now equipped to do some debugging on your own.
+Keep poking at the program and see if you can find the errors.
+
+You may find it helpful to store sample input in a file, e.g.,
+
+```
+$ echo 11 22 33 44 55 66 77 88 99 00 > nums
+$ gdb bugsort
+...
+Reading symbols from bugsort...done.
+(gdb) run < nums
+Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort < nums
+0 99 99 99 99 99 99 99 32767 32767 
+[Inferior 1 (process 40061) exited normally]
+(gdb) 
+```
+
+
+**Some cool things to note about gdb:**
+
+* Every time you enter a command at the `gdb` "shell" that is successful, the output value is stored in a variable denoted `$N` where `N` increments by 1 for each command that you run.
+You can use those variables at a later point if you want (e.g., `print $3`).
+* `gdb` supports auto-completion on function names and variable names! Go ahead and try it out!
+* Also similar to the regular shell, the `gdb` shell allows you to arrow up/down to revisit past commands.
+* Many of the `gdb` commands have abbreviated forms (e.g., `run` is `r`, `continue` is `c`, `next` is `n`); see the [gdb quick reference guide](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf) to see other commands that have abbreviated forms.
+* You can re-run the previous command simply by hitting the Enter (return) key.
+
+
+### Frequently used `gdb` commands
+
+Below are some of the more common `gdb` commands that you will need.
+See also this printable [gdb quick reference guide](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf).
+
+| command                 | purpose                 |
+| :---------------------- | :---------------------- |
+| `run [arglist]`         |Start your program (with arglist, if specified). |
+| `break [file:]function` |Set a breakpoint at function (in file). |
+| `commands NN`           |A list of commands to run every time breakpoint #NN is reached. |
+| `list [file:]function`  |Type  the  text  of  the  program  in  the  vicinity of where it is presently stopped. |
+| `backtrace`             |Backtrace: display the program stack. |
+| `frame [args]`          |The frame command allows you to move from one stack frame to another, and to print the stack frame you select. args may be either the address of the frame or the stack frame number. Without an argument, frame prints the current stack frame. |
+| `print expr`            |Display the value of an expression. |
+| `continue`              |Continue running your program (after stopping, e.g. at a breakpoint). |
+| `next`                  |Execute next program line (after stopping); step over any function calls  in the line. |
+| `step`                  |Execute next program line (after stopping); step into any function  calls  in the line.|
+| `help [name]`           |Show information about GDB command name, or general information about using GDB. |
+| `quit`                  |Exit from GDB.|
+
+
+---
+<!-- END gdb -->
+
 <!-- UNIT read-bugs -->
 
 # Reading: Bugs and debugging <a name=unit-read-bugs>
@@ -9717,223 +10531,6 @@ Some good lessons here.
 
 ---
 <!-- END read-bugs -->
-
-<!-- UNIT design -->
-
-# Unit: Software design methodology <a name=unit-design>
-
-In this unit, we introduce a simple software design methodology.
-It's by no means the only methodology - but it's straightforward and useful for CS50.
-
-There are many techniques for the design and development of good code, including
-top-down or bottom-up design,
-divide and conquer (breaking the system down into smaller more understandable components),
-structured design (data-flow approach), and
-object-oriented design (modularity, abstraction, and information-hiding).
-For a quick survey of these and other techniques, see *[A Survey of Major Software Design Methodologies](media/design/survey.html)* (author unknown).
-
-Many of these techniques use similar approaches, and embrace fundamental concepts like
-abstraction,
-data representation,
-data flow,
-data structures,
-and
-top-down decomposition from requirements to structure.
-
-It seems unlikely that someone could give you 10 steps to follow and be assured of great system software.
-Every non-trivial project has its special cases, unique environments, or unexpected uses.
-It's often best to begin development of a module, or a system, with small experiments - building a prototype and throwing it away - because you can learn (and make mistakes) building small prototype systems.
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Prototype to Learn.**
->  Prototyping is a learning experience. Its value lies not in the code you produce, but in the lessons you learn.
-
-Clarity comes from the experience of working from requirements, through system design, implementation and testing, to integration and customer feedback on the requirements.
-
-The following figure shows the software design methodology that we use in the design of the TinySearchEngine and the project.
-
-![Software system design methodology](media/design/SWDesignMethology.png)
-
-------------------------------------------------------------------------
-
-Let's step through the phases of software design, as shown in the figure above.
-
-## Procurement phase
-
-The procurement phase of a project represents its early stages.
-It represents deep discussion between a customer and provider of software systems.
-As a software developer, you have to clearly understand and capture the customers' needs. Often some of the requirements are specified separately by regulatory agencies, national or international standards bodies, or industry standards groups.  These provide additional requirements that the customer expects to be included.
-
-In our case, you are the provider and we (CS50 staff) are your customer.
-
----
-
-## Requirements spec
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Don't Gather Requirements -- Dig for Them.**
->  Requirements rarely lie on the surface. They're buried deep beneath layers of assumptions, misconceptions, and politics.
-
-The system *Requirements Spec* captures all the requirements of the system that the customer wants built.
-Typically the provider and customer get into deep discussion of requirements and their cost.
-The requirements *must* be written down, and reviewed by both customer and provider, to be sure all are in agreement.
-Sometimes these documents are written in contractual (legal) language.
-If the customer gets a system that does not meet the spec, or the two parties disagree about whether the finished product meets the spec, lawyers may get involved.
-If a system is late, financial penalties may arise.
-
-> "*The hardest part of design... is keeping features out.*" -- Anonymous
-
-The system requirement spec may have a variety of requirements typically considered ***the shalls*** - such as, *"the crawler shall only crawl webpages within the cs50 website"*.
-These requirements include functional requirements, performance requirements, security requirements, and cost requirements.
-
-A common challenge during this phase is that the customer either doesn't know what he/she really wants or expresses it poorly (in some extreme cases the customer may not be able to provide you with the ultimate intended use of your system due to proprietary or security concerns).
-You must realize that the customer may have these difficulties and iterate with the customer until you both are in full agreement.
-One useful technique is to provide the customer with the system requirements specification (and sometimes later specs too) and then have the customer explain the spec to you.
-It is amazing how many misunderstandings and false assumptions come to light when the customer is doing the explaining.
-
-The Requirements Spec may address many or all of the following issues:
-
- * *functionality* - what should the system do?
- * *performance* - goals for speed, size, energy efficiency, etc.
- * *cost* - goals for cost, if system operation incurs costs
- * *compliance* - with federal/state law or institutional policy
- * *compatibility* - with standards or with existing systems
- * *security* - against a specific threat model under certain trust assumptions
-
-A new concern of system development is the issue of the services-oriented model referred to as the "cloud" (Software As A Service, Infrastructure As A Service, etc.).
-The decision of whether to develop a specific system running in a traditional manner or to build a cloud-based solution should be made early, as it will affect many of the later stages of the development process.
-Some would argue about where it needs to fit in the methodology, but we feel that the sooner you (and the customer) know where this system is headed, the better.
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Make quality a requirements issue.**
->  Involve your users in determining the project's real quality requirements.
-
-Although the customer may make some assumptions on this point, it's in your best interests to make it a priority.
-Remember the "broken window theory":
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Don't Live with Broken Windows.**
->  Fix bad designs, wrong decisions, and poor code when you see them.
-
----
-
-## Design spec
-
-In this phase, you translate the requirements into a full system-design specification. The *Design Spec* is the result of studying the system requirements and applying the art of design *(the magic)* with a design team.
-This design specification shows how the complete system is broken up into specific subsystems, and all of the requirements are mapped to those subsystems.
-The Design spec for a system, subsystem, or module includes:
-
--   User interface
--   Inputs and outputs
--   Functional decomposition into modules
--   Dataflow through modules
--   Pseudo code (plain English-like language) for logic/algorithmic flow
--   Major data structures
--   Testing plan
-
-To this last point:
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Design to Test.**
->  Start thinking about testing before you write a line of code.
-
-The Design Specification is independent of your choice of language, operating system, and hardware.
-In principle, it could be implemented in any language from Java to micro-code and run on anything from a Cray supercomputer to a toaster.
-
----
-
-## Implementation phase
-
-In this phase, we turn the Design Spec into an Implementation Spec, then code up the modules, unit-test each module, integrate the modules and test them as an integrated sub-system and then system.
-
-### Implementation Spec
-
-The *Implementation Spec* represents a further refinement and decomposition of the system.
-It is *language, operating system, and hardware dependent* (sometimes, the language abstracts the OS or HW out of the equation).
-The implementation spec includes many or all of these topics:
-
--   Detailed pseudo code for each of the objects/components/functions,
--   Definition of detailed APIs, interfaces, function prototypes and their parameters,
--   Data structures (e.g., `struct` names and members),
--   Security and privacy properties,
--   Error handling and recovery,
--   Resource management,
--   Persistent storage (files, database, etc).
--   Testing plan
-
-### Coding
-
-Coding is often the fun part of the software development cycle - but not usually the largest amount of time.
-As a software developer in industry, you might spend only about 20% of your time coding (perhaps a lot more if you're in a startup).
-The rest of the time will be dealing with the other phases of the methodology, particularly, the last few: testing, integration, fixing problems with the product and meetings with your team and with your customers.
-
-#### Goals during coding:
-
-- Correctness: The program is correct (i.e., does it work) and error free; that is, does its behavior match the functional requirements in the specifications.
-
-- Clarity: The code is easy to read, well commented, and uses good variable and function names.
-In essence, is it easy to use, understand, and maintain
-
-    > Clarity makes sure that the code is easy to understand by people with a range of skills, and across a variety of machine architectures and operating systems. [Kernighan & Pike]
-
-- Simplicity: The code is as simple as possible, but no simpler.
-
-    > Simplicity keeps the program short and manageable. [Kernighan & Pike]
-
-- Generality: The program can easily adapt to change.
-
-    > Generality means the code can work well in a broad range of situations and is tolerant of new environments (or can be easily made to do so). [Kernighan & Pike]
-
-### Unit and sub-system testing
-
-[Pragmatic Programmer Tip](https://pragprog.com/tips/):
-
-> **Test your software, or your users will.**
-
-Testing is a critical part of the whole process of any development effort, whether you're building bridges or software.
-Unit testing of modules in isolation, and integration testing as modules are assembled into sub-systems and, ultimately, the whole system, result in better, safer, more reliable code.
-
-The ultimate goal of testing is to exercise all paths through the code.
-Of course, with most applications this may prove to be a daunting task.
-Most of the time the code will execute a small set of the branches in the module.
-So when special conditions occur and newly executed code paths fail, it can be really hard to find those problems in large, complex pieces of code.
-
-The better organized and modularized your code is, the easier it will be to understand, test, and maintain - even by you!
-
-Write test scripts (tools) throughout the development process to quickly give confidence that even though new code has been added, no new bugs emerged **and** no fixed bugs reappeared (Regression test!).
-
-### Integration testing
-
-The system is incrementally developed, put together and tested at various levels.
-Subsystems could integrate many modules, and sometimes, new hardware.
-The developer will run the integrated system against the original requirements to see if there are any 'gotchas'.
-For example, some performance requirements can only be tested once the full system comes together, while other, commonly used utility functions could have performance analysis done on them early on.
-You can simulate external influences as well, such as increasing the external processing or communications load on the host system as a way to see how your program operates when the host system is heavily loaded or resource limited.
-
-[Pragmatic Programmer Tip #81](https://pragprog.com/tips/):
-
-> **Don't Think Outside the Box -- Find the Box.**
-> *When faced with an impossible problem, identify the real constraints. Ask yourself: “Does it have to be done this way? Does it have to be done at all?""*
-
-When faced with an impossible problem, identify the real constraints.
-Ask yourself: "Does it have to be done this way? Does it have to be done at all?"
-
-## Feedback phase
-
-In this phase, the design team sits down with its customer and demonstrates its implementation.
-The customer and the team review the original requirement spec and check each requirement for completion.
-
-In the TSE and project we emphasize understanding the requirements of the system we want to build, writing good design and implementation specs *before* coding.
-In CS50 we put special weight on the coding principles of simplicity, clarity, and generality.
-
-
----
-<!-- END design -->
 
 <!-- UNIT indexer -->
 
