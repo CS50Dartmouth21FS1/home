@@ -342,9 +342,8 @@ Of course, when `scanf` continued it expected me to enter some input.
 I proceeded to enter 10 numbers, just as in our prior experiment.
 (In this case the input is from the keyboard, and in the prior case it was from a pipeline; either way it is coming via stdin and scanf does not care.)
 
-Now we are back up in the `main` function, at line 27.
-
-`gdb`  conveniently prints the return value for `scanf`, i.e., `Value returned is $1 = 1` (because `scanf` successfully read 1 item matching the pattern `%d`).
+Now that we are back up in `main` function, at line 27.
+It also conveniently prints the return value for `scanf`, i.e., `Value returned is $1 = 1` (because `scanf` successfully read 1 item matching the pattern `%d`).
 I can examine what number was read by printing the variable value:
 
 ```
@@ -430,8 +429,7 @@ __isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
 (gdb) 
 ```
 
-Which shows the function-call stack, from inner to outer.  
-
+Which shows the function-call stack, from inner to outer.
 Above we are inside `__isoc99_scanf` (aka `scanf`) and that was called from `main`.
 
 Let's finish `scanf`:
@@ -547,7 +545,7 @@ Keep poking at the program and see if you can find the errors.
 You may find it helpful to store sample input in a file, e.g.,
 
 ```
-$ examine
+$ echo 11 22 33 44 55 66 77 88 99 00 > nums
 $ gdb bugsort
 ...
 Reading symbols from bugsort...done.
@@ -558,68 +556,15 @@ Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort < nums
 (gdb) 
 ```
 
----
 
 **Some cool things to note about gdb:**
 
 * Every time you enter a command at the `gdb` "shell" that is successful, the output value is stored in a variable denoted `$N` where `N` increments by 1 for each command that you run.
-  You can use those variables at a later point if you want (e.g., `print $3`).
-
+You can use those variables at a later point if you want (e.g., `print $3`).
 * `gdb` supports auto-completion on function names and variable names! Go ahead and try it out!
-
-* When exploring the stack frames using the `backtrace` or `bt` command,  if you include the `full` qualifier, it also shows the values of the local variables for each stack frame.  Here's an example from a debug session for `bagtest.c`.
-
-  ```bash
-  (gdb) bt full
-  #0  itemcount (arg=0x7fffffffdd78, item=0x555555758690) at bagtest.c:115
-          nitems = 0x7fffffffdd78
-  #1  0x00005555555551dd in bag_iterate (bag=0x555555758670, arg=0x7fffffffdd78,
-      itemfunc=0x555555554efb <itemcount>) at bag.c:139
-          node = 0x55555575a700
-  #2  0x0000555555554cfa in main () at bagtest.c:64
-          bag1 = 0x555555758670
-          bag2 = 0x0
-          name = 0x0
-          namecount = 1
-          bagcount = 1
-  (gdb)
-  ```
-
-  
-
-* Lots of extra functionality and settings are available via the `set` command.  For example, if you enter `set print pretty` in `gdb` and then you print a variable that is a struct, `gdb` will print it nicely with indentions and such. Here's an excerpt from a debugging session for `bagtest`:
-
-  ```bash
-  (gdb) p bag1
-  $8 = (bag_t *) 0x555555758670
-  (gdb) p *bag1
-  $9 = {head = 0x555555758c00}
-  (gdb) set print pretty on
-  (gdb) p *bag1
-  $10 = {
-    head = 0x555555758c00
-  }
-  (gdb) p bag1->head
-  $11 = (struct bagnode *) 0x555555758c00
-  (gdb) p *(bag1->head)
-  $12 = {
-    item = 0x555555758ba0,
-    next = 0x555555758b80
-  }
-  (gdb) p *(bag1->head->next)
-  $13 = {
-    item = 0x555555758b20,
-    next = 0x555555758b00
-  }
-  (gdb)
-  ```
-
 * Also similar to the regular shell, the `gdb` shell allows you to arrow up/down to revisit past commands.
-
-* You can re-run the previous command simply by hitting the Enter (return) key.
-
 * Many of the `gdb` commands have abbreviated forms (e.g., `run` is `r`, `continue` is `c`, `next` is `n`); see the [gdb quick reference guide](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf) to see other commands that have abbreviated forms.
-
+* You can re-run the previous command simply by hitting the Enter (return) key.
 
 
 ### Frequently used `gdb` commands
@@ -634,7 +579,6 @@ See also this printable [gdb quick reference guide](http://users.ece.utexas.edu/
 | `commands NN`           |A list of commands to run every time breakpoint #NN is reached. |
 | `list [file:]function`  |Type  the  text  of  the  program  in  the  vicinity of where it is presently stopped. |
 | `backtrace`             |Backtrace: display the program stack. |
-|  | |
 | `frame [args]`          |The frame command allows you to move from one stack frame to another, and to print the stack frame you select. args may be either the address of the frame or the stack frame number. Without an argument, frame prints the current stack frame. |
 | `print expr`            |Display the value of an expression. |
 | `continue`              |Continue running your program (after stopping, e.g. at a breakpoint). |
