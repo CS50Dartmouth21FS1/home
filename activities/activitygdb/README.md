@@ -8,136 +8,6 @@ Once you discover the existence of a bug, how do you track it down so you know *
 
 **We strongly recommend learning `gdb` for debugging C programs**.
 It takes a bit of practice, but its use will save you *lots* of time in CS50 and subsequent courses.
-We introduce and demonstrate `gdb` below; but first, a note about debugging.
-
-## Techniques for limiting those pesky bugs
-
-> "Don't Panic" -- Hitchhiker's Guide to the Galaxy
-
-**[:arrow_forward: Video](https://dartmouth.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=712bcb67-c276-4a93-9aef-ad0d015e4fbd)**
-
-The trouble with bugs is that no two are the same.
-Bugs can be simple: bad pointers and array subscript errors; while others are sometime difficult to debug: the systems might run for days and then fail because of a slow memory leak or numeric overflow problem.
-Still others might depend upon a subtlety in the timing of events, such as messages arriving over the network or the user hitting 'Enter' at just the right moment.
-
-Programmers aim to understand the nature of the bug they are trying to swat:
-*is it reproducible?* (does it always fail under the same set of conditions),
-*does it always manifest itself in the same way?*, and so on.
-These are clues that help track down those pesky bugs in complex systems.
-
-The complexity of a program is related to the number of interacting components; we have already seen programs with multiple functions and code spread across two or three files, and that use one or more libraries (stdio, stdlib, and the math library).
-One rule of thumb is that the number of bugs grows with the number of interactions.
-Reducing the complexity and interactions enables us to focus in on the location of bugs in code.
-Gordon Bell summed it up this way:
-
-> "The cheapest, fastest, and most reliable components of a computer system are the ones that aren't there."
->  -- [Gordon Bell](http://research.microsoft.com/en-us/um/people/gbell/)
-
-His point is that the importance of a simple design cannot be overemphasized.
-
-Techniques that help reduce debugging time include:
-
--   a good design and design methodology;
--   consistent style (e.g., use C program idioms as much as possible);
--   boundary condition tests;
--   assertions and sanity testing;
--   defensive programming;
--   designing for testing;
--   avoid files that have a large number of functions, and functions that have a large number of lines; Aim for functions that do one thing, and do it well!
--   limit use of global variables whenever possible; and
--   leverage desk-checking tools.
-
-
-## Approaches to debugging
-
-> Insanity: doing the same thing over and over again and expecting different results.  
--- Unknown
-
-When tracking down pesky bugs we can think of the following steps to finding and correcting them - a sort of "bug lifecycle":
-
-* **Testing:** discovering what bugs exist.
-We have already designed some simple tests for programs in this class.
-* **Stabilization:** find a minimal input sequence that reliably reproduces the buggy behavior.
-* **Localization:** identify the function/line of the code responsible.
-* **Correction:** fix the code!
-* **Verification:** re-test the code fix and confirm it works... not just on the sequence that generated the buggy behavior, but on *all* possible tests to ensure your bug fix did not break some other behavior!
-* **Extrapolation:** imagine other examples that are related to the one that caused this bug to occur and test those too.
-
-There are many ways that people approach debugging - not all of which are effective.
-
-1. Ignore the bug; assume it will never happen again.
-2. Sift through warning/error messages; once all of the messages are gone, assume the program is correct.
-3. Insert `printf` statements throughout the code to inspect of variables and control flow.
-4. Use specialized debugging tools (e.g., plugins integrated into your favorite IDE, commandline tools like `gdb` and `valgrind`).
-
-The first approach is clearly not a good idea; bugs *will* recur if given the chance.
-
-Eliminating all of the warnings and errors is a good idea (and indeed is required when submitting assignments in cs50 :).
-Without proper testing, however, there is no guarantee that your program is correct.
-
-Print-style debugging can be useful for simple situations, but can lead to ugly, unreadable code.
-If you take this approach, even a little, use discipline to enable/disable such messages with a single switch (as shown below).
-
-Let's look at better approaches.
-
-### Code Inspection
-
-Many times people rush and "hack" the debug phase and sit at the terminal hoping to eventually track down that bug via trial and error.
-Inexperienced programmers do this as their first resort.
-You will find this approach to be very time consuming - put more plainly, it will take longer than other techniques.
-
-One of the most effective debug tools is you:
-***sit down and read your code!***
-
-Pretend you are a computer and execute the code with a pen and paper.
-As you read your code, keep some of the following tips in mind:
-
-* Draw diagrams! Especially for data structures.
-* Regarding for/while loops, and recursion, think about the base case, and the boundary conditions, and work inductively toward the general case.
-Errors most often occur at the base case or at the boundary cases.
-
-Code inspection is very useful.
-Good programmers closely trace through their code in detail.
-Look for boundary conditions of structures, arrays, loops, and recursion; bugs often exist at the boundary.
-Look at edge cases – "empty" or "full" conditions.
-
-Once you have read your code and convinced yourself it works and bugs remain, you need to instrument your code and start the detective work.
-
-Sometimes while debugging you will discover other, unrelated bugs that haven't yet manifested themselves.
-FIX THEM!
-
-Pragmatic Programmer Tip:
-
-> **Don't live with broken windows:**
->  Fix bad designs, wrong decisions, and poor code  when you see them.
-
-Pragmatic Programmer Tip:
-
-> **Fix the Problem, Not the Blame:**
->  It doesn't really matter whether the bug is your fault or someone else's – it is still your problem,  and it still needs to be fixed.
-
-
-## The printf approach to debugging
-
-"All I need is printf(), right?"
-
-You may have been using print statements to help you debug your code.
-That method can only get you so far.
-Sometimes, the underlying bug may even interfere with printf's limited contribution to your efforts.
-For example, if you have a segfault that occurs after your printf is executed but its string never gets displayed because the process crashes - you might think that the bug occurs before your `printf` when really the bug happens much later.
-The takeaway here is that `printf` is not your friend in these examples; too often it's a red herring.
-
-What happens if your system runs for hours and only under a certain set of system conditions the code fails?
-Working your way through thousands of `printf` outputs may not help.
-When a bug is buried deep in the execution of your software you need sophisticated tools to track those down.
-You need more than `printf` to attack these bugs.
-
-Just because `stdout` shows some of your prints were executed doesn't always mean that the last message written to `stdout` is from the last `printf` before the program had a problem.  
-Unix output is often _lazy_, meaning that the system will _eventually_ send the message to stdout but only when it is ready (e.g., some minimum number of characters to print to make it worthwhile, when the system is doing output for your process as well as others, etc.).
-This may seem unimportant, but it means that your program _may execute the code following the `printf()` before the output appears_.
-So, if you are using `printf()` for debugging, you should follow it with a `fflush(stdout)` which tells the system "print it NOW" before your program continues.
-
-If you do use `printf` debugging, please use the C preprocessor to conditionally turn on/off the debugging output with one switch; that is, using `#ifdef DEBUG` and [conditional compilation](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1/knowledge/units/c-conditional-compilation.md).
 
 ## The GNU Debugger (gdb)
 
@@ -148,9 +18,14 @@ See our [gdb resources](https://github.com/CS50Dartmouth21FS1/home/blob/fall21s1
 **Note:** before using `gdb`, ensure you compile all C source files with the `-ggdb` flag - our standard `.bashrc` file defines `mygcc` with this flag, and your `Makefile` should include this flag in its definition of `CFLAGS`.
 This flag ensures that useful metadata is packaged with your executable at compile time that `gdb` needs to help you debug your programs.
 
-The gdb debugger is invoked with the shell command `gdb`; it then prints its own prompt and accepts its own wide range of commands.
-Once started, it reads commands from the terminal until you tell it to exit with the gdb command `quit`.
-You can get online help from `gdb` itself by using the command `help`.
+So for now, just compile using `mygcc`:
+
+```
+mygcc bugsort.c -o bugsort
+```
+
+The gdb debugger is invoked with the shell command `gdb`; it then prints its own prompt and accepts its own wide range of commands. Once started, it reads commands from the terminal until you tell it to exit with the gdb command `quit`.
+You can always get online help while using `gdb` with the command `help`.
 
 ```
 $ gdb
@@ -186,18 +61,17 @@ You can run `gdb` with no arguments or options; but the most usual way to start 
 $ gdb program
 ```
 
-### GDB demo
+## Sample `gdb` session
 
 In the following examples we will use a lot of the basic `gdb` commands - `break`, `run`, `next`, `step`, `continue`, `display`, `print`, and `frame` (read about [stack frames](http://sourceware.org/gdb/current/onlinedocs/gdb/Frames.html); this is an important concept in C and very useful for debugging and poking around in your code and looking at variables).
 
-I strongly recommend that you go through the sequence of steps below and use these debugging commands.
-Don't worry, you can't break anything.
+I strongly recommend that you go through the sequence of steps below and use these debugging commands. Don't worry, you can't break anything.
+
 Just like the shell commands you'll only need a subset of the the complete set of `gdb` commands to become an effective debugger.
 
-We will be working with [bugsort.c](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bugsort.c).
+We will be working with [bugsort.c ](https://github.com/CS50Dartmouth21FS1/examples/blob/main/bugsort.c)  in our examples directory on plank..
 
-The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order.
-It then prints them out, separated by spaces.
+The program is simple: it reads ten integers from the stdin, and inserts each into an array of integers such that the array is in sorted order. It then prints them out, separated by spaces.
 Easy, right?
 
 ```
@@ -223,6 +97,8 @@ Notice that last line about "reading symbols"; `gdb` is reading special debug-re
 > A *symbol* is a function name, variable name, data type name, etc.
 > This information may be stored inside the executable file (here, `bugsort`), or (as on MacOS) in an adjacent folder (`bugsort.dSYM`).
 > The compiler saves this information because our alias `mygcc` includes the `-ggdb` argument.
+
+### breakpoints
 
 One of a debugger's most powerful features is the ability to set "breakpoints" in our code; when we run our program and the debugger encounters a breakpoint, the execution of the program stops at that point.
 Let's set a few breakpoints:
@@ -260,9 +136,10 @@ Breakpoint 3 at 0x878: file bugsort.c, line 37.
 ```
 
 Notice that we can list the code around a line number by specifying that line number.
-Notice further that you can just hit "enter" at the gdb commandline to mean "do it again", or in the case of `list`, "list some more".
+Notice further that you can just hit "enter" at the gdb commandline to mean "do the last command again", or in the case of `list`, "list some more".
 
-Notice that we can set breakpoints by identifying the name of a function (e.g., "main"), or by specifying a particular line in our source code (e.g., lines 27 and 37).
+Notice that we can set breakpoints by identifying the name of a function (e.g., `main`, `myfunc`, etc.), or by specifying a particular line in our source code (e.g., lines 27 and 37).
+
 > When you are debugging programs with multiple files you can also set breakpoints in different files by specifying the file as well as the function name/line of code where you'd like to enable a breakpoint.
 
 If you want to see the breakpoints you've currently created, run `info break` (as shown above).
@@ -276,7 +153,7 @@ Num     Type           Disp Enb Address            What
 (gdb) 
 ```
 
-You can also clear all of your breakpoints (`clear`), clear specific breakpoints (`clear` *function* or `clear` *line*), or even disable breakpoints so that you can leave them in place, but temporarily disabled.
+You can also clear all of your breakpoints (`clear`), clear specific breakpoints (`clear` *function* or `clear` *line*), or even disable specific breakpoints so that you can leave them in place, but temporarily disabled.
 
 ```
 (gdb) disable 2
@@ -288,7 +165,7 @@ Num     Type           Disp Enb Address            What
 (gdb) 
 ```
 
-Notice under the "Enb" column the second breakpoint is disabled.
+Notice under the `Enb` column the second breakpoint is disabled.
 
 At this point we've started `gdb` and told it about some breakpoints we want set, but we haven't actually started running our program.
 
@@ -296,7 +173,7 @@ Let's run our program now:
 
 ```
 (gdb) run
-Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort 
+Starting program: /thayerfs/home/d29265d/web/Lectures/_examples/bugsort 
 
 Breakpoint 1, main () at bugsort.c:19
 19	{
@@ -306,12 +183,12 @@ Breakpoint 1, main () at bugsort.c:19
 As expected, the debugger started our program running but "paused" the program as soon as it hit the breakpoint that we set at the `main` function.
 Once the program has stopped we can "poke around" a bit.
 
-Now let's `step` one line of code at a time; we type `step` and then, for convenience, just hit Enter each time to go one more step.
+Now let's `step` one line of code at a time; we type `step` and then, for convenience, just hit **Enter** each time to go one more step.
 
 ```
 (gdb) step
 20	  const int numSlots = 10;  // number of slots in array
-(gdb) step
+(gdb) 
 21	  int sorted[numSlots];   // the array of items
 (gdb) 
 24	  for (int n = 0; n < numSlots; n++) {
@@ -323,8 +200,10 @@ __isoc99_scanf (format=0x555555554964 "%d") at isoc99_scanf.c:27
 (gdb) 
 ```
 
-Oops! Stepping line by line is nice but gdb's `step` command allowed us to walk right down into the icky details of `scanf`!
-It is cool that we can "step" into functions but `scanf` does a lot of work that we aren't interested in - and we don't have the source code anyway.
+##### Oops! Stepping line by line is nice but `step` command allowed us to walk right down into the icky details of `scanf`!
+
+It is cool that we can "step" into functions but `scanf` does a lot of work that we aren't interested in - and we don't have the source code for it anyway.
+
 If you find yourself deep down in some function that you accidentally stepped into, use the `finish` command to start the program running again until just after the function in the current stack frame returns.
 
 ```
@@ -399,7 +278,7 @@ $6 = 22
 (gdb) 
 ```
 
-Ahah, this time we went into the inner loop and dropped in our item.
+Aha! This time we went into the inner loop and dropped in our item.
 We then came back around to the top of the main loop.
 As you can see, I printed contents of two elements of the array, too.
 
@@ -552,11 +431,13 @@ $ gdb bugsort
 ...
 Reading symbols from bugsort...done.
 (gdb) run < nums
-Starting program: /thayerfs/home/d31379t/web/Lectures/_examples/bugsort < nums
+Starting program: /thayerfs/home/d29265d/web/Lectures/_examples/bugsort < nums
 0 99 99 99 99 99 99 99 32767 32767 
 [Inferior 1 (process 40061) exited normally]
 (gdb) 
 ```
+
+---
 
 ---
 
