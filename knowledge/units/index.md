@@ -40,11 +40,6 @@ Like any budding hacker you need to do some experimenting, find information to f
 * Unit: [Shell 'while' loops](bash-while.md)
 * Optional: [Shell tips and tricks](bash-tips.md)
 * History: [Origin of "Artificial Intelligence"](hist-ai.md)
-
-
----
-
-### Week Sep-20 Fall 2021
 * Unit: [Git concepts and commands](git.md)
 * Reading: [Git reference and reading](read-git.md)
 * Reading: [C programming](read-c1.md)
@@ -127,7 +122,7 @@ Like any budding hacker you need to do some experimenting, find information to f
 
 ---
 
-### Week Oct-28 Fall 2021
+### Week Oct-18 Fall 2021
 * Unit: [Iterators](iterators.md)
 * Unit: [Cohesion and coupling](cohesion.md)
 * Reading: [Git-flow tutorials](read-git-flow.md)
