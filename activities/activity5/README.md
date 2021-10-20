@@ -49,7 +49,7 @@ For your purposes today, ignore
 
  * cost
  * compliance
- * security
+ * security  (gasp!)
 
 ## Assumptions and suggestions
 
