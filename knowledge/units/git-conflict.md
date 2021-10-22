@@ -6,7 +6,7 @@ CONFLICT (content): Merge conflict file.c
 Automatic merge failed; fix conflicts and then commit the result
 ```
 
-This is a *merge conflict*; they can be messy to resolve.
+This is a *merge conflict*; they can be messy to resolve.  Git can usually figure out how to resolve these merge conflicts automatically, but not always.  When git can't resolve a merge conflict, don't worry: git will make sure you know either when you try to merge or the next time you use `git status`.
 
 ## What causes merge conflicts?
 
@@ -68,7 +68,7 @@ This line was added by Bob.
 $ 
 ```
 
-GitHub calls this a _competing line change merge conflict_.
+GitHub calls this a _competing line change merge conflict_. The lines between the `<<<<<<<` and `=======` are the local lines that conflict with the lines between the `=======` and the `>>>>>>>` on the remote repo.
 
 Alice manually resolves the conflict, by editing the file; she decides to combine them:
 
@@ -123,6 +123,29 @@ git rm file.md
 git commit -m "Resolved merge conflict by removing file.md"
 git push
 ```
+
+
+
+## Git merge conflicts can occur in other ways too 
+
+- `git stash`
+  - This temporarily saves (or *stashes*) changes you've already made to your working copy so you can begin work on something else, and then return to finish that work later. Stashing is handy if you aren't quite ready to commit when you suddenly need to stop working on the next feature to fix a bug in the main branch, or if you need to pull someone else's changes to test something.
+- `git rebase`
+  - This is used to change the commit that a branch is based on to be based on some other commit.  It essentially rewrites history, so be very careful.  There's nearly always a better way.
+- `git cherry-pick`
+  - This allows you to pick a commit from one branch and apply it to another.  One good use is when a commit is applied to the wrong branch, although you could repair this situation other ways. Like `rebase`, be _sure_ you _really_ want to do this as it can cause other errors and conflicts.
+
+
+
+## Git commands that can help explore the merge conflict
+
+- `git status` will tell you which files are in conflict
+- `git log --merge` after a failed merge will show a list of commits that are in conflict between branches
+- `git diff` will show changes between commits, commit and work diretory, etc.
+
+## Git merge conflicts must be resolved, but not necessarily _right now_
+
+If you really can't deal with the conflict right now, or you think there may be some other way to resolve it, you can always cancel the  merge by using  `git merge --abort`.  This puts your branch back the way it was before you tried to merge.
 
 ## A far better solution
 
